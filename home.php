@@ -309,6 +309,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                     </div>
 
+                    <a href="../logout.php">Logout</a>
                 </div>
 
 
