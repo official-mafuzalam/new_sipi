@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <div class="container text-center">
         <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
         <p class="fs-4">Upgrade semester for full semester student.</p>
-        <a class="text-decoration-none" href="../home.php">
+        <a class="text-decoration-none" href="../">
             <h3 class="text-center">Home</h3>
         </a>
     </div>
@@ -86,13 +86,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
         </form>
     </div>
-    <!-- <div class="container text-center">
-        <form class="row g-3 d-flex" role="search" method="POST">
-            
-        </form>
-        <input type="text" value="This input is not editable" readonly>
-
-    </div> -->
 
     <div class="container">
 
@@ -174,7 +167,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <td>' . $row['email'] . '</td>
                                 <td>
                                     <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="../other/update_student_details.php?id=' . $row['id'] . '">Edit</a>
+                                        <a class="text-decoration-none" href="update_student_details.php?id=' . $row['id'] . '">Edit</a>
                                     </button>
                                 </td>
                             </tr>';

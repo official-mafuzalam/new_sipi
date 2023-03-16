@@ -1,4 +1,5 @@
 <?php
+
 include '../inc/conn.php';
 // process form data here and save it to the database
 $user_id = $_POST['user_id'];

@@ -24,7 +24,7 @@ include '../inc/conn.php';
     <div class="container text-center">
         <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
         <p class="fs-4">Find student by semester & technology.</p>
-        <a class="text-decoration-none" href="../home.php">
+        <a class="text-decoration-none" href="../">
             <h3 class="text-center">Home</h3>
         </a>
     </div>
@@ -68,17 +68,10 @@ include '../inc/conn.php';
             </div>
         </form>
     </div>
-    <!-- <div class="container text-center">
-        <form class="row g-3 d-flex" role="search" method="POST">
-            
-        </form>
-        <input type="text" value="This input is not editable" readonly>
-
-    </div> -->
 
     <div class="container">
 
-        <table class="table table-striped table-hover" id="table">
+        <table class="table table-striped table-hover">
 
             <?php
 
@@ -123,7 +116,7 @@ include '../inc/conn.php';
                                 <td>' . $row['email'] . '</td>
                                 <td>
                                     <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="../other/update_student_details.php?id=' . $row['id'] . '">Edit</a>
+                                        <a class="text-decoration-none" href="update_student_details.php?id=' . $row['id'] . '">Edit</a>
                                     </button>
                                 </td>
                             </tr>';

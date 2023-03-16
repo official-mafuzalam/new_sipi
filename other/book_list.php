@@ -24,7 +24,7 @@ include '../inc/conn.php';
     <div class="container text-center">
         <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
         <p class="fs-4">Find Book List by semester & technology.</p>
-        <a class="text-decoration-none" href="../home.php">
+        <a class="text-decoration-none" href="../">
             <h3 class="text-center">Home</h3>
         </a>
     </div>
@@ -111,7 +111,7 @@ include '../inc/conn.php';
                                 <td>' . $row['book_name'] . '</td>
                                 <td>
                                     <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="../other/update_book_name.php?id=' . $row['s_no'] . '">Edit</a>
+                                        <a class="text-decoration-none" href="update_book_name.php?id=' . $row['s_no'] . '">Edit</a>
                                     </button>
                                 </td>
                             </tr>';

@@ -31,7 +31,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     if ($con->query($sql) === TRUE) {
-        echo '<script>alert("Data Update Successfully"); window.location.href = "../home.php";</script>';
+        echo '<script>alert("Data Update Successfully"); window.location.href = "../index.php";</script>';
 
     } else {
         echo "Error updating record ";
@@ -71,7 +71,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container text-center">
             <h2 class="text-center">Teacher Data Update System</h2>
         </div>
-        <a class="text-decoration-none" href="../home.php">
+        <a class="text-decoration-none" href="../">
             <h1 class="text-center">Home</h1>
         </a>
 

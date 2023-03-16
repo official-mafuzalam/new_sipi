@@ -42,8 +42,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <div class="container">
         <div class="container text-center">
             <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
-            <a class="text-decoration-none" href="../home.php">
-                <h5 class="text-center">Fees Deposit Slip</h5>
+            <a class="text-decoration-none" href="../">
+                <h5 class="text-center fs-4">Fees Deposit Slip</h5>
             </a>
         </div>
         <hr>
@@ -220,18 +220,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 
 
 
-
-
-
-        <script>
-
-            function changeValue() {
-                var dropdown = document.getElementsByName("deposit_category")[0];
-                var inputBox = document.getElementById("deposit_amount");
-                inputBox.value = dropdown.options[dropdown.selectedIndex].getAttribute("data-value");
-            }
-
-        </script>
 
 </body>
 

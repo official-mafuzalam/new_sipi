@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container text-center">
             <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
             <p class="fs-4">Fill the form for update details.</p>
-            <a class="text-decoration-none" href="../home.php">
+            <a class="text-decoration-none" href="../">
                 <h3 class="text-center">Home</h3>
             </a>
         </div>

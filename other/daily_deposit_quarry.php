@@ -26,7 +26,7 @@ include '../inc/conn.php';
     <div class="container text-center">
         <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
         <p class="fs-4">Find Daily Total Deposit by Date.</p>
-        <a class="text-decoration-none" href="../home.php">
+        <a class="text-decoration-none" href="../">
             <h3 class="text-center">Home</h3>
         </a>
     </div>
@@ -98,7 +98,7 @@ include '../inc/conn.php';
                     }
                     echo '</tbody></table>';
                 } else {
-                    echo 'No Transaction found in the database';
+                    echo 'No Transaction found for this date';
                 }
             }
 

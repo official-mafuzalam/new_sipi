@@ -1,4 +1,5 @@
 <?php
+
 include '../inc/conn.php';
 
 $book_name = $_POST['book_name'];
@@ -35,7 +36,7 @@ $semester = $_POST['semester'];
 
     <div class="container text-center">
         <p class="fs-4">Fill the marks form and save for publish result.</p>
-        <a class="text-decoration-none" href="../home.php">
+        <a class="text-decoration-none" href="../">
             <h3 class="text-center">Home</h3>
         </a>
     </div>

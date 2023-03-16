@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     if ($con->query($sql) === TRUE) {
-        echo '<script>alert("Data Update Successfully"); window.location.href = "../home.php";</script>';
+        echo '<script>alert("Data Update Successfully"); window.location.href = "../index.php";</script>';
 
     } else {
         echo "Error updating record: ";
@@ -74,7 +74,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container text-center">
             <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
             <p class="fs-4">Fill the form for update details.</p>
-            <a class="text-decoration-none" href="../home.php">
+            <a class="text-decoration-none" href="../">
                 <h3 class="text-center">Home</h3>
             </a>
         </div>

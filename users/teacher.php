@@ -13,20 +13,20 @@ if (!isset($_SESSION['w_type'])) {
 
 // Check if user has a Type 2 account, otherwise redirect to login page
 if ($_SESSION['w_type'] != 3) {
-    header("Location: ../login.php");
+    header("Location: ../index.php");
     exit();
 }
 
-$user_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM teacher WHERE user_id = '$user_id'";
-$result = mysqli_query($con, $sql);
+// $user_id = $_SESSION['user_id'];
+// $sql = "SELECT * FROM teacher WHERE user_id = '$user_id'";
+// $result = mysqli_query($con, $sql);
 
-if ($result) {
-    $row = mysqli_fetch_assoc($result);
-    $email = $row['email'];
-} else {
-    echo "Error retrieving password: " . mysqli_error($con);
-}
+// if ($result) {
+//     $row = mysqli_fetch_assoc($result);
+//     $email = $row['email'];
+// } else {
+//     echo "Error retrieving password: " . mysqli_error($con);
+// }
 
 
 
@@ -63,32 +63,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result)
             echo '<script>alert("Student Data Inserted Successfully")</script>';
         else
-            echo "Qury error!";
-    } elseif (isset($_POST['teacher_submit'])) {
+            echo "Query error!";
 
-        $technology = $_POST['technology'];
-        $user_name = $_POST['user_name'];
-        $position = $_POST['position'];
-        $mobile_number = $_POST['mobile_number'];
-        $email = $_POST['email'];
-
-        // Generate a random number
-        do {
-            $random_num = rand(10000, 99999);
-            $query = "SELECT user_id FROM teacher WHERE user_id = '$random_num'";
-            $result = mysqli_query($con, $query);
-        } while (mysqli_num_rows($result) > 0);
-
-        // Insert data into the database
-        $sql = "INSERT INTO teacher (user_id, technology,user_name, position, mobile_number, email) 
-        VALUES('$random_num','$technology', '$user_name', '$position' , '$mobile_number', '$email') ";
-        $result = mysqli_query($con, $sql);
-
-
-        if ($result)
-            echo '<script>alert("Teacher Data Inserted Successfully")</script>';
-        else
-            echo "Qury error!";
     } elseif (isset($_POST['notice_submit'])) {
 
         $category = $_POST['category'];
@@ -96,7 +72,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $des = $_POST['desc'];
 
         // Read the existing JSON object from the file
-        $json_data = file_get_contents("json/data_notice.json");
+        $json_data = file_get_contents("../json/data_notice.json");
         $data = json_decode($json_data, true);
 
         // Add the new form data to the object
@@ -110,23 +86,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $json_data = json_encode($data);
 
         // Save the JSON object to the file
-        file_put_contents("json/data_notice.json", $json_data);
+        file_put_contents("../json/data_notice.json", $json_data);
 
-        echo "<script>alert('Successfully submitted Notice data');
-        window.location.href = 'home.php';
-        </script>";
+        echo "<script>alert('Successfully submitted Notice data');</script>";
 
     } elseif (isset($_POST['delete_notice'])) {
 
-        $file = fopen('json/data_notice.json', 'w');
+        $file = fopen('../json/data_notice.json', 'w');
         fseek($file, 0);
         ftruncate($file, 0);
         fwrite($file, '[]');
         fclose($file);
 
-        echo "<script>alert('Successfully Deleted all Notice data!');
-                window.location.href = 'home.php';
-            </script>";
+        echo "<script>alert('Successfully Deleted all Notice data!');</script>";
     }
 
 }
@@ -153,6 +125,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
+
+
+    <nav class="navbar sticky-top bg-body-tertiary" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+
+                <?php
+
+                $user_id = $_SESSION['user_id'];
+                $username = $_SESSION['username'];
+
+                echo "Account No : " . "<strong>" . $user_id . "</strong>";
+                echo "  Name :" . " <strong>" . $username . "</strong>";
+
+                ?>
+
+            </div>
+            <div class="d-flex" role="search">
+                <a class="text-decoration-none" href="../logout.php">
+                    <strong>Logout</strong>
+                </a>
+            </div>
+        </div>
+    </nav>
+
 
     <div class="container-fluid">
         <div class="row">
@@ -260,18 +257,18 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     // echo "<p class='text-center fs-3'>Currently running notice : <span class='text-center fs-4 fw-bold badge text-bg-info'>" . count($data) . "</span></p>";
                     
                     // Get the current date
-                    $current_date = date("Y-m-d");
-
-                    // Query the database to get the sum of deposit amounts for the current date
-                    $sql = "SELECT SUM(deposit_amount) as total_amount FROM fees_deposit WHERE date = '$current_date'";
-                    $result = mysqli_query($con, $sql);
-
-                    // Fetch the result as an associative array
-                    $row = mysqli_fetch_assoc($result);
-
-                    // Access the sum using the alias
-                    $total_amount = $row['total_amount'];
-
+                    // $current_date = date("Y-m-d");
+                    
+                    // // Query the database to get the sum of deposit amounts for the current date
+                    // $sql = "SELECT SUM(deposit_amount) as total_amount FROM fees_deposit WHERE date = '$current_date'";
+                    // $result = mysqli_query($con, $sql);
+                    
+                    // // Fetch the result as an associative array
+                    // $row = mysqli_fetch_assoc($result);
+                    
+                    // // Access the sum using the alias
+                    // $total_amount = $row['total_amount'];
+                    
                     ?>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -313,21 +310,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         <?php
 
                                         // echo $total_amount
-                                            
+                                        
                                         ?>
                                     </p>
                                 </div>
                             </div>
                         </div> -->
                     </div>
-
-                    <?php
-                    foreach ($_SESSION as $key => $value) {
-                        echo "$key => $value<br>";
-                    }
-                    ?>
-
-                    <a href="../logout.php">Logout</a>
                 </div>
 
 
@@ -340,7 +329,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
 
                     <div class="container text-center">
-                        <form class="form-inline" action="home.php" method="POST">
+                        <form class="form-inline" action="teacher.php" method="POST">
                             <div class="input-group">
                                 <select name="technology" id="technology" class="cars form-control" required>
                                     <option value="" selected>Select a Technology</option>
@@ -527,153 +516,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 </div>
 
-                <!-- Tab  5-->
-                <div id="Tab5" class="tabcontent">
-                    <div class="container text-center">
-                        <h3 class="text-center">Teacher Add System</h3>
-                        <p class="fs-4">Fill the form for add a new Teacher in database.</p>
-                        <hr>
-                    </div>
-
-                    <div class="container text-center">
-                        <form class="form-inline" action="home.php" method="POST">
-                            <div class="input-group">
-                                <select name="technology" id="technology" class="cars form-control" required>
-                                    <option value="" selected>Select a Technology</option>
-                                    <option value="Computer">Computer</option>
-                                    <option value="Graphic">Graphic</option>
-                                    <option value="RAC">RAC</option>
-                                    <option value="Civil">Civil</option>
-                                    <option value="Electronic">Electronic</option>
-                                    <option value="Electrical">Electrical</option>
-                                    <option value="Architecture">Architecture</option>
-                                    <option value="Mechanical">Mechanical</option>
-                                    <option value="Others">Others</option>
-                                </select>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="text" name="user_name" id="name" class="form-control" placeholder="Name"
-                                    required>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <select name="position" id="position" class="cars form-control" required>
-                                    <option value="" selected>Select Position</option>
-                                    <option value="CI">CI</option>
-                                    <option value="JR Instructor">JR Instructor</option>
-                                    <option value="Others">Others</option>
-                                </select>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="tel" name="mobile_number" id="name" class="form-control"
-                                    placeholder="Mobile number" required>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="tel" name="email" id="name" class="form-control" placeholder="Email"
-                                    required>
-                            </div>
-                            <br>
-                            <input class="submit btn btn-success save-btn" name="teacher_submit" type="submit"
-                                value="Save">
-
-                        </form>
-                    </div>
-
-                </div>
-
-                <!-- Tab End -->
-
-                <div id="Tab6" class="tabcontent">
-
-                    <div class="container text-center">
-                        <h3 class="text-center">All Teacher List</h3>
-                        <hr>
-                    </div>
-
-                    <div class="container">
-
-                        <table class="table table-striped table-hover" id="table">
-
-                            <?php
-
-                            $sql = "SELECT * FROM teacher ORDER BY sno ASC";
-                            // or bus_name like '%$search%'
-                            $result = mysqli_query($con, $sql);
-
-                            if (mysqli_num_rows($result) > 0) {
-                                echo '
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">User Id</th>
-                                        <th scope="col">Teacher Name</th>
-                                        <th scope="col">Technology</th>
-                                        <th scope="col">Position</th>
-                                        <th scope="col">Mobile</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                ';
-                                while ($row = mysqli_fetch_assoc($result)) {
-
-                                    echo '
-                                    <tbody>
-
-                                        <tr>
-
-                                            <td>
-                                                ' . $row['sno'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['user_id'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['user_name'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['technology'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['position'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['mobile_number'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['email'] . '
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-warning">
-                                                    <a class="text-decoration-none" href="other/update_teacher_details.php?id=' . $row['sno'] . '">Edit</a>
-                                                </button>
-                                            </td>
-
-                                        </tr>
-
-                                    </tbody>';
-                                }
-                                ;
-                            } else {
-                                echo 'Do not found in database';
-                            }
-
-                            ?>
-
-                        </table>
-
-                        <strong>
-                            <p class="fs-3" id="value"></p>
-                        </strong>
-
-                    </div>
-
-                </div>
-
-
                 <!--  -->
                 <div id="Tab9" class="tabcontent">
                     <div class="container text-center">
@@ -682,7 +524,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <hr>
                     </div>
                     <div class="container text-center upload-section">
-                        <form action="home.php" method="post">
+                        <form action="teacher.php" method="post">
                             <div class="input-group">
                                 <select name="category" class="cars form-control" required>
                                     <option value="" selected>Select Category</option>
@@ -759,7 +601,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <hr>
                     </div>
                     <div class="text-center">
-                        <form action="home.php" method="post">
+                        <form action="teacher.php" method="post">
                             <div>
                                 <input type="hidden" name="delete_notice" value="1">
                                 <input class="btn btn-danger" type="submit" value="Delete All Data">
@@ -870,7 +712,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 var id = this.id.split("-")[1];
                 var btn = 'hos';
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", "delete/dlt_notice.php", true);
+                xhr.open("POST", "../delete/dlt_notice.php", true);
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4 && xhr.status === 200) {

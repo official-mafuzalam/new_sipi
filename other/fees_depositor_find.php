@@ -24,7 +24,7 @@ include '../inc/conn.php';
     <div class="container text-center">
         <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
         <p class="fs-4">Find Fees Depositor by User Id.</p>
-        <a class="text-decoration-none" href="../home.php">
+        <a class="text-decoration-none" href="../">
             <h3 class="text-center">Home</h3>
         </a>
     </div>
@@ -50,7 +50,7 @@ include '../inc/conn.php';
 
     <div class="container">
 
-        <table class="table table-striped table-hover" id="table">
+        <table class="table table-striped table-hover">
 
             <?php
 

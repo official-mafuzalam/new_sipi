@@ -24,7 +24,7 @@ include '../inc/conn.php';
     <div class="container text-center">
         <h3 class="text-center">Select subject for publish result</h3>
         <p class="fs-4">Search technology & semester and select subject for publish result.</p>
-        <a class="text-decoration-none" href="../home.php">
+        <a class="text-decoration-none" href="../">
             <h3 class="text-center">Home</h3>
         </a>
         <hr>
@@ -69,13 +69,6 @@ include '../inc/conn.php';
             </div>
         </form>
     </div>
-    <!-- <div class="container text-center">
-        <form class="row g-3 d-flex" role="search" method="POST">
-            
-        </form>
-        <input type="text" value="This input is not editable" readonly>
-
-    </div> -->
 
     <div class="container">
 

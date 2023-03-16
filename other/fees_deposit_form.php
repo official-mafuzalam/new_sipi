@@ -51,7 +51,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         echo '<script>alert("Your fees have been deposited successfully"); window.location.href = "fees_print.php?id=' . $random_num . '";</script>';
 
     } else {
-        echo "Error updating record: ";
+        echo "Error Fees Deposit: ";
     }
 
     $con->close();
@@ -88,7 +88,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container text-center">
             <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
             <p class="fs-4">Fill the form for Deposit Student Fees.</p>
-            <a class="text-decoration-none" href="../home.php">
+            <a class="text-decoration-none" href="../">
                 <h3 class="text-center">Home</h3>
             </a>
             <a class="text-decoration-none" href="fees_depositor_find.php">

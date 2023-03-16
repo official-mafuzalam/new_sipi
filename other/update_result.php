@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
     if ($con->query($sql) === TRUE) {
-        echo '<script>alert("Marks Update Successfully"); window.location.href = "../home.php";</script>';
+        echo '<script>alert("Marks Update Successfully"); window.location.href = "results_by_tech.php";</script>';
 
     } else {
         echo "Error updating record: ";
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <div class="container text-center">
             <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
             <p class="fs-4">Fill the form for update details.</p>
-            <a class="text-decoration-none" href="../home.php">
+            <a class="text-decoration-none" href="../">
                 <h3 class="text-center">Home</h3>
             </a>
         </div>
@@ -99,17 +99,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <br>
                 <div class="input-group">
-                    <input type="tel" name="semester" class="form-control" disabled
+                    <input type="text" name="semester" class="form-control" disabled
                         value="<?php echo $row['semester']; ?>">
                 </div>
                 <br>
                 <div class="input-group">
-                    <input type="tel" name="subject" class="form-control" disabled
+                    <input type="text" name="subject" class="form-control" disabled
                         value="<?php echo $row['subject']; ?>">
                 </div>
                 <br>
                 <div class="input-group">
-                    <input type="tel" name="marks" class="form-control" required value="<?php echo $row['marks']; ?>">
+                    <input type="number" name="marks" class="form-control" required value="<?php echo $row['marks']; ?>">
                 </div>
                 <br>
                 <input class="submit btn btn-success save-btn" name="submit_marks" type="submit" value="Update">

@@ -13,20 +13,20 @@ if (!isset($_SESSION['w_type'])) {
 
 // Check if user has a Type 2 account, otherwise redirect to login page
 if ($_SESSION['w_type'] != 1) {
-    header("Location: ../login.php");
+    header("Location: ../index.php");
     exit();
 }
 
-$user_id = $_SESSION['user_id'];
-$sql = "SELECT * FROM teacher WHERE user_id = '$user_id'";
-$result = mysqli_query($con, $sql);
+// $user_id = $_SESSION['user_id'];
+// $sql = "SELECT * FROM teacher WHERE user_id = '$user_id'";
+// $result = mysqli_query($con, $sql);
 
-if ($result) {
-    $row = mysqli_fetch_assoc($result);
-    $email = $row['email'];
-} else {
-    echo "Error retrieving password: " . mysqli_error($con);
-}
+// if ($result) {
+//     $row = mysqli_fetch_assoc($result);
+//     $email = $row['email'];
+// } else {
+//     echo "Error retrieving password: " . mysqli_error($con);
+// }
 
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
@@ -62,7 +62,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result)
             echo '<script>alert("Student Data Inserted Successfully")</script>';
         else
-            echo "Qury error!";
+            echo "Query error!";
+
     } elseif (isset($_POST['teacher_submit'])) {
 
         $technology = $_POST['technology'];
@@ -87,7 +88,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         if ($result)
             echo '<script>alert("Teacher Data Inserted Successfully")</script>';
         else
-            echo "Qury error!";
+            echo "Query error!";
+
     } elseif (isset($_POST['notice_submit'])) {
 
         $category = $_POST['category'];
@@ -95,7 +97,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $des = $_POST['desc'];
 
         // Read the existing JSON object from the file
-        $json_data = file_get_contents("json/data_notice.json");
+        $json_data = file_get_contents("../json/data_notice.json");
         $data = json_decode($json_data, true);
 
         // Add the new form data to the object
@@ -109,23 +111,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $json_data = json_encode($data);
 
         // Save the JSON object to the file
-        file_put_contents("json/data_notice.json", $json_data);
+        file_put_contents("../json/data_notice.json", $json_data);
 
-        echo "<script>alert('Successfully submitted Notice data');
-        window.location.href = 'home.php';
-        </script>";
+        echo "<script>alert('Successfully submitted Notice data');</script>";
 
     } elseif (isset($_POST['delete_notice'])) {
 
-        $file = fopen('json/data_notice.json', 'w');
+        $file = fopen('../json/data_notice.json', 'w');
         fseek($file, 0);
         ftruncate($file, 0);
         fwrite($file, '[]');
         fclose($file);
 
-        echo "<script>alert('Successfully Deleted all Notice data!');
-                window.location.href = 'home.php';
-            </script>";
+        echo "<script>alert('Successfully Deleted all Notice data!');</script>";
     }
 
 }
@@ -152,6 +150,30 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 </head>
 
 <body>
+
+    <nav class="navbar sticky-top bg-body-tertiary" style="background-color: #e3f2fd;">
+        <div class="container-fluid">
+            <div class="navbar-brand">
+
+                <?php
+
+                $user_id = $_SESSION['user_id'];
+                $username = $_SESSION['username'];
+
+                echo "Account No : " . "<strong>" . $user_id . "</strong>";
+                echo "  Name :" . " <strong>" . $username . "</strong>";
+
+                ?>
+
+            </div>
+            <div class="d-flex" role="search">
+                <a class="text-decoration-none" href="../logout.php">
+                    <strong>Logout</strong>
+                </a>
+            </div>
+        </div>
+    </nav>
+
 
     <div class="container-fluid">
         <div class="row">
@@ -333,14 +355,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                         </div>
                     </div>
-
-                    <?php
-                    foreach ($_SESSION as $key => $value) {
-                        echo "$key => $value<br>";
-                    }
-                    ?>
-                    
-                    <a href="../logout.php">Logout</a>
                 </div>
 
 
@@ -353,7 +367,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
 
                     <div class="container text-center">
-                        <form class="form-inline" action="home.php" method="POST">
+                        <form class="form-inline" action="administration.php" method="POST">
                             <div class="input-group">
                                 <select name="technology" id="technology" class="cars form-control" required>
                                     <option value="" selected>Select a Technology</option>
@@ -515,7 +529,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-warning">
-                                                    <a class="text-decoration-none" href="other/update_student_details.php?id=' . $row['id'] . '">Edit</a>
+                                                    <a class="text-decoration-none" href="../other/update_student_details.php?id=' . $row['id'] . '">Edit</a>
                                                 </button>
                                             </td>
 
@@ -549,7 +563,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
 
                     <div class="container text-center">
-                        <form class="form-inline" action="home.php" method="POST">
+                        <form class="form-inline" action="administration.php" method="POST">
                             <div class="input-group">
                                 <select name="technology" id="technology" class="cars form-control" required>
                                     <option value="" selected>Select a Technology</option>
@@ -661,7 +675,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-warning">
-                                                    <a class="text-decoration-none" href="other/update_teacher_details.php?id=' . $row['sno'] . '">Edit</a>
+                                                    <a class="text-decoration-none" href="../other/update_teacher_details.php?id=' . $row['sno'] . '">Edit</a>
                                                 </button>
                                             </td>
 
@@ -695,7 +709,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <hr>
                     </div>
                     <div class="container text-center upload-section">
-                        <form action="home.php" method="post">
+                        <form action="administration.php" method="post">
                             <div class="input-group">
                                 <select name="category" class="cars form-control" required>
                                     <option value="" selected>Select Category</option>
@@ -730,7 +744,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <hr>
 
                         <?php
-                        $json_data = file_get_contents('json/data_notice.json');
+                        $json_data = file_get_contents('../json/data_notice.json');
                         $data = json_decode($json_data, true);
                         ?>
                         <table class="table table-hover">
@@ -772,7 +786,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <hr>
                     </div>
                     <div class="text-center">
-                        <form action="home.php" method="post">
+                        <form action="administration.php" method="post">
                             <div>
                                 <input type="hidden" name="delete_notice" value="1">
                                 <input class="btn btn-danger" type="submit" value="Delete All Data">
@@ -883,7 +897,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 var id = this.id.split("-")[1];
                 var btn = 'hos';
                 var xhr = new XMLHttpRequest();
-                xhr.open("POST", "delete/dlt_notice.php", true);
+                xhr.open("POST", "../delete/dlt_notice.php", true);
                 xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
                 xhr.onreadystatechange = function () {
                     if (xhr.readyState === 4 && xhr.status === 200) {
