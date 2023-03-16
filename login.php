@@ -12,9 +12,9 @@ if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['passw
     $username = $_POST['username'];
     $password = $_POST['password'];
 
-    require_once 'authentication/conn.php';
+    require_once 'inc/conn.php';
 
-    $stmt = $con->prepare('SELECT * FROM users WHERE username = ?');
+    $stmt = $con->prepare('SELECT * FROM teacher WHERE email = ?');
     $stmt->bind_param('s', $username);
     $stmt->execute();
 
@@ -22,22 +22,39 @@ if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['passw
 
     if ($result->num_rows == 1) {
         $user = $result->fetch_assoc();
-        if (password_verify($password, $user['password'])) {
-            $_SESSION['username'] = $user['username'];
-            $_SESSION['account_type'] = $user['account_type']; // add account type to session
-            if ($user['account_type'] == 'Type 1') {
+        if ($password == $user['user_id']) {
+
+            $_SESSION['user_id'] = $user['user_id'];
+            $_SESSION['username'] = $user['user_name'];
+            $_SESSION['w_type'] = $user['w_type']; // add account w_type to session
+
+            if ($user['w_type'] == 1) {
+
                 header("Location: users/administration.php");
-            } else {
+
+            } elseif ($user['w_type'] == 6) {
+
+                header("Location: inc");
+
+            } elseif ($user['w_type'] == 3) {
+
                 header("Location: users/teacher.php");
+
+            } elseif ($user['w_type'] == 4) {
+
+                header("Location: users/accountants.php");
+
             }
+
         } else {
             $message = 'Invalid username or password';
         }
     } else {
-        $message = 'Invalid username or password';
+        $message = 'Multiple username or password';
     }
 }
 ?>
+
 
 <!DOCTYPE html>
 <html lang="en">
