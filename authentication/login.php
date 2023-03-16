@@ -49,7 +49,7 @@ if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['passw
 
 <body>
 
-    <div class="conteiner text-center col-md-6">
+    <div class="container text-center col-md-6">
         <h2>Login</h2>
         <form action="" method="post" class="form-floating">
             <?php if ($message != '') { ?>
