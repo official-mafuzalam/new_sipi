@@ -61,7 +61,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 
         if ($result)
-            echo '<script>alert("Student Data Inserted Successfully")</script>';
+            echo "<script>alert('Student Data Inserted Successfully')
+            window.location.href = 'index.php';
+            </script>";
         else
             echo "Query error!";
 
@@ -88,7 +90,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         // Save the JSON object to the file
         file_put_contents("../json/data_notice.json", $json_data);
 
-        echo "<script>alert('Successfully submitted Notice data');</script>";
+        echo "<script>alert('Successfully submitted Notice data');
+        window.location.href = 'index.php';
+        </script>";
 
     } elseif (isset($_POST['delete_notice'])) {
 
@@ -98,7 +102,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         fwrite($file, '[]');
         fclose($file);
 
-        echo "<script>alert('Successfully Deleted all Notice data!');</script>";
+        echo "<script>alert('Successfully Deleted all Notice data!');
+        window.location.href = 'index.php';
+        </script>";
     }
 
 }
@@ -135,8 +141,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 $user_id = $_SESSION['user_id'];
                 $username = $_SESSION['username'];
 
-                echo "Account No : " . "<strong>" . $user_id . "</strong>";
-                echo "  Name :" . " <strong>" . $username . "</strong>";
+                echo "User no: " . "<strong>" . $user_id . "</strong>";
+                echo "  Name:" . " <strong>" . $username . "</strong>";
 
                 ?>
 

@@ -82,7 +82,7 @@ if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['passw
                     aria-describedby="basic-addon1">
             </div>
             <div class="col-12 d-flex justify-content-center">
-                <button type="submit" name="login" class="btn btn-primary">Sign in</button>
+                <button type="submit" name="login" class="btn btn-primary">Login</button>
             </div>
             <div class="col-12 text-center mt-3">
                 <!-- Don't have an account? <a href="register.php">Register here</a> -->
