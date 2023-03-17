@@ -17,7 +17,9 @@ if ($_SESSION['w_type'] != 1) {
     exit();
 }
 
-// $user_id = $_SESSION['user_id'];
+$session_user_id = $_SESSION['user_id'];
+$session_user_name = $_SESSION['username'];
+
 // $sql = "SELECT * FROM teacher WHERE user_id = '$user_id'";
 // $result = mysqli_query($con, $sql);
 
@@ -54,8 +56,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } while (mysqli_num_rows($result) > 0);
 
         // Insert data into the database
-        $sql = "INSERT INTO student_list (user_id, technology, admision_Year, current_semester, user_name, gender, clg_id, roll_no, mobile_number, email) 
-        VALUES('$random_num','$technology', '$admision_Year','$semester' , '$user_name', '$gender' , '$clg_id' , '$roll_no', '$mobile_number', '$email') ";
+        $sql = "INSERT INTO student_list (user_id, technology, admision_Year, current_semester, user_name, gender, clg_id, roll_no, mobile_number, email, inserter_id) 
+        VALUES('$random_num','$technology', '$admision_Year','$semester' , '$user_name', '$gender' , '$clg_id' , '$roll_no', '$mobile_number', '$email', '$session_user_id') ";
         $result = mysqli_query($con, $sql);
 
 
@@ -82,8 +84,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         } while (mysqli_num_rows($result) > 0);
 
         // Insert data into the database
-        $sql = "INSERT INTO teacher (user_id, technology,user_name, position, mobile_number, email) 
-        VALUES('$random_num','$technology', '$user_name', '$position' , '$mobile_number', '$email') ";
+        $sql = "INSERT INTO teacher (user_id, technology,user_name, position, mobile_number, email, inserter_id) 
+        VALUES('$random_num','$technology', '$user_name', '$position' , '$mobile_number', '$email', '$session_user_id') ";
         $result = mysqli_query($con, $sql);
 
 
@@ -106,6 +108,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         // Add the new form data to the object
         $data[] = array(
+            "inserter_id" => $session_user_id,
             "cat" => $category,
             "title" => $title,
             "des" => $des
@@ -165,11 +168,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <?php
 
-                $user_id = $_SESSION['user_id'];
-                $username = $_SESSION['username'];
-
-                echo "User no: " . "<strong>" . $user_id . "</strong>";
-                echo "  Name:" . " <strong>" . $username . "</strong>";
+                echo "User no: " . "<strong>" . $session_user_id . "</strong>";
+                echo "  Name:" . " <strong>" . $session_user_name . "</strong>";
 
                 ?>
 
@@ -759,7 +759,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <table class="table table-hover">
                             <thead>
                                 <tr>
-                                    <th class="col">No</th>
+                                    <th class="col">U_NO</th>
                                     <th class="col">Category</th>
                                     <th class="col">Title</th>
                                     <th class="col">Description</th>
@@ -772,7 +772,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 foreach ($data as $row) { ?>
                                     <tr>
                                         <td>
-                                            <?php echo "$i"; ?>
+                                            <?php echo $row['inserter_id']; ?>
                                         </td>
                                         <td>
                                             <?php echo $row['cat']; ?>
