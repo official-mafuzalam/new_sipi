@@ -1,6 +1,18 @@
 <?php
 
+// Set the timezone to Bangladesh
+date_default_timezone_set("Asia/Dhaka");
 include '../inc/conn.php';
+session_start();
+
+// Check if user is logged in, otherwise redirect to login page
+if (!isset($_SESSION['w_type'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+$session_user_id = $_SESSION['user_id'];
+$session_user_name = $_SESSION['username'];
 
 // check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -53,7 +65,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <div>
         <div class="container">
             <div class="row text-center">
-                <p>Student Copy</p>
+                <p>Student Copy |
+                    <?php echo $row['inserter_id']; ?>
+                </p>
                 <div class="col">
                     <p class="fs-4 fw-bold text-info">Challan No :
                         <?php echo $row['deposit_challan_no']; ?>
@@ -132,7 +146,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         <hr>
         <div class="container">
             <div class="row text-center">
-                <p>Collage Copy</p>
+                <p>Collage Copy |
+                    <?php echo $row['inserter_id']; ?>
+                </p>
                 <div class="col">
                     <p class="fs-4 fw-bold text-info">Challan No :
                         <?php echo $row['deposit_challan_no']; ?>

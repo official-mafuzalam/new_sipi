@@ -252,7 +252,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     $current_date = date("Y-m-d");
 
                     // Query the database to get the sum of deposit amounts for the current date
-                    $sql = "SELECT SUM(deposit_amount) as total_amount FROM fees_deposit WHERE date = '$current_date'";
+                    $sql = "SELECT SUM(deposit_amount) as total_amount FROM fees_deposit WHERE inserter_id = '$session_user_id' AND date = '$current_date'";
                     $result = mysqli_query($con, $sql);
 
                     // Fetch the result as an associative array
@@ -299,7 +299,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="col-md-3">
                             <div class="card text-center bg-warning bg-opacity-75">
                                 <div class="card-body">
-                                    <h5 class="card-title">Today Deposit Amount</h5>
+                                    <h5 class="card-title">Your Today Deposit Amount</h5>
                                     <p class="card-text fs-3">
                                         <?php echo $total_amount ?>
                                     </p>

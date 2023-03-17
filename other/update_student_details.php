@@ -1,6 +1,18 @@
 <?php
 
+// Set the timezone to Bangladesh
+date_default_timezone_set("Asia/Dhaka");
 include '../inc/conn.php';
+session_start();
+
+// Check if user is logged in, otherwise redirect to login page
+if (!isset($_SESSION['w_type'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+$session_user_id = $_SESSION['user_id'];
+$session_user_name = $_SESSION['username'];
 
 // check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -30,11 +42,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $email = $_POST['email'];
 
     // update the data in the database
-    $sql = "UPDATE student_list SET  roll_no='$roll_no', clg_id='$clg_id', user_name='$user_name', technology='$technology', admision_year='$admission_year', current_semester='$current_semester', mobile_number='$mobile_number', email='$email' WHERE id='$id_post'";
+    $sql = "UPDATE student_list SET  roll_no='$roll_no', clg_id='$clg_id', user_name='$user_name', technology='$technology', admision_year='$admission_year', current_semester='$current_semester', mobile_number='$mobile_number', email='$email', inserter_id = '$session_user_id' WHERE id='$id_post'";
 
 
     if ($con->query($sql) === TRUE) {
-        echo '<script>alert("Data Update Successfully"); window.location.href = "../index.php";</script>';
+        echo '<script>alert("Student Data Update Successfully"); 
+        window.location.href = "../index.php";
+        </script>';
 
     } else {
         echo "Error updating record: ";

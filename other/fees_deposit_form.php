@@ -3,6 +3,16 @@
 // Set the timezone to Bangladesh
 date_default_timezone_set("Asia/Dhaka");
 include '../inc/conn.php';
+session_start();
+
+// Check if user is logged in, otherwise redirect to login page
+if (!isset($_SESSION['w_type'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+$session_user_id = $_SESSION['user_id'];
+$session_user_name = $_SESSION['username'];
 
 // check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -43,8 +53,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } while (mysqli_num_rows($result) > 0);
 
     // Insert data into the database
-    $sql = "INSERT INTO fees_deposit (date, user_id, technology, admission_year, current_semester, user_name, clg_id, roll_no, mobile_number, deposit_category, deposit_amount, comment, deposit_challan_no) 
-            VALUES('$date', '$user_id','$technology', '$admission_year', '$current_semester' , '$user_name', '$clg_id' , '$roll_no', '$mobile_number', '$deposit_category', '$deposit_amount', '$comment', '$random_num') ";
+    $sql = "INSERT INTO fees_deposit (date, user_id, technology, admission_year, current_semester, user_name, clg_id, roll_no, mobile_number, deposit_category, deposit_amount, comment, deposit_challan_no, inserter_id) 
+            VALUES('$date', '$user_id','$technology', '$admission_year', '$current_semester' , '$user_name', '$clg_id' , '$roll_no', '$mobile_number', '$deposit_category', '$deposit_amount', '$comment', '$random_num', '$session_user_id') ";
 
     if ($con->query($sql) === TRUE) {
 

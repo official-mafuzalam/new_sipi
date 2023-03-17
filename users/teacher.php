@@ -19,6 +19,7 @@ if ($_SESSION['w_type'] != 3) {
 
 $session_user_id = $_SESSION['user_id'];
 $session_user_name = $_SESSION['username'];
+$session_technology = $_SESSION['technology'];
 
 // $sql = "SELECT * FROM teacher WHERE user_id = '$user_id'";
 // $result = mysqli_query($con, $sql);
@@ -337,18 +338,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="container text-center">
                         <form class="form-inline" action="teacher.php" method="POST">
                             <div class="input-group">
-                                <select name="technology" id="technology" class="cars form-control" required>
-                                    <option value="" selected>Select a Technology</option>
-                                    <option value="Computer">Computer</option>
-                                    <option value="Graphic">Graphic</option>
-                                    <option value="RAC">RAC</option>
-                                    <option value="Civil">Civil</option>
-                                    <option value="Electronic">Electronic</option>
-                                    <option value="Electrical">Electrical</option>
-                                    <option value="Architecture">Architecture</option>
-                                    <option value="Mechanical">Mechanical</option>
-                                    <option value="Others">Others</option>
-                                </select>
+                                <input type="text" name="technology" class="form-control" placeholder="Technology"
+                                    readonly value="<?php echo $session_technology ?>">
                             </div>
                             <br>
                             <div class="input-group">
@@ -426,7 +417,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div id="Tab3" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">All Student List</h3>
+                        <h3 class="text-center"><?php echo $session_technology ?> Technology All Student List</h3>
                         <hr>
                     </div>
 
@@ -436,7 +427,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                             <?php
 
-                            $sql = "SELECT * FROM student_list ORDER BY id ASC";
+                            $sql = "SELECT * FROM student_list WHERE technology = '$session_technology' ORDER BY id ASC";
                             // or bus_name like '%$search%'
                             $result = mysqli_query($con, $sql);
 

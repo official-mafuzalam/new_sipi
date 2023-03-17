@@ -3,6 +3,16 @@
 // Set the timezone to Bangladesh
 date_default_timezone_set("Asia/Dhaka");
 include '../inc/conn.php';
+session_start();
+
+// Check if user is logged in, otherwise redirect to login page
+if (!isset($_SESSION['w_type'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+$session_user_id = $_SESSION['user_id'];
+$session_user_name = $_SESSION['username'];
 
 ?>
 
@@ -55,7 +65,7 @@ include '../inc/conn.php';
 
                 $date = $_POST['date'];
 
-                $sql = "SELECT * FROM `fees_deposit` WHERE date ='$date' ORDER BY s_no ASC";
+                $sql = "SELECT * FROM `fees_deposit` WHERE date ='$date' AND inserter_id = '$session_user_id' ORDER BY s_no ASC";
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {

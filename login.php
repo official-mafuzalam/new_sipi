@@ -26,6 +26,7 @@ if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['passw
 
             $_SESSION['user_id'] = $user['user_id'];
             $_SESSION['username'] = $user['user_name'];
+            $_SESSION['technology'] = $user['technology'];
             $_SESSION['w_type'] = $user['w_type']; // add account w_type to session
 
             if ($user['w_type'] == 1) {

@@ -1,6 +1,18 @@
 <?php
 
+// Set the timezone to Bangladesh
+date_default_timezone_set("Asia/Dhaka");
 include '../inc/conn.php';
+session_start();
+
+// Check if user is logged in, otherwise redirect to login page
+if (!isset($_SESSION['w_type'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+$session_user_id = $_SESSION['user_id'];
+$session_user_name = $_SESSION['username'];
 
 // check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -25,13 +37,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $position = $_POST['position'];
     $mobile_number = $_POST['mobile_number'];
     $email = $_POST['email'];
+    $w_type = $_POST['w_type'];
 
     // update the data in the database
-    $sql = "UPDATE teacher SET  user_name='$user_name', technology='$technology', position='$position', mobile_number='$mobile_number', email='$email' WHERE sno='$id_post'";
+    $sql = "UPDATE teacher SET w_type = '$w_type',  user_name='$user_name', technology='$technology', position='$position', mobile_number='$mobile_number', email='$email', inserter_id = '$session_user_id' WHERE sno='$id_post'";
 
 
     if ($con->query($sql) === TRUE) {
-        echo '<script>alert("Data Update Successfully"); window.location.href = "../index.php";</script>';
+        echo '<script>alert("Teacher Data Update Successfully"); 
+        window.location.href = "../index.php";
+        </script>';
 
     } else {
         echo "Error updating record ";
@@ -76,7 +91,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         </a>
 
         <div class="container text-center">
-            <form class="form-inline" action="update_teacher_details.php" method="POST">
+            <form class="form-inline" method="POST">
                 <div class="input-group">
                     <input type="text" name="sno" id="sno" class="form-control" value="<?php echo $row['sno']; ?>"
                         readonly>
@@ -115,23 +130,28 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <br>
                 <div class="input-group">
-                    <input type="text" name="user_name" id="name" class="form-control" placeholder="Name" required
+                    <input type="text" name="user_name" class="form-control" placeholder="Name" required
                         value="<?php echo $row['user_name']; ?>">
                 </div>
                 <br>
                 <div class="input-group">
-                    <input type="text" name="position" id="position" class="form-control" placeholder="Position"
-                        required value="<?php echo $row['position']; ?>">
+                    <input type="text" name="position" class="form-control" placeholder="Position" required
+                        value="<?php echo $row['position']; ?>">
                 </div>
                 <br>
                 <div class="input-group">
-                    <input type="tel" name="mobile_number" id="mobile_number" class="form-control"
-                        placeholder="Mobile number" required value="<?php echo $row['mobile_number']; ?>">
+                    <input type="tel" name="mobile_number" class="form-control" placeholder="Mobile number" required
+                        value="<?php echo $row['mobile_number']; ?>">
                 </div>
                 <br>
                 <div class="input-group">
-                    <input type="tel" name="email" id="name" class="form-control" placeholder="Email" required
+                    <input type="email" name="email" class="form-control" placeholder="Email" required
                         value="<?php echo $row['email']; ?>">
+                </div>
+                <br>
+                <div class="input-group">
+                    <input type="number" name="w_type" class="form-control" placeholder="Web Type" required
+                        value="<?php echo $row['w_type']; ?>">
                 </div>
                 <br>
                 <input class="submit btn btn-success save-btn" type="submit" value="Save">

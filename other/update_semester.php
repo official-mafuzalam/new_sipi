@@ -1,5 +1,19 @@
 <?php
+
+// Set the timezone to Bangladesh
+date_default_timezone_set("Asia/Dhaka");
 include '../inc/conn.php';
+session_start();
+
+// Check if user is logged in, otherwise redirect to login page
+if (!isset($_SESSION['w_type'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+$session_user_id = $_SESSION['user_id'];
+$session_user_name = $_SESSION['username'];
+
 
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
@@ -9,13 +23,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $new_semester = $_POST['new_semester'];
         $technology = $_POST['technology'];
 
-        $sql = "UPDATE student_list SET current_semester = '$new_semester' WHERE current_semester = '$current_semester' && technology='$technology'";
+        $sql = "UPDATE student_list SET current_semester = '$new_semester', inserter_id = '$session_user_id' WHERE current_semester = '$current_semester' && technology='$technology'";
 
         // Update data in the database
         $result = mysqli_query($con, $sql);
 
         if ($result)
-            echo '<script>alert("Semester Updated Successfully")</script>';
+            echo "<script>alert('Semester Updated Successfully');
+            window.location.href = 'index.php';
+            </script>";
         else
             echo "Query error!";
     }

@@ -1,6 +1,18 @@
 <?php
 
+// Set the timezone to Bangladesh
+date_default_timezone_set("Asia/Dhaka");
 include '../inc/conn.php';
+session_start();
+
+// Check if user is logged in, otherwise redirect to login page
+if (!isset($_SESSION['w_type'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+$session_user_id = $_SESSION['user_id'];
+$session_user_name = $_SESSION['username'];
 
 // check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -23,7 +35,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $book_name = $_POST['book_name'];
 
     // update the data in the database
-    $sql = "UPDATE subject_by_semester SET book_name='$book_name' WHERE s_no='$id_post'";
+    $sql = "UPDATE subject_by_semester SET book_name ='$book_name', inserter_id = '$session_user_id' WHERE s_no = '$id_post'";
 
 
     if ($con->query($sql) === TRUE) {

@@ -1,6 +1,18 @@
 <?php
 
+// Set the timezone to Bangladesh
+date_default_timezone_set("Asia/Dhaka");
 include '../inc/conn.php';
+session_start();
+
+// Check if user is logged in, otherwise redirect to login page
+if (!isset($_SESSION['w_type'])) {
+    header("Location: ../login.php");
+    exit();
+}
+
+$session_user_id = $_SESSION['user_id'];
+$session_user_name = $_SESSION['username'];
 
 // check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'GET') {
@@ -23,11 +35,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     $marks = $_POST['marks'];
 
     // update the data in the database
-    $sql = "UPDATE marks_db SET  marks = '$marks' WHERE id = '$id'";
+    $sql = "UPDATE marks_db SET  marks = '$marks', inserter_id = '$session_user_id' WHERE id = '$id'";
 
 
     if ($con->query($sql) === TRUE) {
-        echo '<script>alert("Marks Update Successfully"); window.location.href = "results_by_tech.php";</script>';
+        echo '<script>alert("Marks Update Successfully"); 
+        window.location.href = "results_by_tech.php";
+        </script>';
 
     } else {
         echo "Error updating record: ";
@@ -109,7 +123,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
                 <br>
                 <div class="input-group">
-                    <input type="number" name="marks" class="form-control" required value="<?php echo $row['marks']; ?>">
+                    <input type="number" name="marks" class="form-control" required
+                        value="<?php echo $row['marks']; ?>">
                 </div>
                 <br>
                 <input class="submit btn btn-success save-btn" name="submit_marks" type="submit" value="Update">
