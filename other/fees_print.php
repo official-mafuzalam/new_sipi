@@ -34,7 +34,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <link rel="stylesheet" href="../css/home.css">
     <!-- <link rel="stylesheet" href="https://kit.fontawesome.com/b3e3482d82.css" crossorigin="anonymous"> -->
 
-    <title>Student Data Update</title>
+    <title>Deposit Slip</title>
 </head>
 
 <body>
@@ -43,7 +43,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         <div class="container text-center">
             <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
             <a class="text-decoration-none" href="../">
-                <h5 class="text-center fs-4">Fees Deposit Slip</h5>
+                <h5 class="text-center fs-4">Fees deposit slip</h5>
             </a>
         </div>
         <hr>
