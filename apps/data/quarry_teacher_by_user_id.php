@@ -14,6 +14,7 @@ $data = array();
 
 foreach ($result as $rowitem){
     
+	$user_id = $rowitem['user_id'];
 	$name = $rowitem['user_name'];
 	$mobile = $rowitem['mobile_number'];
 	$type = $rowitem['type'];
@@ -22,6 +23,7 @@ foreach ($result as $rowitem){
 	$email = $rowitem['email'];
 	// 
 	// 
+	$doner_list['user_id'] = $user_id;
 	$doner_list['user_name'] = $name;
 	$doner_list['mobile_number'] = $mobile;
 	$doner_list['type'] = $type;

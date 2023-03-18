@@ -11,6 +11,7 @@ $clg_id = $_GET['ci'];
 $roll_no = $_GET['rn'];
 $mobile_number = $_GET['mn'];
 $email = $_GET['m'];
+$inserter_id = $_GET['i_u_id'];
 
 // Generate a random number
 do {
@@ -20,8 +21,8 @@ do {
 } while (mysqli_num_rows($result) > 0);
 
 // Insert data into the database
-$sql = "INSERT INTO student_list (user_id, technology, admision_Year, current_semester, user_name, gender, clg_id, roll_no, mobile_number, email) 
-        VALUES('$random_num','$technology', '$admision_Year','$semester' , '$user_name', '$gender' , '$clg_id' , '$roll_no', '$mobile_number', '$email') ";
+$sql = "INSERT INTO student_list (user_id, technology, admision_Year, current_semester, user_name, gender, clg_id, roll_no, mobile_number, email, inserter_id) 
+        VALUES('$random_num','$technology', '$admision_Year','$semester' , '$user_name', '$gender' , '$clg_id' , '$roll_no', '$mobile_number', '$email', '$inserter_id') ";
 $result = mysqli_query($con, $sql);
 
 if ($result)

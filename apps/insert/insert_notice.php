@@ -3,6 +3,7 @@
 $cat = $_GET['c'] ?? '';
 $title = $_GET['t'] ?? '';
 $des = $_GET['d'] ?? '';
+$user_id = $_GET['u_id'] ?? '';
 
 // Check if any of the required form fields are empty
 if (empty($cat) || empty($title) || empty($des)) {
@@ -22,6 +23,7 @@ if ($data === null) {
 
 // Add the new form data to the object
 $data[] = array(
+    'inserter_id' => $user_id,
     'cat' => $cat,
     'title' => $title,
     'des' => $des

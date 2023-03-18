@@ -5,9 +5,9 @@ include '../../inc/conn.php';
 header('Content-Type: application/json');
 
 $technology = $_GET['tec'];
-$year = $_GET['year'];
+$sem = $_GET['sem'];
 
-$sql = "Select * from `student_list` where technology='$technology' && admision_Year='$year'";
+$sql = "SELECT * FROM `student_list` WHERE technology ='$technology' AND current_semester ='$sem'";
 
 $result = mysqli_query($con, $sql);
 
@@ -15,7 +15,7 @@ $data = array();
 
 foreach ($result as $rowitem) {
 
-    $user_id = $rowitem['user_id'];
+	$user_id = $rowitem['user_id'];
 	$roll_no = $rowitem['roll_no'];
 	$name = $rowitem['user_name'];
 	$mobile = $rowitem['mobile_number'];
@@ -36,7 +36,7 @@ foreach ($result as $rowitem) {
 	$student_list['technology'] = $technology;
 	$student_list['semester'] = $semester;
 
-    array_push($data, $student_list);
+	array_push($data, $student_list);
 
 }
 
