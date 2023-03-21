@@ -107,12 +107,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $data = json_decode($json_data, true);
 
         // Add the new form data to the object
-        $data[] = array(
-            "inserter_id" => $session_user_id,
-            "cat" => $category,
-            "title" => $title,
-            "des" => $des
+        $new_data = array(
+            'inserter_id' => $session_user_id,
+            'cat' => $category,
+            'title' => $title,
+            'des' => $des
         );
+
+        // Add the new data to the beginning of the existing array
+        array_unshift($data, $new_data);
 
         // Convert the modified object to a JSON object
         $json_data = json_encode($data);
