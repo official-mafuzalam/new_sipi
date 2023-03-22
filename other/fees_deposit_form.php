@@ -181,7 +181,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <input type="text" name="comment" id="comment" placeholder="Comment" class="form-control" required>
                 </div>
 
-                <input class="submit btn btn-success" type="submit" value="Save">
+                <div class="col-md-12">
+                    <input class="submit btn btn-success" type="submit" value="Save">
+                </div>
 
 
             </form>

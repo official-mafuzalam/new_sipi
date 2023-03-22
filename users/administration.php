@@ -179,8 +179,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="d-flex" role="search">
                 <a class="text-decoration-none" href="../logout.php">
-                    <strong>Logout</strong>
                     <i class="fs-5 bi-box-arrow-right"></i>
+                    <strong>Logout</strong>
                 </a>
             </div>
         </div>
@@ -279,37 +279,37 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="col py-3">
 
                 <div id="Tab1" class="tabcontent">
+
+                    <img src="../images/sipi.png" class="rounded mx-auto d-block" alt="...">
                     <h1 class="text-center fw-bold">Shyamoli Ideal Polytechnic Institute</h1>
-                    <h3 class="text-center">Dashboard</h3>
+                    <h3 class="text-center">Dhaka</h3>
 
                     <strong>
                         <p class="text-center fs-5" id="date"></p>
                     </strong>
                     <?php
 
-                    $sql = "SELECT COUNT(*) as total FROM student_list"; // using alias 'total' for clarity
+                    // Total Student Count
+                    $sql = "SELECT COUNT(*) as total FROM student_list";
                     $result = mysqli_query($con, $sql);
 
-                    $row = mysqli_fetch_assoc($result); // fetch the result as an associative array
-                    $total_students = $row['total']; // access the value using the alias
-                    
-                    // echo "<p class='text-center fs-3'>Total Student : <span class='text-center fs-4 fw-bold badge text-bg-info'>" . $total_students . "</span></p>";
-                    
-                    $sql_t = "SELECT COUNT(*) as total FROM teacher"; // using alias 'total' for clarity
+                    $row = mysqli_fetch_assoc($result);
+                    $total_students = $row['total'];
+
+
+                    // Total Teacher Count
+                    $sql_t = "SELECT COUNT(*) as total FROM teacher";
                     $result = mysqli_query($con, $sql_t);
 
-                    $row = mysqli_fetch_assoc($result); // fetch the result as an associative array
-                    $total_teacher = $row['total']; // access the value using the alias
-                    
-                    // echo "<p class='text-center fs-3'>Total Teacher : <span class='text-center fs-4 fw-bold badge text-bg-info'>" . $total_teacher . "</span></p>";
-                    
+                    $row = mysqli_fetch_assoc($result);
+                    $total_teacher = $row['total'];
 
-                    // Image Slider Data
+                    // Notice Data
                     $json_data = file_get_contents("../json/data_notice.json");
                     $data = json_decode($json_data, true);
 
-                    // echo "<p class='text-center fs-3'>Currently running notice : <span class='text-center fs-4 fw-bold badge text-bg-info'>" . count($data) . "</span></p>";
-                    
+
+
                     // Get the current date
                     $current_date = date("Y-m-d");
 
@@ -331,7 +331,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="card-body">
                                     <h5 class="card-title">Total Student</h5>
                                     <p class="card-text fs-3">
-                                        <?php echo $total_students ?>
+                                        <?php echo $total_students; ?>
                                     </p>
                                 </div>
                             </div>
@@ -341,7 +341,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="card-body">
                                     <h5 class="card-title">Total Teacher</h5>
                                     <p class="card-text fs-3">
-                                        <?php echo $total_teacher ?>
+                                        <?php echo $total_teacher; ?>
                                     </p>
                                 </div>
                             </div>
@@ -361,7 +361,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <div class="card-body">
                                     <h5 class="card-title">Today Deposit Amount</h5>
                                     <p class="card-text fs-3">
-                                        <?php echo $total_amount ?>
+                                        <?php
+                                        if ($total_amount == null) {
+                                            echo "0.00৳";
+                                        } else {
+
+                                            echo $total_amount . "৳";
+                                        }
+                                        ?>
                                     </p>
                                 </div>
                             </div>

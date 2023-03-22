@@ -154,6 +154,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             </div>
             <div class="d-flex" role="search">
                 <a class="text-decoration-none" href="../logout.php">
+                    <i class="fs-5 bi-box-arrow-right"></i>
                     <strong>Logout</strong>
                 </a>
             </div>
@@ -186,13 +187,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </a>
                         </li>
                         <li>
-                            <a class="tab nav-link" href="../other/student_list.php">
+                            <a class="tab nav-link" href="../other/student_list_dep_teacher.php">
                                 <i class="fs-4 bi-search"></i>
                                 <span class="ms-1 d-none d-sm-inline">Search Student</span>
                             </a>
                         </li>
                         <li>
-                            <a class="tab nav-link" href="../other/update_semester.php">
+                            <a class="tab nav-link" href="../other/update_semester_dep_teacher.php">
                                 <i class="fs-4 bi-pencil-square"></i>
                                 <span class="ms-1 d-none d-sm-inline">Upgrade Semester</span>
                             </a>
@@ -205,25 +206,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </a>
                         </li>
                         <li>
-                            <a class="tab nav-link" href="../other/results_by_tech.php">
+                            <a class="tab nav-link" href="../other/result_check_dep_teacher.php">
                                 <i class="fs-4 bi-bar-chart-line-fill"></i>
                                 <span class="ms-1 d-none d-sm-inline">Results</span>
                             </a>
                         </li>
                         <li>
-                            <a class="tab nav-link" href="../other/result_subject.php">
+                            <a class="tab nav-link" href="../other/result_dep_teacher.php">
                                 <i class="fs-4 bi-pencil-square"></i>
                                 <span class="ms-1 d-none d-sm-inline">Result Publish</span>
                             </a>
                         </li>
                         <li>
-                            <a class="tab nav-link" href="../other/book_list.php">
+                            <a class="tab nav-link" href="../other/book_list_dep_teacher.php">
                                 <i class="fs-4 bi-book"></i>
                                 <span class="ms-1 d-none d-sm-inline">Book List</span>
                             </a>
                         </li>
                         <li>
-                            <a class="tab nav-link" href="../other/daily_deposit_quarry.php">
+                            <a class="tab nav-link" href="../other/fees_deposit_history.php">
                                 <i class="fs-4 bi-currency-dollar"></i>
                                 <span class="ms-1 d-none d-sm-inline">Deposit Quarry</span>
                             </a>
@@ -235,20 +236,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
             <div class="col py-3">
 
                 <div id="Tab1" class="tabcontent">
+
+                    <img src="../images/sipi.png" class="rounded mx-auto d-block" alt="...">
                     <h1 class="text-center fw-bold">Shyamoli Ideal Polytechnic Institute</h1>
-                    <h3 class="text-center">Dashboard</h3>
+                    <h3 class="text-center">Dhaka</h3>
 
                     <strong>
                         <p class="text-center fs-5" id="date"></p>
                     </strong>
                     <?php
 
-                    $sql = "SELECT COUNT(*) as total FROM student_list"; // using alias 'total' for clarity
+                    // Total Student Count
+                    $sql = "SELECT COUNT(*) as total FROM student_list";
                     $result = mysqli_query($con, $sql);
 
-                    $row = mysqli_fetch_assoc($result); // fetch the result as an associative array
-                    $total_students = $row['total']; // access the value using the alias
-                    
+                    $row = mysqli_fetch_assoc($result);
+                    $total_students = $row['total'];
+
+                    // 
+                    $query_d = "SELECT COUNT(*) FROM student_list WHERE technology = '$session_technology'";
+                    $result_d = mysqli_query($con, $query_d);
+                    $row_d = mysqli_fetch_assoc($result_d);
+                    $count_d = $row_d["COUNT(*)"];
+                    // 
+                    $query_t = "SELECT COUNT(*) FROM teacher WHERE technology = '$session_technology'";
+                    $result_t = mysqli_query($con, $query_t);
+                    $row_t = mysqli_fetch_assoc($result_t);
+                    $count_t = $row_t["COUNT(*)"];
+
                     // echo "<p class='text-center fs-3'>Total Student : <span class='text-center fs-4 fw-bold badge text-bg-info'>" . $total_students . "</span></p>";
                     
                     $sql_t = "SELECT COUNT(*) as total FROM teacher"; // using alias 'total' for clarity
@@ -293,11 +308,45 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                         </div>
                         <div class="col-md-3">
+                            <div class="card text-center bg-warning bg-opacity-75">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <?php
+                                        echo "$session_technology Total Students";
+                                        ?>
+                                    </h5>
+                                    <p class="card-text fs-3">
+                                        <?php
+                                        echo $count_d;
+                                        ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
                             <div class="card text-center bg-success bg-opacity-75">
                                 <div class="card-body">
                                     <h5 class="card-title">Total Teacher</h5>
                                     <p class="card-text fs-3">
-                                        <?php echo $total_teacher ?>
+                                        <?php
+                                        echo $total_teacher;
+                                        ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-warning bg-opacity-75">
+                                <div class="card-body">
+                                    <h5 class="card-title">
+                                        <?php
+                                        echo "$session_technology Total Teacher";
+                                        ?>
+                                    </h5>
+                                    <p class="card-text fs-3">
+                                        <?php
+                                        echo $count_t;
+                                        ?>
                                     </p>
                                 </div>
                             </div>
@@ -312,20 +361,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 </div>
                             </div>
                         </div>
-                        <!-- <div class="col-md-3">
-                            <div class="card text-center bg-warning bg-opacity-75">
-                                <div class="card-body">
-                                    <h5 class="card-title">Today Deposit Amount</h5>
-                                    <p class="card-text fs-3">
-                                        <?php
-
-                                        // echo $total_amount
-                                        
-                                        ?>
-                                    </p>
-                                </div>
-                            </div>
-                        </div> -->
                     </div>
                 </div>
 
@@ -420,7 +455,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div id="Tab3" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center"><?php echo $session_technology ?> Technology All Student List</h3>
+                        <h3 class="text-center">
+                            <?php echo $session_technology ?> Technology All Student List
+                        </h3>
                         <hr>
                     </div>
 
@@ -491,7 +528,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                             </td>
                                             <td>
                                                 <button type="button" class="btn btn-warning">
-                                                    <a class="text-decoration-none" href="other/update_student_details.php?id=' . $row['id'] . '">Edit</a>
+                                                    <a class="text-decoration-none" href="../other/update_student_details.php?id=' . $row['id'] . '">Edit</a>
                                                 </button>
                                             </td>
 
