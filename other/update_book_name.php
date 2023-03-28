@@ -73,7 +73,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
 
-
+    <?php
+    include '../inc/navbar.php';
+    ?>
     <!--  -->
     <div id="Tab2" class="tabcontent">
         <div class="container text-center">

@@ -2,7 +2,7 @@
 
 // Set the timezone to Bangladesh
 date_default_timezone_set('Asia/Dhaka');
-include '../../inc/conn.php';
+include '../inc/conn.php';
 session_start();
 
 // Check if user is logged in, otherwise redirect to login page
@@ -28,10 +28,16 @@ $session_technology = $_SESSION['technology'];
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <title>Search Student</title>
 </head>
 
 <body>
+
+    <?php
+    include '../inc/navbar.php';
+    ?>
+
     <div class="container text-center">
         <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
         <p class="fs-4">Find student by semester & technology.</p>
@@ -94,8 +100,7 @@ $session_technology = $_SESSION['technology'];
             </div>
             <br>
             <div class="input-group">
-                <input type="text" name="clg_id" id="clgId" class="form-control" placeholder="Collage ID"
-                    required>
+                <input type="text" name="clg_id" id="clgId" class="form-control" placeholder="Collage ID" required>
             </div>
             <br>
             <div class="input-group">
@@ -103,8 +108,8 @@ $session_technology = $_SESSION['technology'];
             </div>
             <br>
             <div class="input-group">
-                <input type="tel" name="mobile_number" id="name" class="form-control"
-                    placeholder="Mobile number" required>
+                <input type="tel" name="mobile_number" id="name" class="form-control" placeholder="Mobile number"
+                    required>
             </div>
             <br>
             <div class="input-group">
@@ -119,10 +124,10 @@ $session_technology = $_SESSION['technology'];
     <!-- Bootstrap Script Link -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"
         integrity="sha384-oBqDVmMz9ATKxIep9tiCxS/Z9fNfEXiDAYTujMAeBAsjFuCZSmKbSSUnQlmh/jp3" crossorigin="anonymous">
-    </script>
+        </script>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.min.js"
         integrity="sha384-cuYeSxntonz0PPNlHhBs68uyIAVpIIOZZ5JqeqvYYIcEL727kskC66kF92t6Xl2V" crossorigin="anonymous">
-    </script>
+        </script>
 
     <!-- Bootstrap Script Link -->
 </body>
