@@ -2,12 +2,12 @@
 
 // Set the timezone to Bangladesh
 date_default_timezone_set("Asia/Dhaka");
-include '../inc/conn.php';
+include '../../inc/conn.php';
 session_start();
 
 // Check if user is logged in, otherwise redirect to login page
 if (!isset($_SESSION['w_type'])) {
-    header("Location: ../login.php");
+    header("Location: ../../login.php");
     exit();
 }
 
@@ -29,30 +29,41 @@ $session_technology = $_SESSION['technology'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <title>Book List</title>
+    <title>Search Results</title>
 
 </head>
 
 <body>
 
     <?php
-    include '../inc/navbar.php';
+    include '../../inc/navbar.php';
     ?>
 
     <div class="container text-center">
         <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Find Book List by semester & technology.</p>
-        <a class="text-decoration-none" href="../">
+        <p class="fs-4">Find result by semester & technology & subject.</p>
+        <a class="text-decoration-none" href="../../">
             <h3 class="text-center">Home</h3>
         </a>
+        <hr>
     </div>
 
     <div class="container text-center">
         <form class="row g-3 d-flex" role="search" method="POST">
             <div class="col-md-4">
                 <div class="input-group">
-                    <input type="text" name="technology" id="technology" class="form-control" placeholder="Name"
-                        readonly value="<?php echo $session_technology; ?>">
+                    <select name="technology" id="technology" class="cars form-control" required>
+                        <option value="" selected>Select a Technology</option>
+                        <option value="Computer">Computer</option>
+                        <option value="Graphic">Graphic</option>
+                        <option value="RAC">RAC</option>
+                        <option value="Civil">Civil</option>
+                        <option value="Electronic">Electronic</option>
+                        <option value="Electrical">Electrical</option>
+                        <option value="Architecture">Architecture</option>
+                        <option value="Mechanical">Mechanical</option>
+                        <option value="Others">Others</option>
+                    </select>
                 </div>
             </div>
             <div class="col-md-4">
@@ -72,28 +83,55 @@ $session_technology = $_SESSION['technology'];
                 </div>
             </div>
             <div class="col-md-4">
-                <button name="submit_book" type="submit" class="btn btn-outline-success mb-3">Search</button>
+                <button name="submit_search" type="submit" class="btn btn-outline-success mb-3">Search</button>
             </div>
         </form>
     </div>
-    <!-- <div class="container text-center">
-        <form class="row g-3 d-flex" role="search" method="POST">
-            
-        </form>
-        <input type="text" value="This input is not editable" readonly>
 
-    </div> -->
+    <div class="container">
+
+        <?php
+        // Retrieve the book names from the database based on the search query
+        if (isset($_POST['submit_search'])) {
+            $search_technology = $_POST['technology'];
+            $search_semester = $_POST['semester'];
+            $sql = "SELECT book_name FROM `subject_by_semester` WHERE technology ='$search_technology' && semester='$search_semester' ORDER BY s_no ASC";
+            $result = mysqli_query($con, $sql);
+
+            if (mysqli_num_rows($result) > 0) {
+                echo '<form method="POST">';
+                echo '<input type="hidden" name="technology" value="' . $search_technology . '">';
+                echo '<input type="hidden" name="semester" value="' . $search_semester . '">';
+                echo '<select class="cars form-control" name="book_name" id="book_name">';
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '<option value="' . $row['book_name'] . '">' . $row['book_name'] . '</option>';
+                }
+                echo '</select>';
+                echo '<br>';
+                echo '<button type="submit" class="btn btn-primary" name="submit_result">Submit</button>';
+                echo '</form>';
+            } else {
+                echo 'No books found.';
+            }
+
+
+        }
+        ?>
+
+
+    </div>
 
     <div class="container">
 
         <table class="table table-striped table-hover" id="table">
 
             <?php
-            // Retrieve the book names from the database based on the search query
-            if (isset($_POST['submit_book'])) {
+
+            if (isset($_POST['submit_result'])) {
                 $search_technology = $_POST['technology'];
                 $search_semester = $_POST['semester'];
-                $sql = "SELECT * FROM `subject_by_semester` WHERE technology ='$search_technology' && semester='$search_semester' ORDER BY s_no ASC";
+                $search_book_name = $_POST['book_name'];
+                $sql = "SELECT * FROM `marks_db` WHERE semester='$search_semester' && technology ='$search_technology' && subject ='$search_book_name' ORDER BY id ASC";
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -102,9 +140,13 @@ $session_technology = $_SESSION['technology'];
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
+                                <th scope="col">User Id</th>
+                                <th scope="col">Roll No</th>
+                                <th scope="col">Student Name</th>
                                 <th scope="col">Technology</th>
                                 <th scope="col">Semester</th>
-                                <th scope="col">Book Name</th>
+                                <th scope="col">Subject</th>
+                                <th scope="col">Marks</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
@@ -113,13 +155,17 @@ $session_technology = $_SESSION['technology'];
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '
                             <tr>
-                                <td>' . $row['s_no'] . '</td>
+                                <td>' . $row['id'] . '</td>
+                                <td>' . $row['user_id'] . '</td>
+                                <td>' . $row['roll_no'] . '</td>
+                                <td>' . $row['user_name'] . '</td>
                                 <td>' . $row['technology'] . '</td>
                                 <td>' . $row['semester'] . '</td>
-                                <td>' . $row['book_name'] . '</td>
+                                <td>' . $row['subject'] . '</td>
+                                <td>' . $row['marks'] . '</td>
                                 <td>
                                     <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="update_book_name.php?id=' . $row['s_no'] . '">Edit</a>
+                                        <a class="text-decoration-none" href="update_result.php?id=' . $row['id'] . '">Edit</a>
                                     </button>
                                 </td>
                             </tr>';

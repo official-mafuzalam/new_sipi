@@ -138,26 +138,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
 
-    <nav class="navbar sticky-top bg-body-tertiary" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-            <div class="navbar-brand">
-
-                <?php
-
-                echo "User no: " . "<strong>" . $session_user_id . "</strong>";
-                echo "  Name:" . " <strong>" . $session_user_name . "</strong>";
-
-                ?>
-
-            </div>
-            <div class="d-flex" role="search">
-                <a class="text-decoration-none" href="../logout.php">
-                    <i class="fs-5 bi-box-arrow-right"></i>
-                    <strong>Logout</strong>
-                </a>
-            </div>
-        </div>
-    </nav>
+    <?php
+    include '../inc/navbar.php';
+    ?>
 
     <div class="container-fluid">
         <div class="row">
@@ -173,7 +156,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </li>
 
                         <li>
-                            <a data-bs-toggle="collapse" class="tab nav-link" onclick="openTab(event, 'Tab2')">
+                            <a class="tab nav-link" onclick="openTab(event, 'Tab2')">
                                 <i class="fs-4 bi-mortarboard"></i>
                                 <span class="ms-1 d-none d-sm-inline">Student</span>
                             </a>
@@ -314,7 +297,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
                             <div class="card text-center bg-warning bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/student_add_dep_teacher.php">
+                                <a class="text-decoration-none" href="../other/accountant/student_add.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-person-fill-add"></i>
                                         <h5 class="card-title">Add Student</h5>
@@ -324,7 +307,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="col-md-3">
                             <div class="card text-center bg-primary bg-opacity-50">
-                                <a class="text-decoration-none" href="../other/student_list.php">
+                                <a class="text-decoration-none" href="../other/accountant/student_list.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-people"></i>
                                         <h5 class="card-title">All Student</h5>
@@ -334,7 +317,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="col-md-3">
                             <div class="card text-center bg-info bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/student_list.php">
+                                <a class="text-decoration-none" href="../other/accountant/student_search.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-search"></i>
                                         <h5 class="card-title">Search Student</h5>
@@ -396,7 +379,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
                             <div class="card text-center bg-info bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/results_by_tech.php">
+                                <a class="text-decoration-none" href="../other/accountant/results_by_tech.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-bar-chart-line-fill"></i>
                                         <h5 class="card-title">Results</h5>
@@ -422,7 +405,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
                             <div class="card text-center bg-warning bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/fees_depositor_find.php">
+                                <a class="text-decoration-none" href="../other/accountant/fees_depositor_find.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-currency-dollar"></i>
                                         <h5 class="card-title">Fees Deposit</h5>
@@ -431,8 +414,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="card text-center bg-warning bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/daily_deposit_quarry.php">
+                            <div class="card text-center bg-info bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/accountant/daily_deposit_quarry.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-currency-dollar"></i>
                                         <h5 class="card-title">Deposit Quarry</h5>

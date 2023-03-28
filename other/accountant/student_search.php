@@ -2,18 +2,17 @@
 
 // Set the timezone to Bangladesh
 date_default_timezone_set("Asia/Dhaka");
-include '../inc/conn.php';
+include '../../inc/conn.php';
 session_start();
 
 // Check if user is logged in, otherwise redirect to login page
 if (!isset($_SESSION['w_type'])) {
-    header("Location: ../login.php");
+    header("Location: ../../login.php");
     exit();
 }
 
 $session_user_id = $_SESSION['user_id'];
 $session_user_name = $_SESSION['username'];
-$session_technology = $_SESSION['technology'];
 
 ?>
 
@@ -36,25 +35,19 @@ $session_technology = $_SESSION['technology'];
 <body>
 
     <?php
-    include '../inc/navbar.php';
+    include '../../inc/navbar.php';
     ?>
 
     <div class="container text-center">
         <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
         <p class="fs-4">Find student by semester & technology.</p>
-        <a class="text-decoration-none" href="../">
+        <a class="text-decoration-none" href="../../">
             <h3 class="text-center">Home</h3>
         </a>
     </div>
 
     <div class="container text-center">
         <form class="row g-3 d-flex" role="search" method="POST">
-            <div class="col-md-4">
-                <div class="input-group">
-                    <input type="text" name="technology" id="technology" class="form-control" placeholder="Name"
-                        readonly value="<?php echo $session_technology; ?>">
-                </div>
-            </div>
             <div class="col-md-4">
                 <div class="input-group">
                     <select name="semester" id="semester" class="cars form-control" required>
@@ -67,6 +60,22 @@ $session_technology = $_SESSION['technology'];
                         <option value="6th">6th</option>
                         <option value="7th">7th</option>
                         <option value="8th">8th</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <select name="technology" id="technology" class="cars form-control" required>
+                        <option value="" selected>Select a Technology</option>
+                        <option value="Computer">Computer</option>
+                        <option value="Graphic">Graphic</option>
+                        <option value="RAC">RAC</option>
+                        <option value="Civil">Civil</option>
+                        <option value="Electronic">Electronic</option>
+                        <option value="Electrical">Electrical</option>
+                        <option value="Architecture">Architecture</option>
+                        <option value="Mechanical">Mechanical</option>
                         <option value="Others">Others</option>
                     </select>
                 </div>
@@ -124,7 +133,7 @@ $session_technology = $_SESSION['technology'];
                                 <td>' . $row['email'] . '</td>
                                 <td>
                                     <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="update_student_details.php?id=' . $row['id'] . '">Edit</a>
+                                        <a class="text-decoration-none" href="../update_student_details.php?id=' . $row['id'] . '">Edit</a>
                                     </button>
                                 </td>
                             </tr>';

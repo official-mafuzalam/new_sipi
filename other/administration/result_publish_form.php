@@ -2,12 +2,12 @@
 
 // Set the timezone to Bangladesh
 date_default_timezone_set("Asia/Dhaka");
-include '../inc/conn.php';
+include '../../inc/conn.php';
 session_start();
 
 // Check if user is logged in, otherwise redirect to login page
 if (!isset($_SESSION['w_type'])) {
-    header("Location: ../login.php");
+    header("Location: ../../login.php");
     exit();
 }
 
@@ -39,7 +39,7 @@ $semester = $_POST['semester'];
 <body>
 
     <?php
-    include '../inc/navbar.php';
+    include '../../inc/navbar.php';
     ?>
 
     <div class="container text-center">
@@ -54,7 +54,7 @@ $semester = $_POST['semester'];
 
     <div class="container text-center">
         <p class="fs-4">Fill the marks form and save for publish result.</p>
-        <a class="text-decoration-none" href="../">
+        <a class="text-decoration-none" href="../../">
             <h3 class="text-center">Home</h3>
         </a>
     </div>
@@ -138,7 +138,7 @@ $semester = $_POST['semester'];
                 // send form data to server
                 $.ajax({
                     type: 'POST',
-                    url: 'process_marks.php', // specify the URL of the server-side script that handles form data
+                    url: 'result_process_marks.php', // specify the URL of the server-side script that handles form data
                     data: formData,
                     success: function (response) {
                         console.log(response); // display response from server in console

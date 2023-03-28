@@ -2,12 +2,12 @@
 
 // Set the timezone to Bangladesh
 date_default_timezone_set("Asia/Dhaka");
-include '../inc/conn.php';
+include '../../inc/conn.php';
 session_start();
 
 // Check if user is logged in, otherwise redirect to login page
 if (!isset($_SESSION['w_type'])) {
-    header("Location: ../login.php");
+    header("Location: ../../login.php");
     exit();
 }
 

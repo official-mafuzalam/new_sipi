@@ -2,12 +2,12 @@
 
 // Set the timezone to Bangladesh
 date_default_timezone_set("Asia/Dhaka");
-include '../inc/conn.php';
+include '../../inc/conn.php';
 session_start();
 
 // Check if user is logged in, otherwise redirect to login page
 if (!isset($_SESSION['w_type'])) {
-    header("Location: ../login.php");
+    header("Location: ../../login.php");
     exit();
 }
 
@@ -67,7 +67,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <link rel="stylesheet" href="../css/home.css">
+    <link rel="stylesheet" href="../../css/home.css">
     <!-- <link rel="stylesheet" href="https://kit.fontawesome.com/b3e3482d82.css" crossorigin="anonymous"> -->
 
     <title>Student Result Update</title>
@@ -76,14 +76,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 <body>
 
     <?php
-    include '../inc/navbar.php';
+    include '../../inc/navbar.php';
     ?>
     <!--  -->
     <div id="Tab2" class="tabcontent">
         <div class="container text-center">
             <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
             <p class="fs-4">Fill the form for update details.</p>
-            <a class="text-decoration-none" href="../">
+            <a class="text-decoration-none" href="../../">
                 <h3 class="text-center">Home</h3>
             </a>
         </div>

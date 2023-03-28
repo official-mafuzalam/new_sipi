@@ -200,76 +200,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </a>
                         </li>
                         <li>
-                            <a data-bs-toggle="collapse" class="tab nav-link" onclick="openTab(event, 'Tab2')">
-                                <i class="fs-4 bi-person-fill-add"></i>
-                                <span class="ms-1 d-none d-sm-inline">Add Student</span>
+                            <a class="tab nav-link" onclick="openTab(event, 'Tab2')">
+                                <i class="fs-4 bi-mortarboard"></i>
+                                <span class="ms-1 d-none d-sm-inline">Student</span>
                             </a>
                         </li>
                         <li>
                             <a class="tab nav-link" onclick="openTab(event, 'Tab3')">
-                                <i class="fs-4 bi-people"></i>
-                                <span class="ms-1 d-none d-sm-inline">All Student</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tab nav-link" href="../other/student_list.php">
-                                <i class="fs-4 bi-search"></i>
-                                <span class="ms-1 d-none d-sm-inline">Search Student</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tab nav-link" href="../other/update_semester.php">
-                                <i class="fs-4 bi-pencil-square"></i>
-                                <span class="ms-1 d-none d-sm-inline">Upgrade Semester</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tab nav-link" onclick="openTab(event, 'Tab5')">
-                                <i class="fs-4 bi-person-fill-add"></i>
-                                <span class="ms-1 d-none d-sm-inline">Add Teacher</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tab nav-link" onclick="openTab(event, 'Tab6')">
-                                <i class="fs-4 bi-people"></i>
-                                <span class="ms-1 d-none d-sm-inline">All Teacher</span>
-                            </a>
-                        </li>
-                        <hr>
-                        <li>
-                            <a class="tab nav-link" onclick="openTab(event, 'Tab9')">
                                 <i class="fs-4 bi-bell"></i>
-                                <span class="ms-1 d-none d-sm-inline">Notice Board</span>
+                                <span class="ms-1 d-none d-sm-inline">Notice</span>
                             </a>
                         </li>
                         <li>
-                            <a class="tab nav-link" href="../other/results_by_tech.php">
+                            <a class="tab nav-link" onclick="openTab(event, 'Tab4')">
                                 <i class="fs-4 bi-bar-chart-line-fill"></i>
                                 <span class="ms-1 d-none d-sm-inline">Results</span>
                             </a>
                         </li>
                         <li>
-                            <a class="tab nav-link" href="../other/result_subject.php">
-                                <i class="fs-4 bi-pencil-square"></i>
-                                <span class="ms-1 d-none d-sm-inline">Result Publish</span>
+                            <a class="tab nav-link" onclick="openTab(event, 'Tab5')">
+                                <i class="fs-4 bi-currency-dollar"></i>
+                                <span class="ms-1 d-none d-sm-inline">Deposit Quarry</span>
                             </a>
                         </li>
+
+                        <li>
+                            <a class="tab nav-link" onclick="openTab(event, 'Tab6')">
+                                <i class="fs-4 bi-people"></i>
+                                <span class="ms-1 d-none d-sm-inline">Teacher</span>
+                            </a>
+                        </li>
+
                         <li>
                             <a class="tab nav-link" href="../other/book_list.php">
                                 <i class="fs-4 bi-book"></i>
                                 <span class="ms-1 d-none d-sm-inline">Book List</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tab nav-link" href="../other/fees_depositor_find.php">
-                                <i class="fs-4 bi-currency-dollar"></i>
-                                <span class="ms-1 d-none d-sm-inline">Fees Deposit</span>
-                            </a>
-                        </li>
-                        <li>
-                            <a class="tab nav-link" href="../other/daily_deposit_quarry.php">
-                                <i class="fs-4 bi-currency-dollar"></i>
-                                <span class="ms-1 d-none d-sm-inline">Deposit Quarry</span>
                             </a>
                         </li>
                     </ul>
@@ -379,439 +344,218 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <!--  -->
                 <div id="Tab2" class="tabcontent">
+
                     <div class="container text-center">
                         <h3 class="text-center">Student Add System</h3>
                         <p class="fs-4">Fill the form for add a new student in database.</p>
                         <hr>
                     </div>
 
-                    <div class="container text-center">
-                        <form class="form-inline" action="administration.php" method="POST">
-                            <div class="input-group">
-                                <select name="technology" id="technology" class="cars form-control" required>
-                                    <option value="" selected>Select a Technology</option>
-                                    <option value="Computer">Computer</option>
-                                    <option value="Graphic">Graphic</option>
-                                    <option value="RAC">RAC</option>
-                                    <option value="Civil">Civil</option>
-                                    <option value="Electronic">Electronic</option>
-                                    <option value="Electrical">Electrical</option>
-                                    <option value="Architecture">Architecture</option>
-                                    <option value="Mechanical">Mechanical</option>
-                                    <option value="Others">Others</option>
-                                </select>
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <div class="col-md-3">
+                            <div class="card text-center bg-warning bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/administration/student_add.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-person-fill-add"></i>
+                                        <h5 class="card-title">Add Student</h5>
+                                    </div>
+                                </a>
                             </div>
-                            <br>
-                            <div class="input-group">
-                                <select name="admision_Year" id="admisionYear" class="cars form-control" required>
-                                    <option value="" selected>Select Seasons</option>
-                                    <option value="18-19">18-19</option>
-                                    <option value="19-20">19-20</option>
-                                    <option value="20-21">20-21</option>
-                                    <option value="21-22">21-22</option>
-                                    <option value="22-23">22-23</option>
-                                    <option value="Others">Others</option>
-                                </select>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-primary bg-opacity-50">
+                                <a class="text-decoration-none" href="../other/administration/student_list.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-people"></i>
+                                        <h5 class="card-title">All Student</h5>
+                                    </div>
+                                </a>
                             </div>
-                            <br>
-                            <div class="input-group">
-                                <select name="semester" id="semester" class="cars form-control" required>
-                                    <option value="" selected>Select Semester</option>
-                                    <option value="1st">1st</option>
-                                    <option value="2nd">2nd</option>
-                                    <option value="3rd">3rd</option>
-                                    <option value="4th">4th</option>
-                                    <option value="5th">5th</option>
-                                    <option value="6th">6th</option>
-                                    <option value="7th">7th</option>
-                                    <option value="8th">8th</option>
-                                    <option value="Others">Others</option>
-                                </select>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-info bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/administration/student_search.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-search"></i>
+                                        <h5 class="card-title">Search Student</h5>
+                                    </div>
+                                </a>
                             </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="text" name="user_name" id="name" class="form-control" placeholder="Name"
-                                    required>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-danger bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/administration/update_semester.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-pencil-square"></i>
+                                        <h5 class="card-title">Update Semester</h5>
+                                    </div>
+                                </a>
                             </div>
-                            <br>
-                            <div class="input-group">
-                                <select name="gender" id="admisionYear" class="cars form-control" required>
-                                    <option value="" selected>Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Others">Others</option>
-                                </select>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-info bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/administration/attendance_history.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-pencil-square"></i>
+                                        <h5 class="card-title">Attendance History</h5>
+                                    </div>
+                                </a>
                             </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="text" name="clg_id" id="clgId" class="form-control"
-                                    placeholder="Collage ID" required>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="number" name="roll_no" id="Roll" class="form-control" placeholder="Roll no"
-                                    required>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="tel" name="mobile_number" id="name" class="form-control"
-                                    placeholder="Mobile number" required>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="tel" name="email" id="name" class="form-control" placeholder="Email"
-                                    required>
-                            </div>
-                            <br>
-                            <input class="submit btn btn-success save-btn" name="student_submit" type="submit"
-                                value="Save">
-
-                        </form>
+                        </div>
                     </div>
 
                 </div>
 
                 <!-- Tab End -->
 
-
+                <!--  -->
                 <div id="Tab3" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">All Student List</h3>
+                        <h3 class="text-center">Student Add System</h3>
+                        <p class="fs-4">Fill the form for add a new student in database.</p>
                         <hr>
                     </div>
 
-                    <div class="container">
-
-                        <table class="table table-striped table-hover" id="table">
-
-                            <?php
-
-                            $sql = "SELECT * FROM student_list ORDER BY id ASC";
-                            // or bus_name like '%$search%'
-                            $result = mysqli_query($con, $sql);
-
-                            if (mysqli_num_rows($result) > 0) {
-                                echo '
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">User Id</th>
-                                        <th scope="col">Roll No</th>
-                                        <th scope="col">Collage Id</th>
-                                        <th scope="col">Student Name</th>
-                                        <th scope="col">Technology</th>
-                                        <th scope="col">Year</th>
-                                        <th scope="col">C. Semester</th>
-                                        <th scope="col">Mobile</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                ';
-                                while ($row = mysqli_fetch_assoc($result)) {
-
-                                    echo '
-                                    <tbody>
-
-                                        <tr>
-
-                                            <td>
-                                                ' . $row['id'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['user_id'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['roll_no'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['clg_id'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['user_name'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['technology'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['admision_Year'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['current_semester'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['mobile_number'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['email'] . '
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-warning">
-                                                    <a class="text-decoration-none" href="../other/update_student_details.php?id=' . $row['id'] . '">Edit</a>
-                                                </button>
-                                            </td>
-
-                                        </tr>
-
-                                    </tbody>';
-                                }
-                                ;
-                            } else {
-                                echo 'Do not found in database';
-                            }
-
-                            ?>
-
-                        </table>
-
-                        <strong>
-                            <p class="fs-3" id="value"></p>
-                        </strong>
-
-                    </div>
-
-                </div>
-
-                <!-- Tab  5-->
-                <div id="Tab5" class="tabcontent">
-                    <div class="container text-center">
-                        <h3 class="text-center">Teacher Add System</h3>
-                        <p class="fs-4">Fill the form for add a new Teacher in database.</p>
-                        <hr>
-                    </div>
-
-                    <div class="container text-center">
-                        <form class="form-inline" action="administration.php" method="POST">
-                            <div class="input-group">
-                                <select name="technology" id="technology" class="cars form-control" required>
-                                    <option value="" selected>Select a Technology</option>
-                                    <option value="Computer">Computer</option>
-                                    <option value="Graphic">Graphic</option>
-                                    <option value="RAC">RAC</option>
-                                    <option value="Civil">Civil</option>
-                                    <option value="Electronic">Electronic</option>
-                                    <option value="Electrical">Electrical</option>
-                                    <option value="Architecture">Architecture</option>
-                                    <option value="Mechanical">Mechanical</option>
-                                    <option value="Others">Others</option>
-                                </select>
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <div class="col-md-3">
+                            <div class="card text-center bg-warning bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/notice_add.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-plus-circle-fill"></i>
+                                        <h5 class="card-title">Add Notice</h5>
+                                    </div>
+                                </a>
                             </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="text" name="user_name" id="name" class="form-control" placeholder="Name"
-                                    required>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-info bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/notice_all.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-table"></i>
+                                        <h5 class="card-title">All Notice</h5>
+                                    </div>
+                                </a>
                             </div>
-                            <br>
-                            <div class="input-group">
-                                <select name="position" id="position" class="cars form-control" required>
-                                    <option value="" selected>Select Position</option>
-                                    <option value="CI">CI</option>
-                                    <option value="JR Instructor">JR Instructor</option>
-                                    <option value="Accountants">Accountants</option>
-                                    <option value="Others">Others</option>
-                                </select>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="tel" name="mobile_number" id="name" class="form-control"
-                                    placeholder="Mobile number" required>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="tel" name="email" id="name" class="form-control" placeholder="Email"
-                                    required>
-                            </div>
-                            <br>
-                            <input class="submit btn btn-success save-btn" name="teacher_submit" type="submit"
-                                value="Save">
-
-                        </form>
+                        </div>
                     </div>
 
                 </div>
 
                 <!-- Tab End -->
 
-                <div id="Tab6" class="tabcontent">
+                <!--  -->
+                <div id="Tab4" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">All Teacher List</h3>
+                        <h3 class="text-center">Student Add System</h3>
+                        <p class="fs-4">Fill the form for add a new student in database.</p>
                         <hr>
                     </div>
 
-                    <div class="container">
-
-                        <table class="table table-striped table-hover" id="table">
-
-                            <?php
-
-                            $sql = "SELECT * FROM teacher ORDER BY sno ASC";
-                            // or bus_name like '%$search%'
-                            $result = mysqli_query($con, $sql);
-
-                            if (mysqli_num_rows($result) > 0) {
-                                echo '
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">User Id</th>
-                                        <th scope="col">Teacher Name</th>
-                                        <th scope="col">Technology</th>
-                                        <th scope="col">Position</th>
-                                        <th scope="col">Mobile</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                ';
-                                while ($row = mysqli_fetch_assoc($result)) {
-
-                                    echo '
-                                    <tbody>
-
-                                        <tr>
-
-                                            <td>
-                                                ' . $row['sno'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['user_id'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['user_name'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['technology'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['position'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['mobile_number'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['email'] . '
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-warning">
-                                                    <a class="text-decoration-none" href="../other/update_teacher_details.php?id=' . $row['sno'] . '">Edit</a>
-                                                </button>
-                                            </td>
-
-                                        </tr>
-
-                                    </tbody>';
-                                }
-                                ;
-                            } else {
-                                echo 'Do not found in database';
-                            }
-
-                            ?>
-
-                        </table>
-
-                        <strong>
-                            <p class="fs-3" id="value"></p>
-                        </strong>
-
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <div class="col-md-3">
+                            <div class="card text-center bg-warning bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/administration/result_publish.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-pencil-square"></i>
+                                        <h5 class="card-title">Result Publish</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-info bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/administration/result_check.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-bar-chart-line-fill"></i>
+                                        <h5 class="card-title">Results</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                 </div>
 
+                <!-- Tab End -->
 
                 <!--  -->
-                <div id="Tab9" class="tabcontent">
-                    <div class="container text-center">
-                        <h3 class="text-center">Notice Board</h3>
-                        <p class="fs-4">Fill the form for add a New Notice for student's.</p>
-                        <hr>
-                    </div>
-                    <div class="container text-center upload-section">
-                        <form action="administration.php" method="post">
-                            <div class="input-group">
-                                <select name="category" class="cars form-control" required>
-                                    <option value="" selected>Select Category</option>
-                                    <option value="Admission">Admission</option>
-                                    <option value="Due Payment">Due Payment</option>
-                                    <option value="Form Fill-Up">Form Fill-Up</option>
-                                    <option value="Admit Card">Admit Card</option>
-                                    <option value="Others">Others</option>
-                                </select>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <input class="form-control" type="text" name="title" placeholder="Notice Title"
-                                    required>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <textarea class="form-control" type="text" name="desc" placeholder="Notice Description"
-                                    required> </textarea>
-                            </div>
-                            <br>
-                            <input class="btn btn-success" name="notice_submit" type="submit" value="Submit">
-                        </form>
-                        <br>
-                        <br>
-                        <br>
-                        <br>
-                    </div>
-                    <div class="container text-center">
+                <div id="Tab5" class="tabcontent">
 
-                        <p class="fs-4">All Notice</p>
-                        <hr>
-
-                        <?php
-                        $json_data = file_get_contents('../json/data_notice.json');
-                        $data = json_decode($json_data, true);
-                        ?>
-                        <table class="table table-hover">
-                            <thead>
-                                <tr>
-                                    <th class="col">U_NO</th>
-                                    <th class="col">Category</th>
-                                    <th class="col">Title</th>
-                                    <th class="col">Description</th>
-                                    <th class="col">Action</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                                <?php
-                                $i = 0;
-                                foreach ($data as $row) { ?>
-                                    <tr>
-                                        <td>
-                                            <?php echo $row['inserter_id']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['cat']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['title']; ?>
-                                        </td>
-                                        <td>
-                                            <?php echo $row['des']; ?>
-                                        </td>
-                                        <td>
-                                            <button id="delete-<?php echo $i; ?>" class="dlt-notice">Delete</button>
-                                        </td>
-                                    </tr>
-                                    <?php
-                                    $i++;
-                                } ?>
-                            </tbody>
-                        </table>
+                    <div class="container text-center">
+                        <h3 class="text-center">Student Add System</h3>
+                        <p class="fs-4">Fill the form for add a new student in database.</p>
                         <hr>
                     </div>
-                    <div class="text-center">
-                        <form action="administration.php" method="post">
-                            <div>
-                                <input type="hidden" name="delete_notice" value="1">
-                                <input class="btn btn-danger" type="submit" value="Delete All Data">
+
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <div class="col-md-3">
+                            <div class="card text-center bg-warning bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/administration/fees_depositor_find.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-currency-dollar"></i>
+                                        <h5 class="card-title">Fees Deposit</h5>
+                                    </div>
+                                </a>
                             </div>
-                        </form>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-info bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/administration/daily_deposit_quarry.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-currency-dollar"></i>
+                                        <h5 class="card-title">Deposit Quarry</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Tab End -->
+
+                <!--  -->
+                <div id="Tab6" class="tabcontent">
+
+                    <div class="container text-center">
+                        <h3 class="text-center">Student Add System</h3>
+                        <p class="fs-4">Fill the form for add a new student in database.</p>
+                        <hr>
+                    </div>
+
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <div class="col-md-3">
+                            <div class="card text-center bg-warning bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/administration/teacher_add.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-person-fill-add"></i>
+                                        <h5 class="card-title">Add Teacher</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-primary bg-opacity-50">
+                                <a class="text-decoration-none" href="../other/administration/teacher_list.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-people"></i>
+                                        <h5 class="card-title">All Teacher</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-info bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/administration/student_search.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-search"></i>
+                                        <h5 class="card-title">Search Teacher</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
                     </div>
 
                 </div>

@@ -2,12 +2,12 @@
 
 // Set the timezone to Bangladesh
 date_default_timezone_set("Asia/Dhaka");
-include '../inc/conn.php';
+include '../../inc/conn.php';
 session_start();
 
 // Check if user is logged in, otherwise redirect to login page
 if (!isset($_SESSION['w_type'])) {
-    header("Location: ../login.php");
+    header("Location: ../../login.php");
     exit();
 }
 
@@ -29,23 +29,22 @@ $session_technology = $_SESSION['technology'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <title>Update Semester</title>
+    <title>Book List</title>
 
 </head>
 
 <body>
 
     <?php
-    include '../inc/navbar.php';
+    include '../../inc/navbar.php';
     ?>
 
     <div class="container text-center">
-        <h3 class="text-center">Select subject for publish result</h3>
-        <p class="fs-4">Search technology & semester and select subject for publish result.</p>
-        <a class="text-decoration-none" href="../">
+        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
+        <p class="fs-4">Find Book List by semester & technology.</p>
+        <a class="text-decoration-none" href="../../">
             <h3 class="text-center">Home</h3>
         </a>
-        <hr>
     </div>
 
     <div class="container text-center">
@@ -73,44 +72,70 @@ $session_technology = $_SESSION['technology'];
                 </div>
             </div>
             <div class="col-md-4">
-                <button name="submit_semester" type="submit" class="btn btn-outline-success mb-3">Search</button>
+                <button name="submit_book" type="submit" class="btn btn-outline-success mb-3">Search</button>
             </div>
         </form>
     </div>
+    <!-- <div class="container text-center">
+        <form class="row g-3 d-flex" role="search" method="POST">
+            
+        </form>
+        <input type="text" value="This input is not editable" readonly>
+
+    </div> -->
 
     <div class="container">
 
-        <?php
-        // Retrieve the book names from the database based on the search query
-        if (isset($_POST['submit_semester'])) {
-            $search_technology = $_POST['technology'];
-            $search_semester = $_POST['semester'];
-            $sql = "SELECT book_name FROM `subject_by_semester` WHERE technology ='$search_technology' && semester='$search_semester' ORDER BY s_no ASC";
-            $result = mysqli_query($con, $sql);
+        <table class="table table-striped table-hover" id="table">
 
-            if (mysqli_num_rows($result) > 0) {
-                echo '<form action="result_publish.php" method="POST">';
-                echo '<input type="hidden" name="technology" value="' . $search_technology . '">';
-                echo '<input type="hidden" name="semester" value="' . $search_semester . '">';
-                echo '<select class="cars form-control" name="book_name" id="book_name">';
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo '<option value="' . $row['book_name'] . '">' . $row['book_name'] . '</option>';
+            <?php
+            // Retrieve the book names from the database based on the search query
+            if (isset($_POST['submit_book'])) {
+                $search_technology = $_POST['technology'];
+                $search_semester = $_POST['semester'];
+                $sql = "SELECT * FROM `subject_by_semester` WHERE technology ='$search_technology' && semester='$search_semester' ORDER BY s_no ASC";
+                $result = mysqli_query($con, $sql);
+
+                if (mysqli_num_rows($result) > 0) {
+                    echo '
+                    <table class="table table-striped table-hover" id="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">Technology</th>
+                                <th scope="col">Semester</th>
+                                <th scope="col">Book Name</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
+
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '
+                            <tr>
+                                <td>' . $row['s_no'] . '</td>
+                                <td>' . $row['technology'] . '</td>
+                                <td>' . $row['semester'] . '</td>
+                                <td>' . $row['book_name'] . '</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning">
+                                        <a class="text-decoration-none" href="update_book_name.php?id=' . $row['s_no'] . '">Edit</a>
+                                    </button>
+                                </td>
+                            </tr>';
+                    }
+                    echo '</tbody></table>';
+                } else {
+                    echo 'Data not found in the database';
                 }
-                echo '</select>';
-                echo '<br>';
-                echo '<button type="submit" class="btn btn-primary" name="submit">Submit</button>';
-                echo '</form>';
-            } else {
-                echo 'No books found.';
             }
 
+            ?>
 
-        }
-        ?>
 
+        </table>
 
     </div>
-
 
 
 

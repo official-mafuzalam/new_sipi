@@ -2,18 +2,17 @@
 
 // Set the timezone to Bangladesh
 date_default_timezone_set("Asia/Dhaka");
-include '../inc/conn.php';
+include '../../inc/conn.php';
 session_start();
 
 // Check if user is logged in, otherwise redirect to login page
 if (!isset($_SESSION['w_type'])) {
-    header("Location: ../login.php");
+    header("Location: ../../login.php");
     exit();
 }
 
 $session_user_id = $_SESSION['user_id'];
 $session_user_name = $_SESSION['username'];
-$session_technology = $_SESSION['technology'];
 
 ?>
 
@@ -29,33 +28,27 @@ $session_technology = $_SESSION['technology'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <title>Book List</title>
+    <title>Search Student</title>
 
 </head>
 
 <body>
 
     <?php
-    include '../inc/navbar.php';
+    include '../../inc/navbar.php';
     ?>
 
     <div class="container text-center">
         <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Attendance History</p>
-        <a class="text-decoration-none" href="../">
+        <p class="fs-4">Find student by semester & technology.</p>
+        <a class="text-decoration-none" href="../../">
             <h3 class="text-center">Home</h3>
         </a>
     </div>
 
     <div class="container text-center">
         <form class="row g-3 d-flex" role="search" method="POST">
-            <div class="col-md-3">
-                <div class="input-group">
-                    <input type="text" name="technology" id="technology" class="form-control" placeholder="Name"
-                        value="<?php echo $session_technology; ?>" readonly>
-                </div>
-            </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="input-group">
                     <select name="semester" id="semester" class="cars form-control" required>
                         <option value="" selected>Select Semester</option>
@@ -71,26 +64,38 @@ $session_technology = $_SESSION['technology'];
                     </select>
                 </div>
             </div>
-            <div class="col-md-3">
-                <input name="date" type="date" class="form-control" value="<?php echo date('Y-m-d'); ?>" required />
+            <div class="col-md-4">
+                <div class="input-group">
+                    <select name="technology" id="technology" class="cars form-control" required>
+                        <option value="" selected>Select a Technology</option>
+                        <option value="Computer">Computer</option>
+                        <option value="Graphic">Graphic</option>
+                        <option value="RAC">RAC</option>
+                        <option value="Civil">Civil</option>
+                        <option value="Electronic">Electronic</option>
+                        <option value="Electrical">Electrical</option>
+                        <option value="Architecture">Architecture</option>
+                        <option value="Mechanical">Mechanical</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
             </div>
-            <div class="col-md-3">
-                <button name="submit_attendance" type="submit" class="btn btn-outline-success mb-3">Search</button>
+            <div class="col-md-4">
+                <button name="submit_search" type="submit" class="btn btn-outline-success mb-3">Search</button>
             </div>
         </form>
     </div>
 
     <div class="container">
 
-        <table class="table table-striped table-hover" id="table">
+        <table class="table table-striped table-hover">
 
             <?php
-            // Retrieve the book names from the database based on the search query
-            if (isset($_POST['submit_attendance'])) {
+
+            if (isset($_POST['submit_search'])) {
                 $search_technology = $_POST['technology'];
                 $search_semester = $_POST['semester'];
-                $search_date = $_POST['date'];
-                $sql = "SELECT * FROM `stu_atten` WHERE technology ='$search_technology' && semester='$search_semester' && att_date = '$search_date' ORDER BY id ASC";
+                $sql = "SELECT * FROM `student_list` WHERE current_semester='$search_semester' && technology ='$search_technology' ORDER BY id ASC";
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -99,25 +104,39 @@ $session_technology = $_SESSION['technology'];
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Name</th>
-                                <th scope="col">Semester</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Comment</th>
+                                <th scope="col">User Id</th>
+                                <th scope="col">Roll No</th>
+                                <th scope="col">Collage Id</th>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Technology</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">C. Semester</th>
+                                <th scope="col">Mobile</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
-                    <tbody>';
-
-                    $counter = 1;
+                        <tbody>';
 
                     while ($row = mysqli_fetch_assoc($result)) {
-                        echo '<tr>';
-                        echo '<td>' . $counter . '</td>'; // Display the serial number
-                        echo '<td>' . $row['stu_name'] . '</td>';
-                        echo '<td>' . $row['semester'] . '</td>';
-                        echo '<td>' . $row['atten_status'] . '</td>';
-                        echo '<td>' . " " . '</td>';
-                        echo '</tr>';
-                        $counter++; // Increment the counter variable for the next row
+                        echo '
+                            <tr>
+                                <td>' . $row['id'] . '</td>
+                                <td>' . $row['user_id'] . '</td>
+                                <td>' . $row['roll_no'] . '</td>
+                                <td>' . $row['clg_id'] . '</td>
+                                <td>' . $row['user_name'] . '</td>
+                                <td>' . $row['technology'] . '</td>
+                                <td>' . $row['admision_Year'] . '</td>
+                                <td>' . $row['current_semester'] . '</td>
+                                <td>' . $row['mobile_number'] . '</td>
+                                <td>' . $row['email'] . '</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning">
+                                        <a class="text-decoration-none" href="../update_student_details.php?id=' . $row['id'] . '">Edit</a>
+                                    </button>
+                                </td>
+                            </tr>';
                     }
                     echo '</tbody></table>';
                 } else {

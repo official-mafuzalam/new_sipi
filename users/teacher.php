@@ -72,7 +72,7 @@ $session_technology = $_SESSION['technology'];
                             </a>
                         </li>
                         <li>
-                            <a data-bs-toggle="collapse" class="tab nav-link" onclick="openTab(event, 'Tab2')">
+                            <a class="tab nav-link" onclick="openTab(event, 'Tab2')">
                                 <i class="fs-4 bi-mortarboard"></i>
                                 <span class="ms-1 d-none d-sm-inline">Student</span>
                             </a>
@@ -249,7 +249,7 @@ $session_technology = $_SESSION['technology'];
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
                             <div class="card text-center bg-warning bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/student_add_dep_teacher.php">
+                                <a class="text-decoration-none" href="../other/dep_teacher/student_add_dep_teacher.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-person-fill-add"></i>
                                         <h5 class="card-title">Add Student</h5>
@@ -259,7 +259,7 @@ $session_technology = $_SESSION['technology'];
                         </div>
                         <div class="col-md-3">
                             <div class="card text-center bg-primary bg-opacity-50">
-                                <a class="text-decoration-none" href="../other/student_list_dep_teacher.php">
+                                <a class="text-decoration-none" href="../other/dep_teacher/student_list_dep_teacher.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-people"></i>
                                         <h5 class="card-title">All Student</h5>
@@ -267,7 +267,7 @@ $session_technology = $_SESSION['technology'];
                                 </a>
                             </div>
                         </div>
-                        <div class="col-md-3">
+                        <!-- <div class="col-md-3">
                             <div class="card text-center bg-info bg-opacity-75">
                                 <a class="text-decoration-none" href="../other/student_list.php">
                                     <div class="card-body text-black">
@@ -276,10 +276,10 @@ $session_technology = $_SESSION['technology'];
                                     </div>
                                 </a>
                             </div>
-                        </div>
+                        </div> -->
                         <div class="col-md-3">
                             <div class="card text-center bg-danger bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/update_semester_dep_teacher.php">
+                                <a class="text-decoration-none" href="../other/dep_teacher/update_semester_dep_teacher.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-pencil-square"></i>
                                         <h5 class="card-title">Update Semester</h5>
@@ -288,8 +288,8 @@ $session_technology = $_SESSION['technology'];
                             </div>
                         </div>
                         <div class="col-md-3">
-                            <div class="card text-center bg-danger bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/attendance_history.php">
+                            <div class="card text-center bg-info bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/dep_teacher/attendance_history.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-pencil-square"></i>
                                         <h5 class="card-title">Attendance History</h5>
@@ -338,6 +338,7 @@ $session_technology = $_SESSION['technology'];
                 </div>
 
                 <!-- Tab End -->
+                
                 <!--  -->
                 <div id="Tab4" class="tabcontent">
 
@@ -350,7 +351,7 @@ $session_technology = $_SESSION['technology'];
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
                             <div class="card text-center bg-warning bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/result_publish_dep_teacher.php">
+                                <a class="text-decoration-none" href="../other/dep_teacher/result_publish_dep_teacher.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-pencil-square"></i>
                                         <h5 class="card-title">Result Publish</h5>
@@ -360,7 +361,7 @@ $session_technology = $_SESSION['technology'];
                         </div>
                         <div class="col-md-3">
                             <div class="card text-center bg-info bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/result_check_dep_teacher.php">
+                                <a class="text-decoration-none" href="../other/dep_teacher/result_check_dep_teacher.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-bar-chart-line-fill"></i>
                                         <h5 class="card-title">Results</h5>
@@ -413,7 +414,7 @@ $session_technology = $_SESSION['technology'];
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
                             <div class="card text-center bg-warning bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/book_list_dep_teacher.php">
+                                <a class="text-decoration-none" href="../other/dep_teacher/book_list_dep_teacher.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-book"></i>
                                         <h5 class="card-title">Book List</h5>

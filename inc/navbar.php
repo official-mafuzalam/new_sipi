@@ -1,4 +1,4 @@
-<nav class="navbar sticky-top bg-body-tertiary" style="background-color: #e3f2fd;">
+<nav class="navbar sticky-top bg-body-tertiary" style="background-color: thistle">
     <div class="container-fluid">
         <div class="navbar-brand">
 
