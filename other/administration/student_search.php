@@ -39,11 +39,11 @@ $session_user_name = $_SESSION['username'];
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Find student by semester & technology.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Find student by semester & technology.</p>
+        <hr>
     </div>
 
     <div class="container text-center">
@@ -116,27 +116,27 @@ $session_user_name = $_SESSION['username'];
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
-                        <tbody>';
+                    <tbody>';
 
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '
-                            <tr>
-                                <td>' . $row['id'] . '</td>
-                                <td>' . $row['user_id'] . '</td>
-                                <td>' . $row['roll_no'] . '</td>
-                                <td>' . $row['clg_id'] . '</td>
-                                <td>' . $row['user_name'] . '</td>
-                                <td>' . $row['technology'] . '</td>
-                                <td>' . $row['admision_Year'] . '</td>
-                                <td>' . $row['current_semester'] . '</td>
-                                <td>' . $row['mobile_number'] . '</td>
-                                <td>' . $row['email'] . '</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="../update_student_details.php?id=' . $row['id'] . '">Edit</a>
-                                    </button>
-                                </td>
-                            </tr>';
+                        <tr>
+                            <td>' . $row['id'] . '</td>
+                            <td>' . $row['user_id'] . '</td>
+                            <td>' . $row['roll_no'] . '</td>
+                            <td>' . $row['clg_id'] . '</td>
+                            <td>' . $row['user_name'] . '</td>
+                            <td>' . $row['technology'] . '</td>
+                            <td>' . $row['admision_Year'] . '</td>
+                            <td>' . $row['current_semester'] . '</td>
+                            <td>' . $row['mobile_number'] . '</td>
+                            <td>' . $row['email'] . '</td>
+                            <td>
+                                <button type="button" class="btn btn-warning">
+                                    <a class="text-decoration-none" href="update_student_details.php?id=' . $row['id'] . '">Edit</a>
+                                </button>
+                            </td>
+                        </tr>';
                     }
                     echo '</tbody></table>';
                 } else {

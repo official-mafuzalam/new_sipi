@@ -62,13 +62,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Upgrade semester for full semester student.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Upgrade semester for full semester student.</p>
+        <hr>
     </div>
-    <div class="container text-center">
+
+    <div class="container">
         <form class="row g-3 d-flex" role="search" method="POST">
             <div class="col-md-4">
                 <div class="input-group">
@@ -110,99 +111,90 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     <div class="container">
 
-        <hr>
-        <table class="table table-striped table-hover" id="table">
 
-            <?php
+        <?php
 
-            if (isset($_POST['submit_search'])) {
-                $search_technology = $_POST['technology'];
-                $search_semester = $_POST['semester'];
-                $sql = "SELECT * FROM `student_list` WHERE current_semester='$search_semester' && technology ='$search_technology' ORDER BY id ASC";
-                $result = mysqli_query($con, $sql);
+        if (isset($_POST['submit_search'])) {
+            $search_technology = $_POST['technology'];
+            $search_semester = $_POST['semester'];
+            $sql = "SELECT * FROM `student_list` WHERE current_semester='$search_semester' && technology ='$search_technology' ORDER BY id ASC";
+            $result = mysqli_query($con, $sql);
 
-                if (mysqli_num_rows($result) > 0) {
-                    echo '
-                        <form class="form-horizontal row d-flex" role="search" method="POST">
-                            <div class="form-group col-md-3">
-                                <div class="input-group">
-                                    <input class="form-control" type="text" name="current_semester" value="' . $search_semester . '" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <div class="input-group">
-                                    <input class="form-control" type="text" name="technology" value="' . $search_technology . '" readonly>
-                                </div>
-                            </div>
-                            <div class="form-group col-md-3">
-                                <div class="input-group">
-                                    <select name="new_semester" id="semester" class="cars form-control" required>
-                                        <option value="" selected>Select New Semester For Upgrade</option>
-                                        <option value="1st">1st</option>
-                                        <option value="2nd">2nd</option>
-                                        <option value="3rd">3rd</option>
-                                        <option value="4th">4th</option>
-                                        <option value="5th">5th</option>
-                                        <option value="6th">6th</option>
-                                        <option value="7th">7th</option>
-                                        <option value="8th">8th</option>
-                                        <option value="Others">Others</option>
-                                    </select>
-                                </div>
-                            </div>
-                            <div class="col-md-4">
-                                <button name="submit_semester" type="submit" class="btn btn-outline-success mb-3">Upgrade</button>
-                            </div>
-                        </form>
+            if (mysqli_num_rows($result) > 0) {
+                echo '
+                    <hr>
+                <form class="form-horizontal row d-flex" role="search" method="POST">
+                    <div class="form-group col-md-3">
+                        <div class="input-group">
+                            <input class="form-control" type="text" name="current_semester" value="' . $search_semester . '" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="input-group">
+                            <input class="form-control" type="text" name="technology" value="' . $search_technology . '" readonly>
+                        </div>
+                    </div>
+                    <div class="form-group col-md-3">
+                        <div class="input-group">
+                            <select name="new_semester" id="semester" class="cars form-control" required>
+                                <option value="" selected>Select New Semester For Upgrade</option>
+                                <option value="1st">1st</option>
+                                <option value="2nd">2nd</option>
+                                <option value="3rd">3rd</option>
+                                <option value="4th">4th</option>
+                                <option value="5th">5th</option>
+                                <option value="6th">6th</option>
+                                <option value="7th">7th</option>
+                                <option value="8th">8th</option>
+                                <option value="Others">Others</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="col-md-3">
+                        <button name="submit_semester" type="submit" class="btn btn-outline-danger mb-3">Upgrade</button>
+                    </div>
+                </form>
                     
-                    <table class="table table-striped table-hover" id="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">User Id</th>
-                                <th scope="col">Roll No</th>
-                                <th scope="col">Collage Id</th>
-                                <th scope="col">Student Name</th>
-                                <th scope="col">Technology</th>
-                                <th scope="col">Year</th>
-                                <th scope="col">C. Semester</th>
-                                <th scope="col">Mobile</th>
-                                <th scope="col">Email</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>';
+                <table class="table table-striped table-hover" id="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">User Id</th>
+                            <th scope="col">Roll No</th>
+                            <th scope="col">Collage Id</th>
+                            <th scope="col">Student Name</th>
+                            <th scope="col">Technology</th>
+                            <th scope="col">Year</th>
+                            <th scope="col">C. Semester</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col">Email</th>
+                        </tr>
+                    </thead>
+                <tbody>';
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
-                            <tr>
-                                <td>' . $row['id'] . '</td>
-                                <td>' . $row['user_id'] . '</td>
-                                <td>' . $row['roll_no'] . '</td>
-                                <td>' . $row['clg_id'] . '</td>
-                                <td>' . $row['user_name'] . '</td>
-                                <td>' . $row['technology'] . '</td>
-                                <td>' . $row['admision_Year'] . '</td>
-                                <td>' . $row['current_semester'] . '</td>
-                                <td>' . $row['mobile_number'] . '</td>
-                                <td>' . $row['email'] . '</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="update_student_details.php?id=' . $row['id'] . '">Edit</a>
-                                    </button>
-                                </td>
-                            </tr>';
-                    }
-                    echo '</tbody></table>';
-                } else {
-                    echo 'Data not found in the database';
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
+                    <tr>
+                        <td>' . $row['id'] . '</td>
+                        <td>' . $row['user_id'] . '</td>
+                        <td>' . $row['roll_no'] . '</td>
+                        <td>' . $row['clg_id'] . '</td>
+                        <td>' . $row['user_name'] . '</td>
+                        <td>' . $row['technology'] . '</td>
+                        <td>' . $row['admision_Year'] . '</td>
+                        <td>' . $row['current_semester'] . '</td>
+                        <td>' . $row['mobile_number'] . '</td>
+                        <td>' . $row['email'] . '</td>
+                    </tr>';
                 }
+                echo '</tbody></table>';
+            } else {
+                echo 'Data not found in the database';
             }
+        }
 
-            ?>
+        ?>
 
-
-        </table>
 
     </div>
 

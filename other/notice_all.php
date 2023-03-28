@@ -55,17 +55,14 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Fill the form for add a new Notice.</p>
         <a class="text-decoration-none" href="../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">All Notice List</p>
+        <hr>
     </div>
 
     <div class="container text-center">
-
-        <p class="fs-4">All Notice</p>
-        <hr>
 
         <?php
         $json_data = file_get_contents('../json/data_notice.json');

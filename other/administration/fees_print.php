@@ -50,17 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 </head>
 
 <body>
-
-    <div class="container">
-        <div class="container text-center">
+    <div class="container text-center">
+        <a class="text-decoration-none" href="../../">
             <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
-            <a class="text-decoration-none" href="../../">
-                <h5 class="text-center fs-4">Fees deposit slip</h5>
-            </a>
-        </div>
+        </a>
+        <p class="fs-4">Fees deposit slip</p>
         <hr>
     </div>
-
     <!--  -->
     <div>
         <div class="container">

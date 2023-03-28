@@ -40,11 +40,10 @@ $session_technology = $_SESSION['technology'];
     ?>
 
     <div class="container text-center">
-        <h3 class="text-center">Select subject for publish result</h3>
-        <p class="fs-4">Search technology & semester and select subject for publish result.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Search technology & semester and select subject for publish result.</p>
         <hr>
     </div>
 
@@ -83,7 +82,7 @@ $session_technology = $_SESSION['technology'];
                 </div>
             </div>
             <div class="col-md-4">
-                <button name="submit_semester" type="submit" class="btn btn-outline-success mb-3">Search</button>
+                <button name="submit_semester" type="submit" class="btn btn-success">Search</button>
             </div>
         </form>
     </div>
@@ -99,7 +98,7 @@ $session_technology = $_SESSION['technology'];
             $result = mysqli_query($con, $sql);
 
             if (mysqli_num_rows($result) > 0) {
-                echo '<form action="result_publish_form.php" method="POST">';
+                echo '<hr><form action="result_publish_form.php" method="POST">';
                 echo '<input type="hidden" name="technology" value="' . $search_technology . '">';
                 echo '<input type="hidden" name="semester" value="' . $search_semester . '">';
                 echo '<select class="cars form-control" name="book_name" id="book_name">';

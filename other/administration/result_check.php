@@ -40,11 +40,10 @@ $session_technology = $_SESSION['technology'];
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Find result by semester & technology & subject.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Find result by semester & technology & subject.</p>
         <hr>
     </div>
 
@@ -83,7 +82,7 @@ $session_technology = $_SESSION['technology'];
                 </div>
             </div>
             <div class="col-md-4">
-                <button name="submit_search" type="submit" class="btn btn-outline-success mb-3">Search</button>
+                <button name="submit_search" type="submit" class="btn btn-success mb-3">Search</button>
             </div>
         </form>
     </div>
@@ -154,30 +153,27 @@ $session_technology = $_SESSION['technology'];
 
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '
-                            <tr>
-                                <td>' . $row['id'] . '</td>
-                                <td>' . $row['user_id'] . '</td>
-                                <td>' . $row['roll_no'] . '</td>
-                                <td>' . $row['user_name'] . '</td>
-                                <td>' . $row['technology'] . '</td>
-                                <td>' . $row['semester'] . '</td>
-                                <td>' . $row['subject'] . '</td>
-                                <td>' . $row['marks'] . '</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="update_result.php?id=' . $row['id'] . '">Edit</a>
-                                    </button>
-                                </td>
-                            </tr>';
+                        <tr>
+                            <td>' . $row['id'] . '</td>
+                            <td>' . $row['user_id'] . '</td>
+                            <td>' . $row['roll_no'] . '</td>
+                            <td>' . $row['user_name'] . '</td>
+                            <td>' . $row['technology'] . '</td>
+                            <td>' . $row['semester'] . '</td>
+                            <td>' . $row['subject'] . '</td>
+                            <td>' . $row['marks'] . '</td>
+                            <td>
+                                <button type="button" class="btn btn-warning">
+                                    <a class="text-decoration-none" href="update_result.php?id=' . $row['id'] . '">Edit</a>
+                                </button>
+                            </td>
+                        </tr>';
                     }
                     echo '</tbody></table>';
                 } else {
                     echo 'Data not found in the database';
                 }
-            }
-
-            ?>
-
+            } ?>
 
         </table>
 

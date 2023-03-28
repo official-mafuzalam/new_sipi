@@ -75,12 +75,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Fill the form for add a new Notice.</p>
         <a class="text-decoration-none" href="../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Fill the form for add a new Notice in database.</p>
+        <hr>
     </div>
+
 
     <div class="container text-center">
         <div class="container text-center upload-section">

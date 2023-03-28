@@ -39,20 +39,20 @@ $session_user_name = $_SESSION['username'];
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Find Fees Depositor by User Id.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Find Fees Depositor by User Id.</p>
+        <hr>
     </div>
 
-    <div class="container text-center">
+    <div class="container">
         <form class="row g-3 d-flex" role="search" method="POST">
             <div class="col-md-6">
-                <input type="text" class="form-control" name="user_id" placeholder="User Id">
+                <input type="text" class="form-control" name="user_id" placeholder="User Id" required>
             </div>
-            <div class="col-md-2">
-                <button name="submit_search" type="submit" class="btn btn-outline-success mb-3">Search</button>
+            <div class="col-md-4">
+                <button name="submit_search" type="submit" class="btn btn-success mb-3">Search</button>
             </div>
         </form>
 
@@ -93,31 +93,29 @@ $session_user_name = $_SESSION['username'];
 
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '
-                            <tr>
-                                <td>' . $row['id'] . '</td>
-                                <td>' . $row['user_id'] . '</td>
-                                <td>' . $row['roll_no'] . '</td>
-                                <td>' . $row['clg_id'] . '</td>
-                                <td>' . $row['user_name'] . '</td>
-                                <td>' . $row['technology'] . '</td>
-                                <td>' . $row['admision_Year'] . '</td>
-                                <td>' . $row['current_semester'] . '</td>
-                                <td>' . $row['mobile_number'] . '</td>
-                                <td>' . $row['email'] . '</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="fees_deposit_form.php?user_id=' . $row['user_id'] . '">Deposit</a>
-                                    </button>
-                                </td>
-                            </tr>';
+                        <tr>
+                            <td>' . $row['id'] . '</td>
+                            <td>' . $row['user_id'] . '</td>
+                            <td>' . $row['roll_no'] . '</td>
+                            <td>' . $row['clg_id'] . '</td>
+                            <td>' . $row['user_name'] . '</td>
+                            <td>' . $row['technology'] . '</td>
+                            <td>' . $row['admision_Year'] . '</td>
+                            <td>' . $row['current_semester'] . '</td>
+                            <td>' . $row['mobile_number'] . '</td>
+                            <td>' . $row['email'] . '</td>
+                            <td>
+                                <button type="button" class="btn btn-warning">
+                                    <a class="text-decoration-none" href="fees_deposit_form.php?user_id=' . $row['user_id'] . '">Deposit</a>
+                                </button>
+                            </td>
+                        </tr>';
                     }
                     echo '</tbody></table>';
                 } else {
                     echo 'Student not found in the database';
                 }
-            }
-
-            ?>
+            } ?>
 
         </table>
 

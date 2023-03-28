@@ -15,6 +15,36 @@ $session_user_id = $_SESSION['user_id'];
 $session_user_name = $_SESSION['username'];
 $session_technology = $_SESSION['technology'];
 
+if (isset($_POST['teacher_submit'])) {
+
+    $technology = $_POST['technology'];
+    $user_name = $_POST['user_name'];
+    $position = $_POST['position'];
+    $mobile_number = $_POST['mobile_number'];
+    $email = $_POST['email'];
+
+    // Generate a random number
+    do {
+        $random_num = rand(10000, 99999);
+        $query = "SELECT user_id FROM teacher WHERE user_id = '$random_num'";
+        $result = mysqli_query($con, $query);
+    } while (mysqli_num_rows($result) > 0);
+
+    // Insert data into the database
+    $sql = "INSERT INTO teacher (user_id, technology,user_name, position, mobile_number, email, inserter_id) 
+    VALUES('$random_num','$technology', '$user_name', '$position' , '$mobile_number', '$email', '$session_user_id') ";
+    $result = mysqli_query($con, $sql);
+
+
+    if ($result)
+        echo "<script>alert('Teacher Data Inserted Successfully')
+        window.location.href = 'index.php';
+        </script>";
+    else
+        echo "Query error!";
+
+}
+
 ?>
 
 <!-- HTML File -->
@@ -39,16 +69,10 @@ $session_technology = $_SESSION['technology'];
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Find student by semester & technology.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
-    </div>
-
-    <div class="container text-center">
-        <h3 class="text-center">Student Add System</h3>
-        <p class="fs-4">Fill the form for add a new student in database.</p>
+        <p class="fs-4">Fill the form for add a new teacher in database.</p>
         <hr>
     </div>
 

@@ -165,27 +165,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
 <body>
 
-    <nav class="navbar sticky-top bg-body-tertiary" style="background-color: #e3f2fd;">
-        <div class="container-fluid">
-            <div class="navbar-brand">
-
-                <?php
-
-                echo "User no: " . "<strong>" . $session_user_id . "</strong>";
-                echo "  Name:" . " <strong>" . $session_user_name . "</strong>";
-
-                ?>
-
-            </div>
-            <div class="d-flex" role="search">
-                <a class="text-decoration-none" href="../logout.php">
-                    <i class="fs-5 bi-box-arrow-right"></i>
-                    <strong>Logout</strong>
-                </a>
-            </div>
-        </div>
-    </nav>
-
+    <?php
+    include '../inc/navbar.php';
+    ?>
 
     <div class="container-fluid">
         <div class="row">
@@ -207,33 +189,31 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </li>
                         <li>
                             <a class="tab nav-link" onclick="openTab(event, 'Tab3')">
+                                <i class="fs-4 bi-people"></i>
+                                <span class="ms-1 d-none d-sm-inline">Teacher</span>
+                            </a>
+                        </li>
+                        <li>
+                            <a class="tab nav-link" onclick="openTab(event, 'Tab4')">
                                 <i class="fs-4 bi-bell"></i>
                                 <span class="ms-1 d-none d-sm-inline">Notice</span>
                             </a>
                         </li>
                         <li>
-                            <a class="tab nav-link" onclick="openTab(event, 'Tab4')">
+                            <a class="tab nav-link" onclick="openTab(event, 'Tab5')">
                                 <i class="fs-4 bi-bar-chart-line-fill"></i>
                                 <span class="ms-1 d-none d-sm-inline">Results</span>
                             </a>
                         </li>
                         <li>
-                            <a class="tab nav-link" onclick="openTab(event, 'Tab5')">
+                            <a class="tab nav-link" onclick="openTab(event, 'Tab6')">
                                 <i class="fs-4 bi-currency-dollar"></i>
                                 <span class="ms-1 d-none d-sm-inline">Deposit Quarry</span>
                             </a>
                         </li>
-
                         <li>
-                            <a class="tab nav-link" onclick="openTab(event, 'Tab6')">
+                            <a class="tab nav-link" onclick="openTab(event, 'Tab7')">
                                 <i class="fs-4 bi-people"></i>
-                                <span class="ms-1 d-none d-sm-inline">Teacher</span>
-                            </a>
-                        </li>
-
-                        <li>
-                            <a class="tab nav-link" href="../other/book_list.php">
-                                <i class="fs-4 bi-book"></i>
                                 <span class="ms-1 d-none d-sm-inline">Book List</span>
                             </a>
                         </li>
@@ -346,10 +326,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div id="Tab2" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">Student Add System</h3>
-                        <p class="fs-4">Fill the form for add a new student in database.</p>
-                        <hr>
+                        <h3 class="text-center">Student Section</h3>
                     </div>
+
+                    <hr>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
@@ -412,10 +392,56 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div id="Tab3" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">Student Add System</h3>
-                        <p class="fs-4">Fill the form for add a new student in database.</p>
-                        <hr>
+                        <h3 class="text-center">Teacher Section</h3>
                     </div>
+
+                    <hr>
+
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <div class="col-md-3">
+                            <div class="card text-center bg-warning bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/administration/teacher_add.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-person-fill-add"></i>
+                                        <h5 class="card-title">Add Teacher</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-primary bg-opacity-50">
+                                <a class="text-decoration-none" href="../other/administration/teacher_list.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-people"></i>
+                                        <h5 class="card-title">All Teacher</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-info bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/administration/teacher_search.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-search"></i>
+                                        <h5 class="card-title">Search Teacher</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+
+                </div>
+
+                <!-- Tab End -->
+
+                <!--  -->
+                <div id="Tab4" class="tabcontent">
+
+                    <div class="container text-center">
+                        <h3 class="text-center">Notice Section</h3>
+                    </div>
+
+                    <hr>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
@@ -445,13 +471,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <!-- Tab End -->
 
                 <!--  -->
-                <div id="Tab4" class="tabcontent">
+                <div id="Tab5" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">Student Add System</h3>
-                        <p class="fs-4">Fill the form for add a new student in database.</p>
-                        <hr>
+                        <h3 class="text-center">Result Section</h3>
                     </div>
+
+                    <hr>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
@@ -481,13 +507,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <!-- Tab End -->
 
                 <!--  -->
-                <div id="Tab5" class="tabcontent">
+                <div id="Tab6" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">Student Add System</h3>
-                        <p class="fs-4">Fill the form for add a new student in database.</p>
-                        <hr>
+                        <h3 class="text-center">Fees Deposit Section</h3>
                     </div>
+
+                    <hr>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
@@ -516,42 +542,24 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
                 <!-- Tab End -->
 
+
+
                 <!--  -->
-                <div id="Tab6" class="tabcontent">
+                <div id="Tab7" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">Student Add System</h3>
-                        <p class="fs-4">Fill the form for add a new student in database.</p>
-                        <hr>
+                        <h3 class="text-center">Course Section</h3>
                     </div>
+
+                    <hr>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
-                            <div class="card text-center bg-warning bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/administration/teacher_add.php">
-                                    <div class="card-body text-black">
-                                        <i class="fs-4 bi-person-fill-add"></i>
-                                        <h5 class="card-title">Add Teacher</h5>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
-                            <div class="card text-center bg-primary bg-opacity-50">
-                                <a class="text-decoration-none" href="../other/administration/teacher_list.php">
-                                    <div class="card-body text-black">
-                                        <i class="fs-4 bi-people"></i>
-                                        <h5 class="card-title">All Teacher</h5>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                        <div class="col-md-3">
                             <div class="card text-center bg-info bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/administration/student_search.php">
+                                <a class="text-decoration-none" href="../other/administration/book_list.php">
                                     <div class="card-body text-black">
-                                        <i class="fs-4 bi-search"></i>
-                                        <h5 class="card-title">Search Teacher</h5>
+                                        <i class="fs-4 bi-book"></i>
+                                        <h5 class="card-title">Book List</h5>
                                     </div>
                                 </a>
                             </div>
@@ -561,7 +569,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
 
                 <!-- Tab End -->
-
 
 
 

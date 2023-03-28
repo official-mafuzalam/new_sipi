@@ -241,10 +241,10 @@ $session_technology = $_SESSION['technology'];
                 <div id="Tab2" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">Student Add System</h3>
-                        <p class="fs-4">Fill the form for add a new student in database.</p>
-                        <hr>
+                        <h3 class="text-center">Student Section</h3>
                     </div>
+
+                    <hr>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
@@ -259,7 +259,8 @@ $session_technology = $_SESSION['technology'];
                         </div>
                         <div class="col-md-3">
                             <div class="card text-center bg-primary bg-opacity-50">
-                                <a class="text-decoration-none" href="../other/dep_teacher/student_list_dep_teacher.php">
+                                <a class="text-decoration-none"
+                                    href="../other/dep_teacher/student_list_dep_teacher.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-people"></i>
                                         <h5 class="card-title">All Student</h5>
@@ -279,7 +280,8 @@ $session_technology = $_SESSION['technology'];
                         </div> -->
                         <div class="col-md-3">
                             <div class="card text-center bg-danger bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/dep_teacher/update_semester_dep_teacher.php">
+                                <a class="text-decoration-none"
+                                    href="../other/dep_teacher/update_semester_dep_teacher.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-pencil-square"></i>
                                         <h5 class="card-title">Update Semester</h5>
@@ -307,10 +309,10 @@ $session_technology = $_SESSION['technology'];
                 <div id="Tab3" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">Student Add System</h3>
-                        <p class="fs-4">Fill the form for add a new student in database.</p>
-                        <hr>
+                        <h3 class="text-center">Notice Section</h3>
                     </div>
+
+                    <hr>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
@@ -338,20 +340,21 @@ $session_technology = $_SESSION['technology'];
                 </div>
 
                 <!-- Tab End -->
-                
+
                 <!--  -->
                 <div id="Tab4" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">Student Add System</h3>
-                        <p class="fs-4">Fill the form for add a new student in database.</p>
-                        <hr>
+                        <h3 class="text-center">Result Section</h3>
                     </div>
+
+                    <hr>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
                             <div class="card text-center bg-warning bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/dep_teacher/result_publish_dep_teacher.php">
+                                <a class="text-decoration-none"
+                                    href="../other/dep_teacher/result_publish_dep_teacher.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-pencil-square"></i>
                                         <h5 class="card-title">Result Publish</h5>
@@ -361,7 +364,8 @@ $session_technology = $_SESSION['technology'];
                         </div>
                         <div class="col-md-3">
                             <div class="card text-center bg-info bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/dep_teacher/result_check_dep_teacher.php">
+                                <a class="text-decoration-none"
+                                    href="../other/dep_teacher/result_check_dep_teacher.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-bar-chart-line-fill"></i>
                                         <h5 class="card-title">Results</h5>
@@ -379,10 +383,10 @@ $session_technology = $_SESSION['technology'];
                 <div id="Tab5" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">Student Add System</h3>
-                        <p class="fs-4">Fill the form for add a new student in database.</p>
-                        <hr>
+                        <h3 class="text-center">Fees Deposit Section Section</h3>
                     </div>
+
+                    <hr>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
@@ -406,10 +410,10 @@ $session_technology = $_SESSION['technology'];
                 <div id="Tab6" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">Student Add System</h3>
-                        <p class="fs-4">Fill the form for add a new student in database.</p>
-                        <hr>
+                        <h3 class="text-center">Course Section</h3>
                     </div>
+
+                    <hr>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">

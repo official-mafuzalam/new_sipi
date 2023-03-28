@@ -39,20 +39,10 @@ $session_technology = $_SESSION['technology'];
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Find student by semester & technology.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
-    </div>
-
-    <div class="container text-center">
-        <h3 class="text-center">Student Add System</h3>
-        <p class="fs-4">Fill the form for add a new student in database.</p>
-        <hr>
-    </div>
-    <div class="container text-center">
-        <h3 class="text-center">All Teacher List</h3>
+        <p class="fs-4">All Teacher List</p>
         <hr>
     </div>
 
@@ -68,56 +58,51 @@ $session_technology = $_SESSION['technology'];
 
             if (mysqli_num_rows($result) > 0) {
                 echo '
-                                <thead>
-                                    <tr>
-                                        <th scope="col">No</th>
-                                        <th scope="col">User Id</th>
-                                        <th scope="col">Teacher Name</th>
-                                        <th scope="col">Technology</th>
-                                        <th scope="col">Position</th>
-                                        <th scope="col">Mobile</th>
-                                        <th scope="col">Email</th>
-                                        <th scope="col">Action</th>
-                                    </tr>
-                                </thead>
-                                ';
+                <thead>
+                    <tr>
+                        <th scope="col">No</th>
+                        <th scope="col">User Id</th>
+                        <th scope="col">Teacher Name</th>
+                        <th scope="col">Technology</th>
+                        <th scope="col">Position</th>
+                        <th scope="col">Mobile</th>
+                        <th scope="col">Email</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>';
                 while ($row = mysqli_fetch_assoc($result)) {
 
                     echo '
-                                    <tbody>
-
-                                        <tr>
-
-                                            <td>
-                                                ' . $row['sno'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['user_id'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['user_name'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['technology'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['position'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['mobile_number'] . '
-                                            </td>
-                                            <td>
-                                                ' . $row['email'] . '
-                                            </td>
-                                            <td>
-                                                <button type="button" class="btn btn-warning">
-                                                    <a class="text-decoration-none" href="../other/update_teacher_details.php?id=' . $row['sno'] . '">Edit</a>
-                                                </button>
-                                            </td>
-
-                                        </tr>
-
-                                    </tbody>';
+                    <tbody>
+                        <tr>
+                            <td>
+                                ' . $row['sno'] . '
+                            </td>
+                            <td>
+                                ' . $row['user_id'] . '
+                            </td>
+                            <td>
+                                ' . $row['user_name'] . '
+                            </td>
+                            <td>
+                                ' . $row['technology'] . '
+                            </td>
+                            <td>
+                                ' . $row['position'] . '
+                            </td>
+                            <td>
+                                ' . $row['mobile_number'] . '
+                            </td>
+                            <td>
+                                ' . $row['email'] . '
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-warning">
+                                    <a class="text-decoration-none" href="update_teacher_details.php?user_id=' . $row['user_id'] . '">Edit</a>
+                                </button>
+                            </td>
+                        </tr>
+                    </tbody>';
                 }
                 ;
             } else {

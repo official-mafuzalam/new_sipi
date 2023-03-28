@@ -41,22 +41,22 @@ $semester = $_POST['semester'];
     <?php
     include '../../inc/navbar.php';
     ?>
+    <div class="container text-center">
+        <a class="text-decoration-none" href="../../">
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
+        </a>
+        <p class="fs-4">Fill the marks form and save for publish result.</p>
+        <hr>
+    </div>
 
     <div class="container text-center">
         <?php
 
-        echo '<h3>' . "Technology: " . $technology . '</h3>';
-        echo '<h3>' . "Semester: " . $semester . '</h3>';
-        echo '<h3>' . "Subject: " . $book_name . '</h3>';
+        echo '<h5>' . "Technology: " . $technology . '</h5>';
+        echo '<h5>' . "Semester: " . $semester . '</h5>';
+        echo '<h5>' . "Subject: " . $book_name . '</h5>';
 
         ?>
-    </div>
-
-    <div class="container text-center">
-        <p class="fs-4">Fill the marks form and save for publish result.</p>
-        <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
-        </a>
     </div>
 
     <div class="container">
@@ -72,45 +72,46 @@ $semester = $_POST['semester'];
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
-                    echo '<table class="table table-striped table-hover" id="table">
-                            <thead>
-                                <tr>
-                                    <th scope="col">No</th>
-                                    <th scope="col">User Id</th>
-                                    <th scope="col">Roll No</th>
-                                    <th scope="col">Collage Id</th>
-                                    <th scope="col">Student Name</th>
-                                    <th scope="col">Technology</th>
-                                    <th scope="col">Year</th>
-                                    <th scope="col">C. Semester</th>
-                                    <th scope="col">Marks</th>
-                                </tr>
-                            </thead>
-                            <tbody>';
+                    echo '<hr>
+                    <table class="table table-striped table-hover" id="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">User Id</th>
+                                <th scope="col">Roll No</th>
+                                <th scope="col">Collage Id</th>
+                                <th scope="col">Student Name</th>
+                                <th scope="col">Technology</th>
+                                <th scope="col">Year</th>
+                                <th scope="col">C. Semester</th>
+                                <th scope="col">Marks</th>
+                            </tr>
+                        </thead>
+                        <tbody>';
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '
-                                    <tr>
-                                        <td>' . $row['id'] . '</td>
-                                        <td>' . $row['user_id'] . '</td>
-                                        <td>' . $row['roll_no'] . '</td>
-                                        <td>' . $row['clg_id'] . '</td>
-                                        <td>' . $row['user_name'] . '</td>
-                                        <td>' . $row['technology'] . '</td>
-                                        <td>' . $row['admision_Year'] . '</td>
-                                        <td>' . $row['current_semester'] . '</td>
-                                        <td>
-                                            <form method="POST" id="marks_form_' . $row['user_id'] . '">
-                                                <input type="hidden" name="user_id" value="' . $row['user_id'] . '">
-                                                <input type="hidden" name="user_name" value="' . $row['user_name'] . '">
-                                                <input type="hidden" name="roll_no" value="' . $row['roll_no'] . '">
-                                                <input type="hidden" name="current_semester" value="' . $row['current_semester'] . '">
-                                                <input type="hidden" name="technology" value="' . $row['technology'] . '">
-                                                <input type="hidden" name="subject" value="' . $book_name . '">
-                                                <input type="number" name="marks">
-                                                <button type="submit" name="submit_marks">Save</button>
-                                            </form>
-                                        </td>
-                                    </tr>';
+                        <tr>
+                            <td>' . $row['id'] . '</td>
+                            <td>' . $row['user_id'] . '</td>
+                            <td>' . $row['roll_no'] . '</td>
+                            <td>' . $row['clg_id'] . '</td>
+                            <td>' . $row['user_name'] . '</td>
+                            <td>' . $row['technology'] . '</td>
+                            <td>' . $row['admision_Year'] . '</td>
+                            <td>' . $row['current_semester'] . '</td>
+                            <td>
+                                <form method="POST" id="marks_form_' . $row['user_id'] . '">
+                                    <input type="hidden" name="user_id" value="' . $row['user_id'] . '">
+                                    <input type="hidden" name="user_name" value="' . $row['user_name'] . '">
+                                    <input type="hidden" name="roll_no" value="' . $row['roll_no'] . '">
+                                    <input type="hidden" name="current_semester" value="' . $row['current_semester'] . '">
+                                    <input type="hidden" name="technology" value="' . $row['technology'] . '">
+                                    <input type="hidden" name="subject" value="' . $book_name . '">
+                                    <input type="number" name="marks">
+                                    <button type="submit" name="submit_marks">Save</button>
+                                </form>
+                            </td>
+                        </tr>';
                     }
 
                     echo '</tbody></table>';

@@ -15,6 +15,43 @@ $session_user_id = $_SESSION['user_id'];
 $session_user_name = $_SESSION['username'];
 $session_technology = $_SESSION['technology'];
 
+if (isset($_POST['student_submit'])) {
+
+    $technology = $_POST['technology'];
+    $admision_Year = $_POST['admision_Year'];
+    $semester = $_POST['semester'];
+    $user_name = $_POST['user_name'];
+    $gender = $_POST['gender'];
+    $clg_id = $_POST['clg_id'];
+    $roll_no = $_POST['roll_no'];
+    $mobile_number = $_POST['mobile_number'];
+    $email = $_POST['email'];
+
+    if (mysqli_connect_errno())
+        echo "Couldn't connect to Database! <br>";
+
+    // Generate a random number
+    do {
+        $random_num = rand(1000, 9999);
+        $query = "SELECT user_id FROM student_list WHERE user_id = '$random_num'";
+        $result = mysqli_query($con, $query);
+    } while (mysqli_num_rows($result) > 0);
+
+    // Insert data into the database
+    $sql = "INSERT INTO student_list (user_id, technology, admision_Year, current_semester, user_name, gender, clg_id, roll_no, mobile_number, email, inserter_id) 
+    VALUES('$random_num','$technology', '$admision_Year','$semester' , '$user_name', '$gender' , '$clg_id' , '$roll_no', '$mobile_number', '$email', '$session_user_id') ";
+    $result = mysqli_query($con, $sql);
+
+
+    if ($result)
+        echo "<script>alert('Student Data Inserted Successfully')
+        window.location.href = 'index.php';
+        </script>";
+    else
+        echo "Query error!";
+
+}
+
 ?>
 
 <!-- HTML File -->
@@ -29,7 +66,7 @@ $session_technology = $_SESSION['technology'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous" />
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <title>Search Student</title>
+    <title>Student Add</title>
 </head>
 
 <body>
@@ -39,21 +76,14 @@ $session_technology = $_SESSION['technology'];
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Find student by semester & technology.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
-    </div>
-
-    <div class="container text-center">
-        <h3 class="text-center">Student Add System</h3>
         <p class="fs-4">Fill the form for add a new student in database.</p>
-        <hr>
     </div>
 
     <div class="container text-center">
-        <form class="form-inline" action="teacher.php" method="POST">
+        <form class="form-inline" action="" method="POST">
             <div class="input-group">
                 <select name="technology" id="technology" class="cars form-control" required>
                     <option value="" selected>Select a Technology</option>

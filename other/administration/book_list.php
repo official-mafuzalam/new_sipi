@@ -43,13 +43,13 @@ $session_technology = $_SESSION['technology'];
         <a class="text-decoration-none" href="../../">
             <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
-        <p class="fs-4">Attendance History</p>
+        <p class="fs-4">Find Book List by semester & technology.</p>
         <hr>
     </div>
 
     <div class="container text-center">
         <form class="row g-3 d-flex" role="search" method="POST">
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="input-group">
                     <select name="technology" id="technology" class="cars form-control" required>
                         <option value="" selected>Select a Technology</option>
@@ -65,7 +65,7 @@ $session_technology = $_SESSION['technology'];
                     </select>
                 </div>
             </div>
-            <div class="col-md-3">
+            <div class="col-md-4">
                 <div class="input-group">
                     <select name="semester" id="semester" class="cars form-control" required>
                         <option value="" selected>Select Semester</option>
@@ -81,14 +81,18 @@ $session_technology = $_SESSION['technology'];
                     </select>
                 </div>
             </div>
-            <div class="col-md-3">
-                <input name="date" type="date" class="form-control" value="<?php echo date('Y-m-d'); ?>" required />
-            </div>
-            <div class="col-md-3">
-                <button name="submit_attendance" type="submit" class="btn btn-outline-success mb-3">Search</button>
+            <div class="col-md-4">
+                <button name="submit_book" type="submit" class="btn btn-success">Search</button>
             </div>
         </form>
     </div>
+    <!-- <div class="container text-center">
+        <form class="row g-3 d-flex" role="search" method="POST">
+            
+        </form>
+        <input type="text" value="This input is not editable" readonly>
+
+    </div> -->
 
     <div class="container">
 
@@ -96,11 +100,10 @@ $session_technology = $_SESSION['technology'];
 
             <?php
             // Retrieve the book names from the database based on the search query
-            if (isset($_POST['submit_attendance'])) {
+            if (isset($_POST['submit_book'])) {
                 $search_technology = $_POST['technology'];
                 $search_semester = $_POST['semester'];
-                $search_date = $_POST['date'];
-                $sql = "SELECT * FROM `stu_atten` WHERE technology ='$search_technology' && semester='$search_semester' && att_date = '$search_date' ORDER BY id ASC";
+                $sql = "SELECT * FROM `subject_by_semester` WHERE technology ='$search_technology' && semester='$search_semester' ORDER BY s_no ASC";
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -109,25 +112,26 @@ $session_technology = $_SESSION['technology'];
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
-                                <th scope="col">Name</th>
+                                <th scope="col">Technology</th>
                                 <th scope="col">Semester</th>
-                                <th scope="col">Status</th>
-                                <th scope="col">Comment</th>
+                                <th scope="col">Book Name</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
-                    <tbody>';
-
-                    $counter = 1;
-
+                        <tbody>';
                     while ($row = mysqli_fetch_assoc($result)) {
-                        echo '<tr>';
-                        echo '<td>' . $counter . '</td>'; // Display the serial number
-                        echo '<td>' . $row['stu_name'] . '</td>';
-                        echo '<td>' . $row['semester'] . '</td>';
-                        echo '<td>' . $row['atten_status'] . '</td>';
-                        echo '<td>' . " " . '</td>';
-                        echo '</tr>';
-                        $counter++; // Increment the counter variable for the next row
+                        echo '
+                        <tr>
+                            <td>' . $row['s_no'] . '</td>
+                            <td>' . $row['technology'] . '</td>
+                            <td>' . $row['semester'] . '</td>
+                            <td>' . $row['book_name'] . '</td>
+                            <td>
+                                <button type="button" class="btn btn-warning">
+                                    <a class="text-decoration-none" href="update_book_name.php?id=' . $row['s_no'] . '">Edit</a>
+                                </button>
+                            </td>
+                        </tr>';
                     }
                     echo '</tbody></table>';
                 } else {
