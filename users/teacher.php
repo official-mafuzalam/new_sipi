@@ -379,78 +379,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <hr>
                     </div>
 
-                    <div class="container text-center">
-                        <form class="form-inline" action="teacher.php" method="POST">
-                            <div class="input-group">
-                                <input type="text" name="technology" class="form-control" placeholder="Technology"
-                                    readonly value="<?php echo $session_technology ?>">
+                    <div class="row row-cols-1 row-cols-md-2 g-4">
+                        <div class="col-md-3">
+                            <div class="card text-center bg-warning bg-opacity-75">
+                                <a class="text-decoration-none" href="../sections/student/student_add.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-person-fill-add"></i>
+                                        <h5 class="card-title">Add Student</h5>
+                                    </div>
+                                </a>
                             </div>
-                            <br>
-                            <div class="input-group">
-                                <select name="admision_Year" id="admisionYear" class="cars form-control" required>
-                                    <option value="" selected>Select Seasons</option>
-                                    <option value="18-19">18-19</option>
-                                    <option value="19-20">19-20</option>
-                                    <option value="20-21">20-21</option>
-                                    <option value="21-22">21-22</option>
-                                    <option value="22-23">22-23</option>
-                                    <option value="Others">Others</option>
-                                </select>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-primary bg-opacity-50">
+                                <a class="text-decoration-none" href="../sections/student/student_all.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-people"></i>
+                                        <h5 class="card-title">All Student</h5>
+                                    </div>
+                                </a>
                             </div>
-                            <br>
-                            <div class="input-group">
-                                <select name="semester" id="semester" class="cars form-control" required>
-                                    <option value="" selected>Select Semester</option>
-                                    <option value="1st">1st</option>
-                                    <option value="2nd">2nd</option>
-                                    <option value="3rd">3rd</option>
-                                    <option value="4th">4th</option>
-                                    <option value="5th">5th</option>
-                                    <option value="6th">6th</option>
-                                    <option value="7th">7th</option>
-                                    <option value="8th">8th</option>
-                                    <option value="Others">Others</option>
-                                </select>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-info bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/student_list.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-search"></i>
+                                        <h5 class="card-title">Search Student</h5>
+                                    </div>
+                                </a>
                             </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="text" name="user_name" id="name" class="form-control" placeholder="Name"
-                                    required>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-danger bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/update_semester.php">
+                                    <div class="card-body text-black">
+                                    <i class="fs-4 bi-pencil-square"></i>
+                                        <h5 class="card-title">Update Semester</h5>
+                                    </div>
+                                </a>
                             </div>
-                            <br>
-                            <div class="input-group">
-                                <select name="gender" id="admisionYear" class="cars form-control" required>
-                                    <option value="" selected>Select Gender</option>
-                                    <option value="Male">Male</option>
-                                    <option value="Female">Female</option>
-                                    <option value="Others">Others</option>
-                                </select>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="text" name="clg_id" id="clgId" class="form-control"
-                                    placeholder="Collage ID" required>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="number" name="roll_no" id="Roll" class="form-control" placeholder="Roll no"
-                                    required>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="tel" name="mobile_number" id="name" class="form-control"
-                                    placeholder="Mobile number" required>
-                            </div>
-                            <br>
-                            <div class="input-group">
-                                <input type="tel" name="email" id="name" class="form-control" placeholder="Email"
-                                    required>
-                            </div>
-                            <br>
-                            <input class="submit btn btn-success save-btn" name="student_submit" type="submit"
-                                value="Save">
-
-                        </form>
+                        </div>
                     </div>
 
                 </div>
