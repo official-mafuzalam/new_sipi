@@ -193,6 +193,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </a>
                         </li>
                         <li>
+                            <a class="tab nav-link" href="../other/attendance_history.php">
+                                <i class="fs-4 bi-search"></i>
+                                <span class="ms-1 d-none d-sm-inline">Attendance History</span>
+                            </a>
+                        </li>
+                        <li>
                             <a class="tab nav-link" href="../other/update_semester_dep_teacher.php">
                                 <i class="fs-4 bi-pencil-square"></i>
                                 <span class="ms-1 d-none d-sm-inline">Upgrade Semester</span>
