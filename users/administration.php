@@ -217,6 +217,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <span class="ms-1 d-none d-sm-inline">Book List</span>
                             </a>
                         </li>
+                        <li>
+                            <a class="tab nav-link" href="../download/">
+                                <i class="fs-4 bi-download"></i>
+                                <span class="ms-1 d-none d-sm-inline">Download</span>
+                            </a>
+                        </li>
                     </ul>
                 </div>
             </div>
