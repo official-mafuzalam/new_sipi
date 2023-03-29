@@ -168,15 +168,9 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </a>
                         </li>
                         <li>
-                            <a class="tab nav-link" onclick="openTab(event, 'Tab4')">
-                                <i class="fs-4 bi-bar-chart-line-fill"></i>
-                                <span class="ms-1 d-none d-sm-inline">Results</span>
-                            </a>
-                        </li>
-                        <li>
                             <a class="tab nav-link" onclick="openTab(event, 'Tab5')">
                                 <i class="fs-4 bi-currency-dollar"></i>
-                                <span class="ms-1 d-none d-sm-inline">Deposit Quarry</span>
+                                <span class="ms-1 d-none d-sm-inline">Deposit</span>
                             </a>
                         </li>
                     </ul>
@@ -357,32 +351,6 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-table"></i>
                                         <h5 class="card-title">All Notice</h5>
-                                    </div>
-                                </a>
-                            </div>
-                        </div>
-                    </div>
-
-                </div>
-
-                <!-- Tab End -->
-
-                <!--  -->
-                <div id="Tab4" class="tabcontent">
-
-                    <div class="container text-center">
-                        <h3 class="text-center">Result Section</h3>
-                    </div>
-
-                    <hr>
-
-                    <div class="row row-cols-1 row-cols-md-2 g-4">
-                        <div class="col-md-3">
-                            <div class="card text-center bg-info bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/accountant/results_check.php">
-                                    <div class="card-body text-black">
-                                        <i class="fs-4 bi-bar-chart-line-fill"></i>
-                                        <h5 class="card-title">Results</h5>
                                     </div>
                                 </a>
                             </div>

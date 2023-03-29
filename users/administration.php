@@ -208,7 +208,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <li>
                             <a class="tab nav-link" onclick="openTab(event, 'Tab6')">
                                 <i class="fs-4 bi-currency-dollar"></i>
-                                <span class="ms-1 d-none d-sm-inline">Deposit Quarry</span>
+                                <span class="ms-1 d-none d-sm-inline">Deposit</span>
                             </a>
                         </li>
                         <li>
@@ -268,6 +268,16 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     // Access the sum using the alias
                     $total_amount = $row['total_amount'];
 
+                    // Query the database to get the sum of deposit amounts for the current date
+                    $sql1 = "SELECT SUM(deposit_amount) as total_amount1 FROM fees_deposit WHERE date = '$current_date' AND inserter_id = '$session_user_id'";
+                    $result1 = mysqli_query($con, $sql1);
+
+                    // Fetch the result as an associative array
+                    $row = mysqli_fetch_assoc($result1);
+
+                    // Access the sum using the alias
+                    $total_amount1 = $row['total_amount1'];
+
                     ?>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
@@ -304,7 +314,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         <div class="col-md-3">
                             <div class="card text-center bg-warning bg-opacity-75">
                                 <div class="card-body">
-                                    <h5 class="card-title">Today Deposit Amount</h5>
+                                    <h5 class="card-title">Today Total Deposit</h5>
                                     <p class="card-text fs-3">
                                         <?php
                                         if ($total_amount == null) {
@@ -312,6 +322,23 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                         } else {
 
                                             echo $total_amount . "৳";
+                                        }
+                                        ?>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-warning bg-opacity-75">
+                                <div class="card-body">
+                                    <h5 class="card-title">Today My Deposit</h5>
+                                    <p class="card-text fs-3">
+                                        <?php
+                                        if ($total_amount == null) {
+                                            echo "0.00৳";
+                                        } else {
+
+                                            echo $total_amount1 . "৳";
                                         }
                                         ?>
                                     </p>
@@ -531,7 +558,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <a class="text-decoration-none" href="../other/administration/daily_deposit_quarry.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-currency-dollar"></i>
-                                        <h5 class="card-title">Deposit Quarry</h5>
+                                        <h5 class="card-title">Daily Deposit Quarry</h5>
+                                    </div>
+                                </a>
+                            </div>
+                        </div>
+                        <div class="col-md-3">
+                            <div class="card text-center bg-info bg-opacity-75">
+                                <a class="text-decoration-none" href="../other/administration/daily_deposit_quarry.php">
+                                    <div class="card-body text-black">
+                                        <i class="fs-4 bi-currency-dollar"></i>
+                                        <h5 class="card-title">My Deposit Quarry</h5>
                                     </div>
                                 </a>
                             </div>

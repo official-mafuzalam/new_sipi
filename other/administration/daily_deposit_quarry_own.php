@@ -28,7 +28,7 @@ $session_user_name = $_SESSION['username'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <title>Search Teacher</title>
+    <title>Daily Deposit</title>
 
 </head>
 
@@ -42,43 +42,34 @@ $session_user_name = $_SESSION['username'];
         <a class="text-decoration-none" href="../../">
             <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
-        <p class="fs-4">Find student by semester & technology.</p>
+        <p class="fs-4">Find Daily Total Deposit by Date.</p>
         <hr>
     </div>
 
     <div class="container text-center">
         <form class="row g-3 d-flex" role="search" method="POST">
-            <div class="col-md-4">
-                <div class="input-group">
-                    <select name="technology" id="technology" class="cars form-control" required>
-                        <option value="" selected>Select a Technology</option>
-                        <option value="Computer">Computer</option>
-                        <option value="Graphic">Graphic</option>
-                        <option value="RAC">RAC</option>
-                        <option value="Civil">Civil</option>
-                        <option value="Electronic">Electronic</option>
-                        <option value="Electrical">Electrical</option>
-                        <option value="Architecture">Architecture</option>
-                        <option value="Mechanical">Mechanical</option>
-                        <option value="Others">Others</option>
-                    </select>
-                </div>
+            <div class="col-md-2 offset-md-4">
+                <input name="date" type="date" class="form-control" value="<?php echo date('Y-m-d'); ?>" required />
             </div>
-            <div class="col-md-4">
-                <button name="submit_search" type="submit" class="btn btn-outline-success mb-3">Search</button>
+            <div class="col-md-2">
+                <button name="submit_search" type="submit" class="btn btn-success mb-3">Search</button>
             </div>
         </form>
+
     </div>
 
     <div class="container">
+        <p class="fs-4 fw-bold text-center">All Transaction</p>
 
         <table class="table table-striped table-hover">
 
             <?php
 
             if (isset($_POST['submit_search'])) {
-                $search_technology = $_POST['technology'];
-                $sql = "SELECT * FROM `teacher` WHERE technology ='$search_technology' ORDER BY sno ASC";
+
+                $date = $_POST['date'];
+
+                $sql = "SELECT * FROM `fees_deposit` WHERE date ='$date' AND inserter_id = '$session_user_id' ORDER BY s_no ASC";
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
@@ -88,45 +79,71 @@ $session_user_name = $_SESSION['username'];
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">User Id</th>
+                                <th scope="col">Roll No</th>
                                 <th scope="col">Student Name</th>
-                                <th scope="col">Technology</th>
-                                <th scope="col">Mobile</th>
-                                <th scope="col">Email</th>
+                                <th scope="col">C. Semester</th>
+                                <th scope="col">Deposit Category</th>
+                                <th scope="col">Deposit Amount</th>
+                                <th scope="col">Comment</th>
+                                <th scope="col">Challan No</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
-                    <tbody>';
+                        <tbody>';
 
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '
-                        <tr>
-                            <td>' . $row['sno'] . '</td>
-                            <td>' . $row['user_id'] . '</td>
-                            <td>' . $row['user_name'] . '</td>
-                            <td>' . $row['technology'] . '</td>
-                            <td>' . $row['mobile_number'] . '</td>
-                            <td>' . $row['email'] . '</td>
-                            <td>
-                                <button type="button" class="btn btn-warning">
-                                    <a class="text-decoration-none" href="update_teacher_details.php?user_id=' . $row['user_id'] . '">Edit</a>
-                                </button>
-                            </td>
-                        </tr>';
+                            <tr>
+                                <td>' . $row['s_no'] . '</td>
+                                <td>' . $row['user_id'] . '</td>
+                                <td>' . $row['roll_no'] . '</td>
+                                <td>' . $row['user_name'] . '</td>
+                                <td>' . $row['current_semester'] . '</td>
+                                <td>' . $row['deposit_category'] . '</td>
+                                <td>' . $row['deposit_amount'] . '</td>
+                                <td>' . $row['comment'] . '</td>
+                                <td>' . $row['deposit_challan_no'] . '</td>
+                                <td>
+                                    <button type="button" class="btn btn-warning">
+                                        <a class="text-decoration-none" href="fees_print.php?id=' . $row['deposit_challan_no'] . '">Print</a>
+                                    </button>
+                                </td>
+                            </tr>';
                     }
                     echo '</tbody></table>';
                 } else {
-                    echo 'Data not found in the database';
+                    echo 'No Transaction found for this date';
                 }
             }
 
             ?>
 
-
         </table>
 
     </div>
+    <div class="container">
+        <button onclick="getSumValue()" class="btn btn-info">Total Deposit</button>
+        <p class="fs-3 fw-bold" id="value"></p>
+    </div>
 
 
+
+    <script>
+
+        function getSumValue() {
+            var table = document.getElementById("table");
+            var total = 0;
+            for (var i = 1; i < table.rows.length; i++) {
+                var depositAmount = parseFloat(table.rows[i].cells[6].innerHTML);
+                if (!isNaN(depositAmount)) {
+                    total += depositAmount;
+                }
+            }
+            document.getElementById("value").innerHTML = "Total Deposit Amount: " + total + "৳";
+        }
+
+
+    </script>
 
     <!-- Bootstrap Script Link -->
     <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.11.6/dist/umd/popper.min.js"

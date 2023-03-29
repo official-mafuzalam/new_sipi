@@ -90,7 +90,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="../../css/home.css">
     <!-- <link rel="stylesheet" href="https://kit.fontawesome.com/b3e3482d82.css" crossorigin="anonymous"> -->
 
-    <title>Teacher Data</title>
+    <title>Teacher Data Update</title>
 </head>
 
 <body>

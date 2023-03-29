@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 23, 2023 at 02:37 AM
+-- Generation Time: Mar 29, 2023 at 04:05 PM
 -- Server version: 10.3.38-MariaDB-cll-lve
 -- PHP Version: 7.4.33
 
@@ -19,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `friendsi_db_sipi`
+-- Database: `friendsi_db_sipi_demo`
 --
 
 -- --------------------------------------------------------

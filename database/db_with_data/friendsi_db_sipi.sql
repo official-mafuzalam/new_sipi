@@ -1,14 +1,13 @@
 -- phpMyAdmin SQL Dump
--- version 4.9.7
+-- version 5.2.0
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost:3306
--- Generation Time: Mar 23, 2023 at 02:38 AM
--- Server version: 10.3.38-MariaDB-cll-lve
--- PHP Version: 7.4.33
+-- Host: 127.0.0.1
+-- Generation Time: Mar 29, 2023 at 12:02 PM
+-- Server version: 10.4.27-MariaDB
+-- PHP Version: 8.2.0
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
-SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -47,6 +46,16 @@ CREATE TABLE `fees_deposit` (
   `insert_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `fees_deposit`
+--
+
+INSERT INTO `fees_deposit` (`s_no`, `date`, `user_id`, `technology`, `admission_year`, `current_semester`, `user_name`, `clg_id`, `roll_no`, `mobile_number`, `deposit_category`, `deposit_amount`, `comment`, `deposit_challan_no`, `inserter_id`, `insert_date`) VALUES
+(1, '2023-03-18', 3487, 'Computer', '18-19', '8th', 'MD Mafuz Alam', '395/18', 88, '01747503257', 'Semester Fees', 8500, 'Due 15000', 66584827, 86094, '2023-03-18 01:49:10'),
+(2, '2023-03-18', 3487, 'Computer', '18-19', '8th', 'MD Mafuz Alam', '395/18', 88, '01747503257', 'Tuition Fees', 12000, 'Due 3000', 81577693, 10000, '2023-03-18 01:51:24'),
+(3, '2023-03-23', 3487, 'Computer', '18-19', '8th', 'MD Mafuz Alam', '395/18', 88, '01747503257', 'Form Fill-Up Fees', 2500, 'Due 200', 11294427, 86094, '2023-03-23 02:17:25'),
+(4, '2023-03-29', 3487, 'Computer', '18-19', '8th', 'MD Mafuz Alam', '395/18', 88, '01747503257', 'Semester Fees', 8500, 'Due 200', 31413216, 10000, '2023-03-29 00:21:32');
+
 -- --------------------------------------------------------
 
 --
@@ -66,6 +75,14 @@ CREATE TABLE `marks_db` (
   `insert_date` datetime NOT NULL DEFAULT current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
+--
+-- Dumping data for table `marks_db`
+--
+
+INSERT INTO `marks_db` (`id`, `user_id`, `roll_no`, `user_name`, `semester`, `technology`, `subject`, `marks`, `inserter_id`, `insert_date`) VALUES
+(1, 9991, 53, 'MD Computer', '1st', 'Computer', 'Mathematics 1', 65, 10000, '2023-03-18 02:04:30'),
+(2, 9991, 53, 'MD Computer', '1st', 'Computer', 'Mathematics 1', 50, 61457, '2023-03-23 01:38:34');
+
 -- --------------------------------------------------------
 
 --
@@ -75,16 +92,16 @@ CREATE TABLE `marks_db` (
 CREATE TABLE `student_list` (
   `id` int(250) NOT NULL,
   `user_id` int(250) NOT NULL,
-  `technology` varchar(60) NOT NULL,
-  `admision_Year` varchar(30) NOT NULL,
-  `current_semester` varchar(30) NOT NULL,
-  `user_name` varchar(60) NOT NULL,
-  `gender` varchar(30) NOT NULL,
-  `clg_id` varchar(30) NOT NULL,
-  `roll_no` int(30) NOT NULL,
-  `mobile_number` varchar(30) NOT NULL,
-  `email` varchar(60) NOT NULL,
-  `inserter_id` int(30) NOT NULL,
+  `technology` varchar(25) NOT NULL,
+  `admision_Year` varchar(20) NOT NULL,
+  `current_semester` varchar(10) NOT NULL,
+  `user_name` varchar(30) NOT NULL,
+  `gender` varchar(20) NOT NULL,
+  `clg_id` varchar(20) NOT NULL,
+  `roll_no` int(50) NOT NULL,
+  `mobile_number` varchar(25) NOT NULL,
+  `email` varchar(50) NOT NULL,
+  `inserter_id` int(35) NOT NULL,
   `insert_date` datetime NOT NULL DEFAULT current_timestamp(),
   `last_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
@@ -94,16 +111,8 @@ CREATE TABLE `student_list` (
 --
 
 INSERT INTO `student_list` (`id`, `user_id`, `technology`, `admision_Year`, `current_semester`, `user_name`, `gender`, `clg_id`, `roll_no`, `mobile_number`, `email`, `inserter_id`, `insert_date`, `last_update`) VALUES
-(1, 9039, 'Computer', '18-19', 'Others', 'MD Mafuz Alam', 'Male', '395/18', 88, '01747503257', 'everythinggood885@gmail.com', 10000, '2023-03-23 00:15:27', '2023-03-22 12:15:27'),
-(2, 1330, 'Computer', '22-23', '1st', 'MD Computer', 'Male', '101/22', 1, '01777777777', 'computer@sipi.com', 10000, '2023-03-23 00:17:07', '2023-03-22 18:57:02'),
-(3, 4099, 'Computer', '22-23', '1st', 'MD Computer 1', 'Male', '103/22', 3, '01777777778', 'computer1@sipi.com', 61457, '2023-03-23 00:17:41', '2023-03-22 18:59:36'),
-(4, 3564, 'Computer', '22-23', '1st', 'MS Computer 2', 'Female', '105/22', 5, '01777777779', 'computer2@sipi.com', 61457, '2023-03-23 00:18:11', '2023-03-22 18:59:43'),
-(5, 6860, 'RAC', '22-23', '1st', 'MD RAC', 'Male', '201/22', 1, '01666666666', 'rac@sipi.com', 74973, '2023-03-23 00:19:34', '2023-03-22 19:00:26'),
-(6, 5322, 'RAC', '22-23', '1st', 'MD RAC 1', 'Male', '203/22', 3, '01666666667', 'rac1@sipi.com', 74973, '2023-03-23 00:20:03', '2023-03-22 19:00:32'),
-(7, 1125, 'Civil', '22-23', '1st', 'MD Civil', 'Male', '301/22', 1, '01567891234', 'civil@sipi.com', 93433, '2023-03-23 00:37:30', '2023-03-22 12:37:30'),
-(8, 2521, 'Civil', '22-23', '1st', 'MD Civil 1', 'Male', '303/22', 3, '01567891235', 'civil1@sipi.com', 93433, '2023-03-23 00:38:48', '2023-03-22 12:38:48'),
-(9, 2486, 'Electronic', '22-23', '1st', 'MD Electronic', 'Male', '401/22', 2, '01678912345', 'electronic@sipi.com', 86094, '2023-03-23 01:02:21', '2023-03-22 20:35:10'),
-(10, 7853, 'Electronic', '22-23', '1st', 'MD Electronic 1', 'Male', '403/22', 3, '01678912346', 'electronic1@sipi.com', 80777, '2023-03-23 01:02:55', '2023-03-22 19:02:55');
+(1, 3487, 'Computer', '18-19', '8th', 'MD Mafuz Alam', 'Male', '395/18', 88, '01747503257', 'official.mafuz@gmail.com', 10000, '2023-03-18 01:48:26', '2023-03-28 17:24:27'),
+(3, 7544, 'Graphic', '20-21', '5th', 'MD Graphic', 'Male', '529/20', 42, '01666666666', 'gra@sipi.com', 10000, '2023-03-18 02:13:18', '2023-03-17 20:13:18');
 
 -- --------------------------------------------------------
 
@@ -115,6 +124,8 @@ CREATE TABLE `stu_atten` (
   `id` int(255) NOT NULL,
   `user_id` int(20) DEFAULT NULL,
   `att_date` varchar(200) NOT NULL,
+  `technology` varchar(60) NOT NULL,
+  `semester` varchar(30) NOT NULL,
   `roll_no` int(255) NOT NULL,
   `stu_name` varchar(200) NOT NULL,
   `atten_status` varchar(20) NOT NULL,
@@ -123,6 +134,24 @@ CREATE TABLE `stu_atten` (
   `inserter_id` int(35) NOT NULL,
   `insert_date_time` datetime(6) NOT NULL DEFAULT current_timestamp(6)
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1 COLLATE=latin1_swedish_ci;
+
+--
+-- Dumping data for table `stu_atten`
+--
+
+INSERT INTO `stu_atten` (`id`, `user_id`, `att_date`, `technology`, `semester`, `roll_no`, `stu_name`, `atten_status`, `att_month`, `att_year`, `inserter_id`, `insert_date_time`) VALUES
+(1, 1330, '2023-03-26', 'Computer', '1st', 1, 'MD Computer', '1', '3', '2023', 61457, '2023-03-26 16:37:09.526287'),
+(2, 4099, '2023-03-26', 'Computer', '1st', 3, 'MD Computer 1', '1', '3', '2023', 61457, '2023-03-26 16:37:11.801090'),
+(3, 3564, '2023-03-26', 'Computer', '1st', 5, 'MS Computer 2', '0', '3', '2023', 61457, '2023-03-26 16:37:12.908485'),
+(4, 1330, '2023-03-26', 'Computer', '1st', 1, 'MD Computer', '0', '3', '2023', 61457, '2023-03-26 16:37:17.294750'),
+(5, 4099, '2023-03-26', 'Computer', '1st', 3, 'MD Computer 1', '1', '3', '2023', 61457, '2023-03-26 16:37:18.677808'),
+(6, 3564, '2023-03-26', 'Computer', '1st', 5, 'MS Computer 2', '1', '3', '2023', 61457, '2023-03-26 16:37:19.512763'),
+(7, 1330, '2023-03-26', 'Computer', '1st', 1, 'MD Computer', '1', '3', '2023', 61457, '2023-03-26 16:37:22.244189'),
+(8, 4099, '2023-03-26', 'Computer', '1st', 3, 'MD Computer 1', '1', '3', '2023', 61457, '2023-03-26 16:37:23.886202'),
+(9, 3564, '2023-03-26', 'Computer', '1st', 5, 'MS Computer 2', '1', '3', '2023', 61457, '2023-03-26 16:37:25.089840'),
+(10, 1330, '2023-03-26', 'Computer', '1st', 1, 'MD Computer', '1', '3', '2023', 61457, '2023-03-26 16:37:27.414385'),
+(11, 4099, '2023-03-26', 'Computer', '1st', 3, 'MD Computer 1', '0', '3', '2023', 61457, '2023-03-26 16:37:28.399173'),
+(12, 3564, '2023-03-26', 'Computer', '1st', 5, 'MS Computer 2', '1', '3', '2023', 61457, '2023-03-26 16:37:30.362710');
 
 -- --------------------------------------------------------
 
@@ -145,7 +174,7 @@ CREATE TABLE `subject_by_semester` (
 --
 
 INSERT INTO `subject_by_semester` (`s_no`, `technology`, `semester`, `book_name`, `inserter_id`, `insert_date`, `last_update`) VALUES
-(1, 'Computer', '1st', 'Mathematics 1', 0, '2023-03-05 15:21:58', '2023-03-05 09:22:35'),
+(1, 'Computer', '1st', 'Mathematics 1', 10000, '2023-03-05 15:21:58', '2023-03-28 18:30:25'),
 (2, 'Computer', '1st', 'Computer application', 0, '2023-03-05 15:21:58', '2023-03-05 09:22:35'),
 (3, 'Computer', '1st', 'Physics 1', 0, '2023-03-05 15:21:58', '2023-03-05 09:22:35'),
 (4, 'Computer', '1st', 'Electrical engineering fundamentals', 0, '2023-03-05 15:21:58', '2023-03-05 09:22:35'),
@@ -360,17 +389,12 @@ CREATE TABLE `teacher` (
 --
 
 INSERT INTO `teacher` (`sno`, `type`, `w_type`, `user_id`, `user_name`, `technology`, `mobile_number`, `email`, `position`, `inserter_id`, `insert_date`, `last_update`) VALUES
-(1, 1, 1, 10000, 'M. A. Sattar', 'Computer', '01711529418', 'principal@sipi.com', 'Principal', 0, '2023-03-18 01:36:58', '2023-03-22 18:35:26'),
+(1, 1, 1, 10000, 'M. A. Sattar', 'Computer', '01711529418', 'principal@sipi.com', 'Principal', 10000, '2023-03-18 01:36:58', '2023-03-17 19:53:13'),
 (2, 1, 1, 10001, 'Mohammad Shahjahan', 'Computer', '01777777777', 'diractor@sipi.com', 'Principal', 0, '2023-03-18 01:37:09', '2023-03-17 19:38:50'),
 (3, 1, 3, 61457, 'MD Shahin', 'Computer', '01581113821', 'cmt.ci@sipi.com', 'CI', 10000, '2023-03-18 01:40:16', '2023-03-17 19:42:17'),
-(4, 1, 3, 23039, 'MR Masood Rana', 'Computer', '01521381834', 'cmt.jr@sipi.com', 'JR Instructor', 10000, '2023-03-18 01:40:42', '2023-03-17 19:43:45'),
 (5, 1, 4, 86094, 'Accountants', 'Others', '01111111111', 'acc@sipi.com', 'Accountants', 10000, '2023-03-18 01:41:47', '2023-03-17 19:44:36'),
-(6, 1, 3, 74973, 'MR RAC Sir', 'RAC', '01732165498', 'rac.ci@sipi.com', 'CI', 10000, '2023-03-23 00:22:01', '2023-03-22 18:33:46'),
-(7, 1, 3, 91118, 'MR RAC Sir 1', 'RAC', '01732165497', 'rac.jr@sipi.com', 'JR Instructor', 10000, '2023-03-23 00:23:00', '2023-03-22 18:34:37'),
-(8, 1, 3, 93433, 'MR Civil Sir', 'Civil', '01345678912', 'civil.ci@sipi.com', 'CI', 10000, '2023-03-23 00:23:36', '2023-03-22 18:34:44'),
-(9, 1, 3, 16877, 'MR Civil Sir 1', 'Civil', '01345678913', 'civil.jr@sipi.com', 'JR Instructor', 10000, '2023-03-23 00:23:59', '2023-03-22 18:34:51'),
-(10, 1, 3, 80777, 'MR Electronic Sir', 'Electronic', '01456789123', 'electronic.ci@sipi.com', 'CI', 10000, '2023-03-23 00:24:43', '2023-03-22 18:34:56'),
-(11, 1, 3, 63454, 'MR Electronic Sir 1', 'Electronic', '01456789124', 'electronic.jr@sipi.com', 'JR Instructor', 10000, '2023-03-23 00:25:15', '2023-03-22 18:35:00');
+(6, 1, 3, 74896, 'MR RAC Sir', 'RAC', '015555555555', 'rac.ci@sipi.com', 'CI', 10000, '2023-03-23 01:45:57', '2023-03-22 19:46:03'),
+(7, 1, 3, 78172, 'MR CMT Teacher', 'Computer', '0150251056', 'cmt.jr.1@sipi.com', 'JR Instructor', 10000, '2023-03-28 23:44:55', '2023-03-28 17:48:03');
 
 --
 -- Indexes for dumped tables
@@ -420,25 +444,25 @@ ALTER TABLE `teacher`
 -- AUTO_INCREMENT for table `fees_deposit`
 --
 ALTER TABLE `fees_deposit`
-  MODIFY `s_no` int(250) NOT NULL AUTO_INCREMENT;
+  MODIFY `s_no` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `marks_db`
 --
 ALTER TABLE `marks_db`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `student_list`
 --
 ALTER TABLE `student_list`
-  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(250) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `stu_atten`
 --
 ALTER TABLE `stu_atten`
-  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT;
+  MODIFY `id` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `subject_by_semester`
@@ -450,7 +474,7 @@ ALTER TABLE `subject_by_semester`
 -- AUTO_INCREMENT for table `teacher`
 --
 ALTER TABLE `teacher`
-  MODIFY `sno` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `sno` int(200) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

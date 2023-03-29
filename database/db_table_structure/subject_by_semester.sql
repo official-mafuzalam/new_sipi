@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: Mar 23, 2023 at 02:37 AM
+-- Generation Time: Mar 29, 2023 at 04:06 PM
 -- Server version: 10.3.38-MariaDB-cll-lve
 -- PHP Version: 7.4.33
 
@@ -19,26 +19,23 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `friendsi_db_sipi`
+-- Database: `friendsi_db_sipi_demo`
 --
 
 -- --------------------------------------------------------
 
 --
--- Table structure for table `marks_db`
+-- Table structure for table `subject_by_semester`
 --
 
-CREATE TABLE `marks_db` (
-  `id` int(11) NOT NULL,
-  `user_id` int(250) NOT NULL,
-  `roll_no` int(250) NOT NULL,
-  `user_name` varchar(30) NOT NULL,
-  `semester` varchar(10) NOT NULL,
-  `technology` varchar(25) NOT NULL,
-  `subject` varchar(30) NOT NULL,
-  `marks` int(100) NOT NULL,
+CREATE TABLE `subject_by_semester` (
+  `s_no` int(255) NOT NULL,
+  `technology` varchar(30) NOT NULL DEFAULT 'RAC',
+  `semester` varchar(20) NOT NULL DEFAULT '7th',
+  `book_name` varchar(90) NOT NULL,
   `inserter_id` int(35) NOT NULL,
-  `insert_date` datetime NOT NULL DEFAULT current_timestamp()
+  `insert_date` datetime NOT NULL DEFAULT current_timestamp(),
+  `last_update` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -46,20 +43,20 @@ CREATE TABLE `marks_db` (
 --
 
 --
--- Indexes for table `marks_db`
+-- Indexes for table `subject_by_semester`
 --
-ALTER TABLE `marks_db`
-  ADD PRIMARY KEY (`id`);
+ALTER TABLE `subject_by_semester`
+  ADD PRIMARY KEY (`s_no`);
 
 --
 -- AUTO_INCREMENT for dumped tables
 --
 
 --
--- AUTO_INCREMENT for table `marks_db`
+-- AUTO_INCREMENT for table `subject_by_semester`
 --
-ALTER TABLE `marks_db`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT;
+ALTER TABLE `subject_by_semester`
+  MODIFY `s_no` int(255) NOT NULL AUTO_INCREMENT;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
