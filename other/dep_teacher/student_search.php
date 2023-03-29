@@ -47,17 +47,50 @@ $session_technology = $_SESSION['technology'];
         <hr>
     </div>
 
+    <div class="container text-center">
+        <form class="row g-3 d-flex" role="search" method="POST">
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input type="text" name="technology" id="technology" class="form-control" placeholder="Name"
+                        readonly value="<?php echo $session_technology; ?>">
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <select name="semester" id="semester" class="cars form-control" required>
+                        <option value="" selected>Select Semester</option>
+                        <option value="1st">1st</option>
+                        <option value="2nd">2nd</option>
+                        <option value="3rd">3rd</option>
+                        <option value="4th">4th</option>
+                        <option value="5th">5th</option>
+                        <option value="6th">6th</option>
+                        <option value="7th">7th</option>
+                        <option value="8th">8th</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button name="submit_search" type="submit" class="btn btn-success">Search</button>
+            </div>
+        </form>
+    </div>
+
     <div class="container">
 
         <table class="table table-striped table-hover">
 
             <?php
 
-            $sql = "SELECT * FROM `student_list` WHERE technology ='$session_technology' ORDER BY id ASC";
-            $result = mysqli_query($con, $sql);
+            if (isset($_POST['submit_search'])) {
+                $search_technology = $_POST['technology'];
+                $search_semester = $_POST['semester'];
+                $sql = "SELECT * FROM `student_list` WHERE current_semester='$search_semester' && technology ='$search_technology' ORDER BY id ASC";
+                $result = mysqli_query($con, $sql);
 
-            if (mysqli_num_rows($result) > 0) {
-                echo '
+                if (mysqli_num_rows($result) > 0) {
+                    echo '
                     <table class="table table-striped table-hover" id="table">
                         <thead>
                             <tr>
@@ -76,8 +109,8 @@ $session_technology = $_SESSION['technology'];
                         </thead>
                         <tbody>';
 
-                while ($row = mysqli_fetch_assoc($result)) {
-                    echo '
+                    while ($row = mysqli_fetch_assoc($result)) {
+                        echo '
                             <tr>
                                 <td>' . $row['id'] . '</td>
                                 <td>' . $row['user_id'] . '</td>
@@ -95,10 +128,11 @@ $session_technology = $_SESSION['technology'];
                                     </button>
                                 </td>
                             </tr>';
+                    }
+                    echo '</tbody></table>';
+                } else {
+                    echo 'Data not found in the database';
                 }
-                echo '</tbody></table>';
-            } else {
-                echo 'Data not found in the database';
             }
 
             ?>

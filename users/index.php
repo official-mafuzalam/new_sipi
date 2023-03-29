@@ -2,7 +2,7 @@
 session_start();
 
 if (!isset($_SESSION['w_type'])) {
-    header("Location: login.php");
+    header("Location: ../login.php");
 }
 
 // $pdo = new PDO('mysql:host=localhost;dbname=mydb', 'root', '');
@@ -26,6 +26,6 @@ if ($_SESSION['w_type'] == 1) {
     header("Location: accountants.php");
 
 } else {
-    header("Location: logout.php");
+    header("Location: ../logout.php");
 }
 ?>

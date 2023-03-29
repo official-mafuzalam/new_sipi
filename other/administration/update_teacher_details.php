@@ -56,7 +56,19 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
         $con->close();
     } elseif (isset($_POST['submit_delete'])) {
-        # code...
+
+        $sno = $_POST['sno'];
+
+        $sql = "DELETE FROM teacher WHERE sno = $sno";
+
+        if ($con->query($sql) === TRUE) {
+            echo '<script>alert("Teacher Delete Successfully"); 
+            window.location.href = "../../index.php";
+            </script>';
+
+        } else {
+            echo "Error Deleting record ";
+        }
     }
 }
 

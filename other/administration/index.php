@@ -26,6 +26,6 @@ if ($_SESSION['w_type'] == 1) {
     header("Location: ../../users/accountants.php");
 
 } else {
-    header("Location: logout.php");
+    header("Location: ../logout.php");
 }
 ?>

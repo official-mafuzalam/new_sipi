@@ -268,16 +268,16 @@ $session_technology = $_SESSION['technology'];
                                 </a>
                             </div>
                         </div>
-                        <!-- <div class="col-md-3">
+                        <div class="col-md-3">
                             <div class="card text-center bg-info bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/student_list.php">
+                                <a class="text-decoration-none" href="../other/dep_teacher/student_search.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-search"></i>
                                         <h5 class="card-title">Search Student</h5>
                                     </div>
                                 </a>
                             </div>
-                        </div> -->
+                        </div>
                         <div class="col-md-3">
                             <div class="card text-center bg-danger bg-opacity-75">
                                 <a class="text-decoration-none"

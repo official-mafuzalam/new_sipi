@@ -30,31 +30,47 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    // get the values from the form
-    $id_post = $_POST['id'];
-    $roll_no = $_POST['roll_no'];
-    $clg_id = $_POST['clg_id'];
-    $user_name = $_POST['user_name'];
-    $technology = $_POST['technology'];
-    $admission_year = $_POST['admission_year'];
-    $current_semester = $_POST['current_semester'];
-    $mobile_number = $_POST['mobile_number'];
-    $email = $_POST['email'];
+    if (isset($_POST['submit_update'])) {
+        // get the values from the form
+        $id_post = $_POST['id'];
+        $roll_no = $_POST['roll_no'];
+        $clg_id = $_POST['clg_id'];
+        $user_name = $_POST['user_name'];
+        $technology = $_POST['technology'];
+        $admission_year = $_POST['admission_year'];
+        $current_semester = $_POST['current_semester'];
+        $mobile_number = $_POST['mobile_number'];
+        $email = $_POST['email'];
 
-    // update the data in the database
-    $sql = "UPDATE student_list SET  roll_no='$roll_no', clg_id='$clg_id', user_name='$user_name', technology='$technology', admision_year='$admission_year', current_semester='$current_semester', mobile_number='$mobile_number', email='$email', inserter_id = '$session_user_id' WHERE id='$id_post'";
+        // update the data in the database
+        $sql = "UPDATE student_list SET  roll_no='$roll_no', clg_id='$clg_id', user_name='$user_name', technology='$technology', admision_year='$admission_year', current_semester='$current_semester', mobile_number='$mobile_number', email='$email', inserter_id = '$session_user_id' WHERE id='$id_post'";
 
 
-    if ($con->query($sql) === TRUE) {
-        echo '<script>alert("Student Data Update Successfully"); 
+        if ($con->query($sql) === TRUE) {
+            echo '<script>alert("Student Data Update Successfully"); 
         window.location.href = "../../index.php";
         </script>';
 
-    } else {
-        echo "Error updating record: ";
-    }
+        } else {
+            echo "Error updating record: ";
+        }
 
-    $con->close();
+        $con->close();
+    } elseif (isset($_POST['submit_delete'])) {
+
+        $id = $_POST['id'];
+
+        $sql = "DELETE FROM student_list WHERE id = $id";
+
+        if ($con->query($sql) === TRUE) {
+            echo '<script>alert("Student Delete Successfully"); 
+            window.location.href = "../../index.php";
+            </script>';
+
+        } else {
+            echo "Error Deleting record ";
+        }
+    }
 }
 
 
@@ -221,7 +237,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     value="<?php echo $row['email']; ?>">
             </div>
             <br>
-            <input class="submit btn btn-success save-btn" type="submit" value="Update">
+            <input class="btn btn-success" type="submit" name="submit_update" value="Update">
+            <br>
+            <br>
+            <input class="btn btn-danger" type="submit" name="submit_delete" value="Delete this User">
 
         </form>
     </div>
