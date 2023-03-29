@@ -30,29 +30,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 // check if the form has been submitted
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
-    // get the values from the form
-    $id_post = $_POST['sno'];
-    $user_name = $_POST['user_name'];
-    $technology = $_POST['technology'];
-    $position = $_POST['position'];
-    $mobile_number = $_POST['mobile_number'];
-    $email = $_POST['email'];
-    $w_type = $_POST['w_type'];
+    if (isset($_POST['submit_update'])) {
 
-    // update the data in the database
-    $sql = "UPDATE teacher SET w_type = '$w_type',  user_name='$user_name', technology='$technology', position='$position', mobile_number='$mobile_number', email='$email', inserter_id = '$session_user_id' WHERE sno='$id_post'";
+        // get the values from the form
+        $id_post = $_POST['sno'];
+        $user_name = $_POST['user_name'];
+        $technology = $_POST['technology'];
+        $position = $_POST['position'];
+        $mobile_number = $_POST['mobile_number'];
+        $email = $_POST['email'];
+        $w_type = $_POST['w_type'];
+
+        // update the data in the database
+        $sql = "UPDATE teacher SET w_type = '$w_type',  user_name='$user_name', technology='$technology', position='$position', mobile_number='$mobile_number', email='$email', inserter_id = '$session_user_id' WHERE sno='$id_post'";
 
 
-    if ($con->query($sql) === TRUE) {
-        echo '<script>alert("Teacher Data Update Successfully"); 
+        if ($con->query($sql) === TRUE) {
+            echo '<script>alert("Teacher Data Update Successfully"); 
         window.location.href = "../../index.php";
         </script>';
 
-    } else {
-        echo "Error updating record ";
-    }
+        } else {
+            echo "Error updating record ";
+        }
 
-    $con->close();
+        $con->close();
+    } elseif (isset($_POST['submit_delete'])) {
+        # code...
+    }
 }
 
 
@@ -152,7 +157,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     value="<?php echo $row['w_type']; ?>">
             </div>
             <br>
-            <input class="submit btn btn-success save-btn" type="submit" value="Save">
+            <input class="btn btn-success" type="submit" name="submit_update" value="Update">
+            <br>
+            <br>
+            <input class="btn btn-danger" type="submit" name="submit_delete" value="Delete this User">
 
         </form>
     </div>
