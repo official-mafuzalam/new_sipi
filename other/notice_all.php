@@ -110,7 +110,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         <form action="" method="post">
             <div>
                 <input type="hidden" name="delete_notice" value="1">
-                <input class="btn btn-danger" type="submit" value="Delete All Data">
+                <input class="btn btn-danger" type="submit" value="Delete All Notice">
             </div>
         </form>
     </div>

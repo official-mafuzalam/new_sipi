@@ -2,12 +2,12 @@
 
 // Set the timezone to Bangladesh
 date_default_timezone_set("Asia/Dhaka");
-include '../inc/conn.php';
+include '../../inc/conn.php';
 session_start();
 
 // Check if user is logged in, otherwise redirect to login page
 if (!isset($_SESSION['w_type'])) {
-    header("Location: ../login.php");
+    header("Location: ../../login.php");
     exit();
 }
 
@@ -35,15 +35,15 @@ $session_user_name = $_SESSION['username'];
 <body>
 
     <?php
-    include '../inc/navbar.php';
+    include '../../inc/navbar.php';
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Find Fees Depositor by User Id.</p>
-        <a class="text-decoration-none" href="../">
-            <h3 class="text-center">Home</h3>
+        <a class="text-decoration-none" href="../../">
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Find Fees Depositor by User Id.</p>
+        <hr>
     </div>
 
     <div class="container text-center">
@@ -60,8 +60,6 @@ $session_user_name = $_SESSION['username'];
 
 
     <div class="container">
-        <hr>
-        <p class="fs-4 fw-bold text-center">All Transaction</p>
 
         <table class="table table-striped table-hover" id="table">
 
@@ -75,7 +73,8 @@ $session_user_name = $_SESSION['username'];
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {
-                    echo '
+                    echo '<hr>
+                    <p class="fs-4 fw-bold text-center">All Transaction</p>
                     <table class="table table-striped table-hover" id="table">
                         <thead>
                             <tr>

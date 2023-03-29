@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $deposit_challan_no = $_GET['id'];
 
     // query the database for the selected row
-    $query = "SELECT * FROM fees_deposit WHERE deposit_challan_no = $deposit_challan_no ";
+    $query = "SELECT * FROM fees_deposit WHERE deposit_challan_no=$deposit_challan_no";
     $result = mysqli_query($con, $query);
     $row = mysqli_fetch_assoc($result);
 
@@ -50,17 +50,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 </head>
 
 <body>
-
-    <div class="container">
-        <div class="container text-center">
+    <div class="container text-center">
+        <a class="text-decoration-none" href="../../">
             <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
-            <a class="text-decoration-none" href="../../">
-                <h5 class="text-center fs-4">Fees deposit slip</h5>
-            </a>
-        </div>
+        </a>
+        <p class="fs-4">Fees deposit slip</p>
         <hr>
     </div>
-
     <!--  -->
     <div>
         <div class="container">
@@ -143,8 +139,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                 </div>
             </div>
         </div>
-        <hr>
         <div class="container">
+            <hr>
             <div class="row text-center">
                 <p>Collage Copy |
                     <?php echo $row['inserter_id']; ?>

@@ -39,20 +39,20 @@ $session_user_name = $_SESSION['username'];
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Find Fees Depositor by User Id.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Find Fees Depositor by User Id.</p>
+        <hr>
     </div>
 
-    <div class="container text-center">
+    <div class="container">
         <form class="row g-3 d-flex" role="search" method="POST">
             <div class="col-md-6">
-                <input type="text" class="form-control" name="user_id" placeholder="User Id">
+                <input type="text" class="form-control" name="user_id" placeholder="User Id" required>
             </div>
-            <div class="col-md-2">
-                <button name="submit_search" type="submit" class="btn btn-outline-success mb-3">Search</button>
+            <div class="col-md-4">
+                <button name="submit_search" type="submit" class="btn btn-success mb-3">Search</button>
             </div>
         </form>
 
@@ -60,19 +60,17 @@ $session_user_name = $_SESSION['username'];
 
     <div class="container">
 
-        <table class="table table-striped table-hover">
+        <?php
 
-            <?php
+        if (isset($_POST['submit_search'])) {
 
-            if (isset($_POST['submit_search'])) {
+            $search_user_id = $_POST['user_id'];
 
-                $search_user_id = $_POST['user_id'];
+            $sql = "SELECT * FROM `student_list` WHERE user_id='$search_user_id' ORDER BY id ASC";
+            $result = mysqli_query($con, $sql);
 
-                $sql = "SELECT * FROM `student_list` WHERE user_id='$search_user_id' ORDER BY id ASC";
-                $result = mysqli_query($con, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo '
+            if (mysqli_num_rows($result) > 0) {
+                echo '
                     <table class="table table-striped table-hover" id="table">
                         <thead>
                             <tr>
@@ -85,62 +83,54 @@ $session_user_name = $_SESSION['username'];
                                 <th scope="col">Year</th>
                                 <th scope="col">C. Semester</th>
                                 <th scope="col">Mobile</th>
-                                <th scope="col">Email</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>';
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
-                            <tr>
-                                <td>' . $row['id'] . '</td>
-                                <td>' . $row['user_id'] . '</td>
-                                <td>' . $row['roll_no'] . '</td>
-                                <td>' . $row['clg_id'] . '</td>
-                                <td>' . $row['user_name'] . '</td>
-                                <td>' . $row['technology'] . '</td>
-                                <td>' . $row['admision_Year'] . '</td>
-                                <td>' . $row['current_semester'] . '</td>
-                                <td>' . $row['mobile_number'] . '</td>
-                                <td>' . $row['email'] . '</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="fees_deposit_form.php?user_id=' . $row['user_id'] . '">Deposit</a>
-                                    </button>
-                                </td>
-                            </tr>';
-                    }
-                    echo '</tbody></table>';
-                } else {
-                    echo 'Student not found in the database';
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
+                        <tr>
+                            <td>' . $row['id'] . '</td>
+                            <td>' . $row['user_id'] . '</td>
+                            <td>' . $row['roll_no'] . '</td>
+                            <td>' . $row['clg_id'] . '</td>
+                            <td>' . $row['user_name'] . '</td>
+                            <td>' . $row['technology'] . '</td>
+                            <td>' . $row['admision_Year'] . '</td>
+                            <td>' . $row['current_semester'] . '</td>
+                            <td>' . $row['mobile_number'] . '</td>
+                            <td>
+                                <button type="button" class="btn btn-warning">
+                                    <a class="text-decoration-none" href="fees_deposit_form.php?user_id=' . $row['user_id'] . '">Deposit</a>
+                                </button>
+                            </td>
+                        </tr>';
                 }
+                echo '</tbody></table>';
+            } else {
+                echo 'Student not found in the database';
             }
-
-            ?>
-
-        </table>
+        } ?>
 
         <br>
     </div>
 
     <div class="container">
-        <hr>
-        <p class="fs-4 fw-bold text-center">All Transaction</p>
 
-        <table class="table table-striped table-hover" id="table">
 
-            <?php
+        <?php
 
-            if (isset($_POST['submit_search'])) {
+        if (isset($_POST['submit_search'])) {
 
-                $search_user_id = $_POST['user_id'];
+            $search_user_id = $_POST['user_id'];
 
-                $sql = "SELECT * FROM `fees_deposit` WHERE user_id='$search_user_id' ORDER BY s_no DESC";
-                $result = mysqli_query($con, $sql);
+            $sql = "SELECT * FROM `fees_deposit` WHERE user_id='$search_user_id' ORDER BY s_no DESC";
+            $result = mysqli_query($con, $sql);
 
-                if (mysqli_num_rows($result) > 0) {
-                    echo '
+            if (mysqli_num_rows($result) > 0) {
+                echo '<hr>
+                    <p class="fs-4 fw-bold text-center">All Transaction</p>
                     <table class="table table-striped table-hover" id="table">
                         <thead>
                             <tr>
@@ -158,8 +148,8 @@ $session_user_name = $_SESSION['username'];
                         </thead>
                         <tbody>';
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
                             <tr>
                                 <td>' . $row['s_no'] . '</td>
                                 <td>' . $row['user_id'] . '</td>
@@ -176,16 +166,14 @@ $session_user_name = $_SESSION['username'];
                                     </button>
                                 </td>
                             </tr>';
-                    }
-                    echo '</tbody></table>';
-                } else {
-                    echo 'No Transaction found in the database';
                 }
+                echo '</tbody></table>';
+            } else {
+                echo 'No Transaction found in the database';
             }
+        }
 
-            ?>
-
-        </table>
+        ?>
 
     </div>
 

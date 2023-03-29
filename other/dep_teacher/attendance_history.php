@@ -29,7 +29,7 @@ $session_technology = $_SESSION['technology'];
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
-    <title>Book List</title>
+    <title>Attendance History</title>
 
 </head>
 
@@ -40,11 +40,11 @@ $session_technology = $_SESSION['technology'];
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Attendance History</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Attendance History</p>
+        <hr>
     </div>
 
     <div class="container text-center">
@@ -75,7 +75,7 @@ $session_technology = $_SESSION['technology'];
                 <input name="date" type="date" class="form-control" value="<?php echo date('Y-m-d'); ?>" required />
             </div>
             <div class="col-md-3">
-                <button name="submit_attendance" type="submit" class="btn btn-outline-success mb-3">Search</button>
+                <button name="submit_attendance" type="submit" class="btn btn-success">Search</button>
             </div>
         </form>
     </div>

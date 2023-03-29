@@ -40,11 +40,11 @@ $session_technology = $_SESSION['technology'];
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Find student by semester & technology.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Find student by semester.</p>
+        <hr>
     </div>
 
     <div class="container text-center">
@@ -72,7 +72,7 @@ $session_technology = $_SESSION['technology'];
                 </div>
             </div>
             <div class="col-md-4">
-                <button name="submit_search" type="submit" class="btn btn-outline-success mb-3">Search</button>
+                <button name="submit_search" type="submit" class="btn btn-success">Search</button>
             </div>
         </form>
     </div>
@@ -124,7 +124,7 @@ $session_technology = $_SESSION['technology'];
                                 <td>' . $row['email'] . '</td>
                                 <td>
                                     <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="update_student_details.php?id=' . $row['id'] . '">Edit</a>
+                                        <a class="text-decoration-none" href="update_student_details.php?user_id=' . $row['user_id'] . '">Edit</a>
                                     </button>
                                 </td>
                             </tr>';

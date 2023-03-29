@@ -13,6 +13,7 @@ if (!isset($_SESSION['w_type'])) {
 
 $session_user_id = $_SESSION['user_id'];
 $session_user_name = $_SESSION['username'];
+$session_technology = $_SESSION['technology'];
 
 ?>
 
@@ -39,32 +40,15 @@ $session_user_name = $_SESSION['username'];
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Find result by semester & technology & subject.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Find result by semester & technology & subject.</p>
         <hr>
     </div>
 
     <div class="container text-center">
         <form class="row g-3 d-flex" role="search" method="POST">
-            <div class="col-md-4">
-                <div class="input-group">
-                    <select name="semester" id="semester" class="cars form-control" required>
-                        <option value="" selected>Select Semester</option>
-                        <option value="1st">1st</option>
-                        <option value="2nd">2nd</option>
-                        <option value="3rd">3rd</option>
-                        <option value="4th">4th</option>
-                        <option value="5th">5th</option>
-                        <option value="6th">6th</option>
-                        <option value="7th">7th</option>
-                        <option value="8th">8th</option>
-                        <option value="Others">Others</option>
-                    </select>
-                </div>
-            </div>
             <div class="col-md-4">
                 <div class="input-group">
                     <select name="technology" id="technology" class="cars form-control" required>
@@ -82,7 +66,23 @@ $session_user_name = $_SESSION['username'];
                 </div>
             </div>
             <div class="col-md-4">
-                <button name="submit_search" type="submit" class="btn btn-outline-success mb-3">Search</button>
+                <div class="input-group">
+                    <select name="semester" id="semester" class="cars form-control" required>
+                        <option value="" selected>Select Semester</option>
+                        <option value="1st">1st</option>
+                        <option value="2nd">2nd</option>
+                        <option value="3rd">3rd</option>
+                        <option value="4th">4th</option>
+                        <option value="5th">5th</option>
+                        <option value="6th">6th</option>
+                        <option value="7th">7th</option>
+                        <option value="8th">8th</option>
+                        <option value="Others">Others</option>
+                    </select>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <button name="submit_search" type="submit" class="btn btn-success mb-3">Search</button>
             </div>
         </form>
     </div>
@@ -146,31 +146,34 @@ $session_user_name = $_SESSION['username'];
                                 <th scope="col">Semester</th>
                                 <th scope="col">Subject</th>
                                 <th scope="col">Marks</th>
+                                <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>';
 
                     while ($row = mysqli_fetch_assoc($result)) {
                         echo '
-                            <tr>
-                                <td>' . $row['id'] . '</td>
-                                <td>' . $row['user_id'] . '</td>
-                                <td>' . $row['roll_no'] . '</td>
-                                <td>' . $row['user_name'] . '</td>
-                                <td>' . $row['technology'] . '</td>
-                                <td>' . $row['semester'] . '</td>
-                                <td>' . $row['subject'] . '</td>
-                                <td>' . $row['marks'] . '</td>
-                            </tr>';
+                        <tr>
+                            <td>' . $row['id'] . '</td>
+                            <td>' . $row['user_id'] . '</td>
+                            <td>' . $row['roll_no'] . '</td>
+                            <td>' . $row['user_name'] . '</td>
+                            <td>' . $row['technology'] . '</td>
+                            <td>' . $row['semester'] . '</td>
+                            <td>' . $row['subject'] . '</td>
+                            <td>' . $row['marks'] . '</td>
+                            <td>
+                                <button type="button" class="btn btn-warning">
+                                    <a class="text-decoration-none" href="update_result.php?id=' . $row['id'] . '">Edit</a>
+                                </button>
+                            </td>
+                        </tr>';
                     }
                     echo '</tbody></table>';
                 } else {
                     echo 'Data not found in the database';
                 }
-            }
-
-            ?>
-
+            } ?>
 
         </table>
 

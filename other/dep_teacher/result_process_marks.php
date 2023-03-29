@@ -26,7 +26,7 @@ $marks = $_POST['marks'];
 // your database connection code here
 
 $sql = "INSERT INTO marks_db (user_id, roll_no, user_name, semester, technology, subject, marks, inserter_id) 
-                            VALUES ('$user_id','$roll_no','$user_name','$current_semester','$technology', '$subject', '$marks', '$session_user_id')";
+        VALUES ('$user_id','$roll_no','$user_name','$current_semester','$technology', '$subject', '$marks', '$session_user_id')";
 $result = mysqli_query($con, $sql);
 
 if ($result) {

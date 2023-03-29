@@ -40,14 +40,13 @@ $session_technology = $_SESSION['technology'];
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Find Book List by semester & technology.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Find Book List by semester</p>
     </div>
 
-    <div class="container text-center">
+    <div class="container">
         <form class="row g-3 d-flex" role="search" method="POST">
             <div class="col-md-4">
                 <div class="input-group">
@@ -72,7 +71,7 @@ $session_technology = $_SESSION['technology'];
                 </div>
             </div>
             <div class="col-md-4">
-                <button name="submit_book" type="submit" class="btn btn-outline-success mb-3">Search</button>
+                <button name="submit_book" type="submit" class="btn btn-success">Search</button>
             </div>
         </form>
     </div>
@@ -86,54 +85,48 @@ $session_technology = $_SESSION['technology'];
 
     <div class="container">
 
-        <table class="table table-striped table-hover" id="table">
 
-            <?php
-            // Retrieve the book names from the database based on the search query
-            if (isset($_POST['submit_book'])) {
-                $search_technology = $_POST['technology'];
-                $search_semester = $_POST['semester'];
-                $sql = "SELECT * FROM `subject_by_semester` WHERE technology ='$search_technology' && semester='$search_semester' ORDER BY s_no ASC";
-                $result = mysqli_query($con, $sql);
+        <?php
+        // Retrieve the book names from the database based on the search query
+        if (isset($_POST['submit_book'])) {
+            $search_technology = $_POST['technology'];
+            $search_semester = $_POST['semester'];
+            $sql = "SELECT * FROM `subject_by_semester` WHERE technology ='$search_technology' && semester='$search_semester' ORDER BY s_no ASC";
+            $result = mysqli_query($con, $sql);
 
-                if (mysqli_num_rows($result) > 0) {
+            if (mysqli_num_rows($result) > 0) {
+                echo '<hr>
+                <table class="table table-striped table-hover" id="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">Technology</th>
+                            <th scope="col">Semester</th>
+                            <th scope="col">Book Name</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
+
+                while ($row = mysqli_fetch_assoc($result)) {
                     echo '
-                    <table class="table table-striped table-hover" id="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">Technology</th>
-                                <th scope="col">Semester</th>
-                                <th scope="col">Book Name</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>';
-
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
-                            <tr>
-                                <td>' . $row['s_no'] . '</td>
-                                <td>' . $row['technology'] . '</td>
-                                <td>' . $row['semester'] . '</td>
-                                <td>' . $row['book_name'] . '</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="update_book_name.php?id=' . $row['s_no'] . '">Edit</a>
-                                    </button>
-                                </td>
-                            </tr>';
-                    }
-                    echo '</tbody></table>';
-                } else {
-                    echo 'Data not found in the database';
+                    <tr>
+                        <td>' . $row['s_no'] . '</td>
+                        <td>' . $row['technology'] . '</td>
+                        <td>' . $row['semester'] . '</td>
+                        <td>' . $row['book_name'] . '</td>
+                        <td>
+                            <button type="button" class="btn btn-warning">
+                                <a class="text-decoration-none" href="update_book_name.php?id=' . $row['s_no'] . '">Edit</a>
+                            </button>
+                        </td>
+                    </tr>';
                 }
+                echo '</tbody></table>';
+            } else {
+                echo 'Data not found in the database';
             }
-
-            ?>
-
-
-        </table>
+        } ?>
 
     </div>
 

@@ -391,7 +391,7 @@ $session_technology = $_SESSION['technology'];
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
                             <div class="card text-center bg-warning bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/fees_deposit_history.php">
+                                <a class="text-decoration-none" href="../other/dep_teacher/fees_deposit_history.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-currency-dollar"></i>
                                         <h5 class="card-title">Deposit Quarry</h5>

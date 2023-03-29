@@ -40,15 +40,14 @@ $session_technology = $_SESSION['technology'];
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Find result by semester & technology & subject.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Find result by semester & subject.</p>
         <hr>
     </div>
 
-    <div class="container text-center">
+    <div class="container">
         <form class="row g-3 d-flex" role="search" method="POST">
             <div class="col-md-4">
                 <div class="input-group">
@@ -73,7 +72,7 @@ $session_technology = $_SESSION['technology'];
                 </div>
             </div>
             <div class="col-md-4">
-                <button name="submit_search" type="submit" class="btn btn-outline-success mb-3">Search</button>
+                <button name="submit_search" type="submit" class="btn btn-success">Search</button>
             </div>
         </form>
     </div>
@@ -89,7 +88,7 @@ $session_technology = $_SESSION['technology'];
             $result = mysqli_query($con, $sql);
 
             if (mysqli_num_rows($result) > 0) {
-                echo '<form method="POST">';
+                echo '<hr><form method="POST">';
                 echo '<input type="hidden" name="technology" value="' . $search_technology . '">';
                 echo '<input type="hidden" name="semester" value="' . $search_semester . '">';
                 echo '<select class="cars form-control" name="book_name" id="book_name">';
@@ -143,22 +142,22 @@ $session_technology = $_SESSION['technology'];
                         <tbody>';
 
                     while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
-                            <tr>
-                                <td>' . $row['id'] . '</td>
-                                <td>' . $row['user_id'] . '</td>
-                                <td>' . $row['roll_no'] . '</td>
-                                <td>' . $row['user_name'] . '</td>
-                                <td>' . $row['technology'] . '</td>
-                                <td>' . $row['semester'] . '</td>
-                                <td>' . $row['subject'] . '</td>
-                                <td>' . $row['marks'] . '</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="update_result.php?id=' . $row['id'] . '">Edit</a>
-                                    </button>
-                                </td>
-                            </tr>';
+                        echo '<hr>
+                        <tr>
+                            <td>' . $row['id'] . '</td>
+                            <td>' . $row['user_id'] . '</td>
+                            <td>' . $row['roll_no'] . '</td>
+                            <td>' . $row['user_name'] . '</td>
+                            <td>' . $row['technology'] . '</td>
+                            <td>' . $row['semester'] . '</td>
+                            <td>' . $row['subject'] . '</td>
+                            <td>' . $row['marks'] . '</td>
+                            <td>
+                                <button type="button" class="btn btn-warning">
+                                    <a class="text-decoration-none" href="update_result.php?id=' . $row['id'] . '">Edit</a>
+                                </button>
+                            </td>
+                        </tr>';
                     }
                     echo '</tbody></table>';
                 } else {

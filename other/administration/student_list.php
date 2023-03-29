@@ -53,7 +53,7 @@ $session_technology = $_SESSION['technology'];
             <?php
 
             $sql = "SELECT * FROM student_list ORDER BY id ASC";
-            // or bus_name like '%$search%'
+            
             $result = mysqli_query($con, $sql);
 
             if (mysqli_num_rows($result) > 0) {

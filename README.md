@@ -1,4 +1,6 @@
 # new_sipi
 
+\*All update complete
+
 #last_update
-\*28.03.2023
+\*29.03.2023

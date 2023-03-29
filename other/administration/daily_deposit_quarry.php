@@ -69,7 +69,7 @@ $session_user_name = $_SESSION['username'];
 
                 $date = $_POST['date'];
 
-                $sql = "SELECT * FROM `fees_deposit` WHERE date ='$date' AND inserter_id = '$session_user_id' ORDER BY s_no ASC";
+                $sql = "SELECT * FROM `fees_deposit` WHERE date ='$date' ORDER BY s_no ASC";
                 $result = mysqli_query($con, $sql);
 
                 if (mysqli_num_rows($result) > 0) {

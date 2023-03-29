@@ -39,11 +39,10 @@ $session_user_name = $_SESSION['username'];
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Find Daily Total Deposit by Date.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Find Daily Total Deposit by Date.</p>
     </div>
 
     <div class="container text-center">
@@ -52,7 +51,7 @@ $session_user_name = $_SESSION['username'];
                 <input name="date" type="date" class="form-control" value="<?php echo date('Y-m-d'); ?>" required />
             </div>
             <div class="col-md-2">
-                <button name="submit_search" type="submit" class="btn btn-outline-success mb-3">Search</button>
+                <button name="submit_search" type="submit" class="btn btn-success">Search</button>
             </div>
         </form>
 
@@ -62,7 +61,6 @@ $session_user_name = $_SESSION['username'];
         <hr>
         <p class="fs-4 fw-bold text-center">All Transaction</p>
 
-        <table class="table table-striped table-hover">
 
             <?php
 
@@ -119,12 +117,10 @@ $session_user_name = $_SESSION['username'];
 
             ?>
 
-        </table>
-
     </div>
     <div class="container">
         <button onclick="getSumValue()" class="btn btn-info">Total Deposit</button>
-        <p class="fs-3" id="value"></p>
+        <p class="fs-3 fw-bold" id="value"></p>
     </div>
 
 
@@ -140,7 +136,7 @@ $session_user_name = $_SESSION['username'];
                     total += depositAmount;
                 }
             }
-            document.getElementById("value").innerHTML = "Total Deposit Amount: " + total;
+            document.getElementById("value").innerHTML = "Total Deposit Amount: " + total+"৳";
         }
 
 

@@ -289,10 +289,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div id="Tab2" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">Student Add System</h3>
-                        <p class="fs-4">Fill the form for add a new student in database.</p>
-                        <hr>
+                        <h3 class="text-center">Student Section</h3>
                     </div>
+
+                    <hr>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
@@ -335,10 +335,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div id="Tab3" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">Student Add System</h3>
-                        <p class="fs-4">Fill the form for add a new student in database.</p>
-                        <hr>
+                        <h3 class="text-center">Notice Section</h3>
                     </div>
+
+                    <hr>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
@@ -371,15 +371,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div id="Tab4" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">Student Add System</h3>
-                        <p class="fs-4">Fill the form for add a new student in database.</p>
-                        <hr>
+                        <h3 class="text-center">Result Section</h3>
                     </div>
+
+                    <hr>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">
                             <div class="card text-center bg-info bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/accountant/results_by_tech.php">
+                                <a class="text-decoration-none" href="../other/accountant/results_check.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-bar-chart-line-fill"></i>
                                         <h5 class="card-title">Results</h5>
@@ -397,10 +397,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 <div id="Tab5" class="tabcontent">
 
                     <div class="container text-center">
-                        <h3 class="text-center">Student Add System</h3>
-                        <p class="fs-4">Fill the form for add a new student in database.</p>
-                        <hr>
+                        <h3 class="text-center">Fees Deposit Section</h3>
                     </div>
+
+                    <hr>
 
                     <div class="row row-cols-1 row-cols-md-2 g-4">
                         <div class="col-md-3">

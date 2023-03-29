@@ -63,13 +63,13 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     ?>
 
     <div class="container text-center">
-        <h3 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h3>
-        <p class="fs-4">Upgrade semester for full semester student.</p>
         <a class="text-decoration-none" href="../../">
-            <h3 class="text-center">Home</h3>
+            <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
+        <p class="fs-4">Upgrade semester for full semester student</p>
     </div>
-    <div class="container text-center">
+
+    <div class="container">
         <form class="row g-3 d-flex" role="search" method="POST">
             <div class="col-md-4">
                 <div class="input-group">
@@ -94,38 +94,34 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                 </div>
             </div>
             <div class="col-md-4">
-                <button name="submit_search" type="submit" class="btn btn-outline-success mb-3">Search</button>
+                <button name="submit_search" type="submit" class="btn btn-success">Search</button>
             </div>
         </form>
     </div>
 
     <div class="container">
+        <?php
 
-        <hr>
-        <table class="table table-striped table-hover" id="table">
+        if (isset($_POST['submit_search'])) {
+            $search_technology = $_POST['technology'];
+            $search_semester = $_POST['semester'];
+            $sql = "SELECT * FROM `student_list` WHERE current_semester='$search_semester' && technology ='$search_technology' ORDER BY id ASC";
+            $result = mysqli_query($con, $sql);
 
-            <?php
-
-            if (isset($_POST['submit_search'])) {
-                $search_technology = $_POST['technology'];
-                $search_semester = $_POST['semester'];
-                $sql = "SELECT * FROM `student_list` WHERE current_semester='$search_semester' && technology ='$search_technology' ORDER BY id ASC";
-                $result = mysqli_query($con, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo '
+            if (mysqli_num_rows($result) > 0) {
+                echo '<hr>
                         <form class="form-horizontal row d-flex" role="search" method="POST">
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-2">
                                 <div class="input-group">
                                     <input class="form-control" type="text" name="current_semester" value="' . $search_semester . '" readonly>
                                 </div>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-2">
                                 <div class="input-group">
                                     <input class="form-control" type="text" name="technology" value="' . $search_technology . '" readonly>
                                 </div>
                             </div>
-                            <div class="form-group col-md-3">
+                            <div class="form-group col-md-4">
                                 <div class="input-group">
                                     <select name="new_semester" id="semester" class="cars form-control" required>
                                         <option value="" selected>Select New Semester For Upgrade</option>
@@ -141,11 +137,11 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     </select>
                                 </div>
                             </div>
-                            <div class="col-md-4">
-                                <button name="submit_semester" type="submit" class="btn btn-outline-success mb-3">Upgrade</button>
+                            <div class="col-md-3">
+                                <button name="submit_semester" type="submit" class="btn btn-danger mb-3">Upgrade</button>
                             </div>
                         </form>
-                    
+                        <hr>
                     <table class="table table-striped table-hover" id="table">
                         <thead>
                             <tr>
@@ -164,8 +160,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </thead>
                         <tbody>';
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
                             <tr>
                                 <td>' . $row['id'] . '</td>
                                 <td>' . $row['user_id'] . '</td>
@@ -183,17 +179,12 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                     </button>
                                 </td>
                             </tr>';
-                    }
-                    echo '</tbody></table>';
-                } else {
-                    echo 'Data not found in the database';
                 }
+                echo '</tbody></table>';
+            } else {
+                echo 'Data not found in the database';
             }
-
-            ?>
-
-
-        </table>
+        } ?>
 
     </div>
 

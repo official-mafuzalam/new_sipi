@@ -21,7 +21,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     $id = $_GET['id'];
 
     // query the database for the selected row
-    $query = "SELECT * FROM marks_db WHERE id=$id";
+    $query = "SELECT * FROM subject_by_semester WHERE s_no =$id";
     $result = mysqli_query($con, $query);
     $row = mysqli_fetch_assoc($result);
 
@@ -31,17 +31,15 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
 if ($_SERVER['REQUEST_METHOD'] == 'POST') {
 
     // get the values from the form
-    $id = $_POST['id'];
-    $marks = $_POST['marks'];
+    $id_post = $_POST['s_no'];
+    $book_name = $_POST['book_name'];
 
     // update the data in the database
-    $sql = "UPDATE marks_db SET  marks = '$marks', inserter_id = '$session_user_id' WHERE id = '$id'";
+    $sql = "UPDATE subject_by_semester SET book_name ='$book_name', inserter_id = '$session_user_id' WHERE s_no = '$id_post'";
 
 
     if ($con->query($sql) === TRUE) {
-        echo '<script>alert("Marks Update Successfully"); 
-        window.location.href = "result_check_dep_teacher.php";
-        </script>';
+        echo '<script>alert("Data Update Successfully"); window.location.href = "book_list.php";</script>';
 
     } else {
         echo "Error updating record: ";
@@ -70,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <link rel="stylesheet" href="../../css/home.css">
     <!-- <link rel="stylesheet" href="https://kit.fontawesome.com/b3e3482d82.css" crossorigin="anonymous"> -->
 
-    <title>Student Result Update</title>
+    <title>Book Name Update</title>
 </head>
 
 <body>
@@ -78,54 +76,41 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     <?php
     include '../../inc/navbar.php';
     ?>
+
     <div class="container text-center">
         <a class="text-decoration-none" href="../../">
             <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
-        <p class="fs-4">Fill the form for update result.</p>
+        <p class="fs-4">Fill the form for update details.</p>
+        <hr>
     </div>
 
     <div class="container text-center">
-        <form class="form-inline" method="POST">
+        <form class="form-inline" action="update_book_name.php" method="POST">
             <div class="input-group">
-                <input type="text" name="id" class="form-control" value="<?php echo $row['id']; ?>" readonly>
+                <input type="text" name="s_no" class="form-control" value="<?php echo $row['s_no']; ?>" readonly>
             </div>
             <br>
             <div class="input-group">
-                <input type="text" name="user_id" class="form-control" disabled value="<?php echo $row['user_id']; ?>">
-            </div>
-            <br>
-            <div class="input-group">
-                <input type="text" name="roll_no" class="form-control" disabled value="<?php echo $row['roll_no']; ?>">
-            </div>
-            <br>
-            <div class="input-group">
-                <input type="text" name="user_name" class="form-control" disabled
-                    value="<?php echo $row['user_name']; ?>">
-            </div>
-            <br>
-            <div class="input-group">
-                <input type="text" name="technology" class="form-control" disabled
+                <input type="text" name="technology" class="form-control" placeholder="Name" readonly
                     value="<?php echo $row['technology']; ?>">
             </div>
             <br>
             <div class="input-group">
-                <input type="text" name="semester" class="form-control" disabled
+                <input type="text" name="semester" class="form-control" placeholder="Name" readonly
                     value="<?php echo $row['semester']; ?>">
             </div>
             <br>
             <div class="input-group">
-                <input type="text" name="subject" class="form-control" disabled value="<?php echo $row['subject']; ?>">
+                <input type="tel" name="book_name" class="form-control" placeholder="Email" required
+                    value="<?php echo $row['book_name']; ?>">
             </div>
             <br>
-            <div class="input-group">
-                <input type="number" name="marks" class="form-control" required value="<?php echo $row['marks']; ?>">
-            </div>
-            <br>
-            <input class="submit btn btn-success" name="submit_marks" type="submit" value="Update">
+            <input class="submit btn btn-success save-btn" type="submit" value="Update">
 
         </form>
     </div>
+
 
 </body>
 
