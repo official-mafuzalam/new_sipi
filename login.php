@@ -65,20 +65,22 @@ if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['passw
 </head>
 
 <body>
+
     <div class="container d-flex justify-content-center align-items-center min-vh-100">
         <form class="row g-3 col-md-6" action="" method="post">
+        <div class="text-center">
+            <img src="images/sipi.png" class="rounded mx-auto d-block" alt="...">
+        </div>
             <?php if ($message != '') { ?>
                 <p>
                     <?php echo $message; ?>
                 </p>
             <?php } ?>
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Username</span>
-                <input type="text" name="username" class="form-control" placeholder="Username" aria-label="Username"
+                <input type="text" name="username" class="form-control" placeholder="Email" aria-label="Username"
                     aria-describedby="basic-addon1">
             </div>
             <div class="input-group mb-3">
-                <span class="input-group-text" id="basic-addon1">Password</span>
                 <input type="password" name="password" class="form-control" placeholder="Password" aria-label="Password"
                     aria-describedby="basic-addon1">
             </div>
@@ -86,7 +88,7 @@ if (isset($_POST['login']) && !empty($_POST['username']) && !empty($_POST['passw
                 <button type="submit" name="login" class="btn btn-primary">Login</button>
             </div>
             <div class="col-12 text-center mt-3">
-                <!-- Don't have an account? <a href="register.php">Register here</a> -->
+                Developed by <a class="text-decoration-none" href="https://friendsit.xyz/">Friends IT Ltd</a>
             </div>
         </form>
     </div>

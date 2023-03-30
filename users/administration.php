@@ -561,20 +561,20 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="col-md-3">
                             <div class="card text-center bg-info bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/administration/daily_deposit_quarry.php">
+                                <a class="text-decoration-none" href="../other/administration/daily_deposit_query.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-currency-dollar"></i>
-                                        <h5 class="card-title">Daily Deposit Quarry</h5>
+                                        <h5 class="card-title">Daily Deposit query</h5>
                                     </div>
                                 </a>
                             </div>
                         </div>
                         <div class="col-md-3">
                             <div class="card text-center bg-info bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/administration/daily_deposit_quarry.php">
+                                <a class="text-decoration-none" href="../other/administration/daily_deposit_query.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-currency-dollar"></i>
-                                        <h5 class="card-title">My Deposit Quarry</h5>
+                                        <h5 class="card-title">My Deposit query</h5>
                                     </div>
                                 </a>
                             </div>

@@ -389,10 +389,10 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="col-md-3">
                             <div class="card text-center bg-info bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/accountant/daily_deposit_quarry.php">
+                                <a class="text-decoration-none" href="../other/accountant/daily_deposit_query.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-currency-dollar"></i>
-                                        <h5 class="card-title">Deposit Quarry</h5>
+                                        <h5 class="card-title">Deposit query</h5>
                                     </div>
                                 </a>
                             </div>

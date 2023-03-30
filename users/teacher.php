@@ -92,7 +92,7 @@ $session_technology = $_SESSION['technology'];
                         <li>
                             <a class="tab nav-link" onclick="openTab(event, 'Tab5')">
                                 <i class="fs-4 bi-currency-dollar"></i>
-                                <span class="ms-1 d-none d-sm-inline">Deposit Quarry</span>
+                                <span class="ms-1 d-none d-sm-inline">Deposit query</span>
                             </a>
                         </li>
                         <li>
@@ -400,7 +400,7 @@ $session_technology = $_SESSION['technology'];
                                 <a class="text-decoration-none" href="../other/dep_teacher/fees_deposit_history.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-currency-dollar"></i>
-                                        <h5 class="card-title">Deposit Quarry</h5>
+                                        <h5 class="card-title">Deposit query</h5>
                                     </div>
                                 </a>
                             </div>
