@@ -3,7 +3,7 @@
 # All update complete
 
 #last_update
-\*30.03.2023
+\*08.04.2023
 
 - Web Application ✅
 - Android Application ✅
