@@ -61,20 +61,18 @@ $session_user_name = $_SESSION['username'];
     <div class="container">
         <p class="fs-4 fw-bold text-center">All Transaction</p>
 
-        <table class="table table-striped table-hover">
+        <?php
 
-            <?php
+        if (isset($_POST['submit_search'])) {
 
-            if (isset($_POST['submit_search'])) {
+            $date = $_POST['date'];
 
-                $date = $_POST['date'];
+            $sql = "SELECT * FROM `fees_deposit` WHERE date ='$date' AND inserter_id = '$session_user_id' ORDER BY s_no ASC";
+            $result = mysqli_query($con, $sql);
 
-                $sql = "SELECT * FROM `fees_deposit` WHERE date ='$date' AND inserter_id = '$session_user_id' ORDER BY s_no ASC";
-                $result = mysqli_query($con, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo '
-                    <table class="table table-striped table-hover" id="table">
+            if (mysqli_num_rows($result) > 0) {
+                echo '
+                    <table class="table table-striped table-hover table-bordered" id="table">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -91,35 +89,32 @@ $session_user_name = $_SESSION['username'];
                         </thead>
                         <tbody>';
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
-                            <tr>
-                                <td>' . $row['s_no'] . '</td>
-                                <td>' . $row['user_id'] . '</td>
-                                <td>' . $row['roll_no'] . '</td>
-                                <td>' . $row['user_name'] . '</td>
-                                <td>' . $row['current_semester'] . '</td>
-                                <td>' . $row['deposit_category'] . '</td>
-                                <td>' . $row['deposit_amount'] . '</td>
-                                <td>' . $row['comment'] . '</td>
-                                <td>' . $row['deposit_challan_no'] . '</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="fees_print.php?id=' . $row['deposit_challan_no'] . '">Print</a>
-                                    </button>
-                                </td>
-                            </tr>';
-                    }
-                    echo '</tbody></table>';
-                } else {
-                    echo 'No Transaction found for this date';
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
+                        <tr>
+                            <td>' . $row['s_no'] . '</td>
+                            <td>' . $row['user_id'] . '</td>
+                            <td>' . $row['roll_no'] . '</td>
+                            <td>' . $row['user_name'] . '</td>
+                            <td>' . $row['current_semester'] . '</td>
+                            <td>' . $row['deposit_category'] . '</td>
+                            <td>' . $row['deposit_amount'] . '</td>
+                            <td>' . $row['comment'] . '</td>
+                            <td>' . $row['deposit_challan_no'] . '</td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm">
+                                    <a class="text-decoration-none" href="fees_print.php?id=' . $row['deposit_challan_no'] . '">Print</a>
+                                </button>
+                            </td>
+                        </tr>';
                 }
+                echo '</tbody></table>';
+            } else {
+                echo 'No Transaction found for this date';
             }
+        }
 
-            ?>
-
-        </table>
-
+        ?>
     </div>
     <div class="container">
         <button onclick="getSumValue()" class="btn btn-info">Total Deposit</button>

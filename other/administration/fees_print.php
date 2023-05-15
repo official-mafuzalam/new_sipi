@@ -47,6 +47,25 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
     <!-- <link rel="stylesheet" href="https://kit.fontawesome.com/b3e3482d82.css" crossorigin="anonymous"> -->
 
     <title>Deposit Slip</title>
+
+
+    <style>
+        @media print {
+            #no-print {
+                display: none;
+            }
+
+            #print-btn {
+                display: none;
+            }
+
+            .container {
+                max-width: none;
+                width: auto;
+                padding: 0px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -65,75 +84,75 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <?php echo $row['inserter_id']; ?>
                 </p>
                 <div class="col">
-                    <p class="fs-4 fw-bold text-info">Challan No :
+                    <p class="fs-4 text-info">Challan No :
                         <?php echo $row['deposit_challan_no']; ?>
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <p class="fw-bold">User id :
+                    <p class="">User id :
                         <?php echo $row['user_id']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Technology :
+                    <p class="">Technology :
                         <?php echo $row['technology']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Date :
+                    <p class="">Date :
                         <?php echo $row['insert_date']; ?>
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <p class="fw-bold">Year :
+                    <p class="">Year :
                         <?php echo $row['admission_year']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Semester :
+                    <p class="">Semester :
                         <?php echo $row['current_semester']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Name :
+                    <p class="">Name :
                         <?php echo $row['user_name']; ?>
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <p class="fw-bold">Collage Id :
+                    <p class="">Collage Id :
                         <?php echo $row['clg_id']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Roll No :
+                    <p class="">Roll No :
                         <?php echo $row['roll_no']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Mobile Number :
+                    <p class="">Mobile Number :
                         <?php echo $row['mobile_number']; ?>
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <p class="fw-bold">Deposit Category :
+                    <p class="">Deposit Category :
                         <?php echo $row['deposit_category']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Deposit Amount :
+                    <p class="">Deposit Amount :
                         <?php echo $row['deposit_amount']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Comment :
+                    <p class="">Comment :
                         <?php echo $row['comment']; ?>
                     </p>
                 </div>
@@ -146,75 +165,75 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
                     <?php echo $row['inserter_id']; ?>
                 </p>
                 <div class="col">
-                    <p class="fs-4 fw-bold text-info">Challan No :
+                    <p class="fs-4 text-info">Challan No :
                         <?php echo $row['deposit_challan_no']; ?>
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <p class="fw-bold">User id :
+                    <p class="">User id :
                         <?php echo $row['user_id']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Technology :
+                    <p class="">Technology :
                         <?php echo $row['technology']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Date :
+                    <p class="">Date :
                         <?php echo $row['insert_date']; ?>
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <p class="fw-bold">Year :
+                    <p class="">Year :
                         <?php echo $row['admission_year']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Semester :
+                    <p class="">Semester :
                         <?php echo $row['current_semester']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Name :
+                    <p class="">Name :
                         <?php echo $row['user_name']; ?>
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <p class="fw-bold">Collage Id :
+                    <p class="">Collage Id :
                         <?php echo $row['clg_id']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Roll No :
+                    <p class="">Roll No :
                         <?php echo $row['roll_no']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Mobile Number :
+                    <p class="">Mobile Number :
                         <?php echo $row['mobile_number']; ?>
                     </p>
                 </div>
             </div>
             <div class="row">
                 <div class="col">
-                    <p class="fw-bold">Deposit Category :
+                    <p class="">Deposit Category :
                         <?php echo $row['deposit_category']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Deposit Amount :
+                    <p class="">Deposit Amount :
                         <?php echo $row['deposit_amount']; ?>
                     </p>
                 </div>
                 <div class="col">
-                    <p class="fw-bold">Comment :
+                    <p class="">Comment :
                         <?php echo $row['comment']; ?>
                     </p>
                 </div>
@@ -222,7 +241,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'GET') {
         </div>
 
         <div class="container text-center">
-            <button class="btn btn-info" onclick="window.print()">Print</button>
+            <button class="btn btn-info" id="no-print" onclick="window.print()">Print</button>
         </div>
 
 

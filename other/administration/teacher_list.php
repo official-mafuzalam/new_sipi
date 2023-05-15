@@ -48,68 +48,67 @@ $session_technology = $_SESSION['technology'];
 
     <div class="container">
 
-        <table class="table table-striped table-hover" id="table">
 
-            <?php
 
-            $sql = "SELECT * FROM teacher ORDER BY sno ASC";
-            // or bus_name like '%$search%'
-            $result = mysqli_query($con, $sql);
+        <?php
 
-            if (mysqli_num_rows($result) > 0) {
+        $sql = "SELECT * FROM teacher ORDER BY sno ASC";
+        // or bus_name like '%$search%'
+        $result = mysqli_query($con, $sql);
+
+        if (mysqli_num_rows($result) > 0) {
+            echo '<table class="table table-striped table-hover table-bordered" id="table">
+                        <thead>
+                            <tr>
+                                <th scope="col">No</th>
+                                <th scope="col">User Id</th>
+                                <th scope="col">Teacher Name</th>
+                                <th scope="col">Technology</th>
+                                <th scope="col">Position</th>
+                                <th scope="col">Mobile</th>
+                                <th scope="col">Email</th>
+                                <th scope="col">Action</th>
+                            </tr>
+                        </thead>
+                    <tbody>';
+            while ($row = mysqli_fetch_assoc($result)) {
+
                 echo '
-                <thead>
                     <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">User Id</th>
-                        <th scope="col">Teacher Name</th>
-                        <th scope="col">Technology</th>
-                        <th scope="col">Position</th>
-                        <th scope="col">Mobile</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>';
-                while ($row = mysqli_fetch_assoc($result)) {
-
-                    echo '
-                    <tbody>
-                        <tr>
-                            <td>
-                                ' . $row['sno'] . '
-                            </td>
-                            <td>
-                                ' . $row['user_id'] . '
-                            </td>
-                            <td>
-                                ' . $row['user_name'] . '
-                            </td>
-                            <td>
-                                ' . $row['technology'] . '
-                            </td>
-                            <td>
-                                ' . $row['position'] . '
-                            </td>
-                            <td>
-                                ' . $row['mobile_number'] . '
-                            </td>
-                            <td>
-                                ' . $row['email'] . '
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-warning">
-                                    <a class="text-decoration-none" href="update_teacher_details.php?user_id=' . $row['user_id'] . '">Edit</a>
-                                </button>
-                            </td>
-                        </tr>
-                    </tbody>';
-                }
-                ;
-            } else {
-                echo 'Do not found in database';
+                        <td>
+                            ' . $row['sno'] . '
+                        </td>
+                        <td>
+                            ' . $row['user_id'] . '
+                        </td>
+                        <td>
+                            ' . $row['user_name'] . '
+                        </td>
+                        <td>
+                            ' . $row['technology'] . '
+                        </td>
+                        <td>
+                            ' . $row['position'] . '
+                        </td>
+                        <td>
+                            ' . $row['mobile_number'] . '
+                        </td>
+                        <td>
+                            ' . $row['email'] . '
+                        </td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm">
+                                <a class="text-decoration-none" href="update_teacher_details.php?user_id=' . $row['user_id'] . '">Edit</a>
+                            </button>
+                        </td>
+                    </tr>';
             }
+            echo '</tbody></table>';
+        } else {
+            echo 'Do not found in database';
+        }
 
-            ?>
+        ?>
 
         </table>
 

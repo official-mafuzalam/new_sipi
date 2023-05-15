@@ -155,7 +155,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                     </div>
                 </form>
                     
-                <table class="table table-striped table-hover" id="table">
+                <table class="table table-striped table-hover table-bordered" id="table">
                     <thead>
                         <tr>
                             <th scope="col">No</th>

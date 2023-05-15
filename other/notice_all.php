@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $json_data = file_get_contents('../json/data_notice.json');
         $data = json_decode($json_data, true);
         ?>
-        <table class="table table-hover">
+        <table class="table table-striped table-hover table-bordered">
             <thead>
                 <tr>
                     <th class="col">U_No</th>

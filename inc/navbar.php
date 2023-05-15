@@ -1,6 +1,6 @@
 <nav class="navbar sticky-top bg-body-tertiary" style="background-color: thistle">
     <div class="container-fluid">
-        <div class="navbar-brand">
+        <div class="navbar-brand fs-6">
 
             <?php
 
@@ -13,7 +13,7 @@
         <div class="d-flex" role="search">
             <a class="text-decoration-none" href="../logout.php">
                 <i class="fs-5 bi-box-arrow-right"></i>
-                <strong>Logout</strong>
+                <strong class="fs-6">Logout</strong>
             </a>
         </div>
     </div>

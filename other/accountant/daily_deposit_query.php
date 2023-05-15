@@ -73,7 +73,7 @@ $session_user_name = $_SESSION['username'];
 
                 if (mysqli_num_rows($result) > 0) {
                     echo '
-                    <table class="table table-striped table-hover" id="table">
+                    <table class="table table-striped table-hover table-bordered" id="table">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -103,7 +103,7 @@ $session_user_name = $_SESSION['username'];
                                 <td>' . $row['comment'] . '</td>
                                 <td>' . $row['deposit_challan_no'] . '</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning">
+                                    <button type="button" class="btn btn-warning btn-sm">
                                         <a class="text-decoration-none" href="fees_print.php?id=' . $row['deposit_challan_no'] . '">Print</a>
                                     </button>
                                 </td>

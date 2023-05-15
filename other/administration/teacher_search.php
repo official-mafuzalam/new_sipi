@@ -72,18 +72,16 @@ $session_user_name = $_SESSION['username'];
 
     <div class="container">
 
-        <table class="table table-striped table-hover">
+        <?php
 
-            <?php
+        if (isset($_POST['submit_search'])) {
+            $search_technology = $_POST['technology'];
+            $sql = "SELECT * FROM `teacher` WHERE technology ='$search_technology' ORDER BY sno ASC";
+            $result = mysqli_query($con, $sql);
 
-            if (isset($_POST['submit_search'])) {
-                $search_technology = $_POST['technology'];
-                $sql = "SELECT * FROM `teacher` WHERE technology ='$search_technology' ORDER BY sno ASC";
-                $result = mysqli_query($con, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo '
-                    <table class="table table-striped table-hover" id="table">
+            if (mysqli_num_rows($result) > 0) {
+                echo '
+                    <table class="table table-striped table-hover table-bordered" id="table">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -97,8 +95,8 @@ $session_user_name = $_SESSION['username'];
                         </thead>
                     <tbody>';
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
                         <tr>
                             <td>' . $row['sno'] . '</td>
                             <td>' . $row['user_id'] . '</td>
@@ -107,22 +105,19 @@ $session_user_name = $_SESSION['username'];
                             <td>' . $row['mobile_number'] . '</td>
                             <td>' . $row['email'] . '</td>
                             <td>
-                                <button type="button" class="btn btn-warning">
+                                <button type="button" class="btn btn-warning btn-sm">
                                     <a class="text-decoration-none" href="update_teacher_details.php?user_id=' . $row['user_id'] . '">Edit</a>
                                 </button>
                             </td>
                         </tr>';
-                    }
-                    echo '</tbody></table>';
-                } else {
-                    echo 'Data not found in the database';
                 }
+                echo '</tbody></table>';
+            } else {
+                echo 'Data not found in the database';
             }
+        }
 
-            ?>
-
-
-        </table>
+        ?>
 
     </div>
 

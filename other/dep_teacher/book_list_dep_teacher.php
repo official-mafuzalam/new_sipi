@@ -96,7 +96,7 @@ $session_technology = $_SESSION['technology'];
 
             if (mysqli_num_rows($result) > 0) {
                 echo '<hr>
-                <table class="table table-striped table-hover" id="table">
+                <table class="table table-striped table-hover table-bordered" id="table">
                     <thead>
                         <tr>
                             <th scope="col">No</th>
@@ -116,7 +116,7 @@ $session_technology = $_SESSION['technology'];
                         <td>' . $row['semester'] . '</td>
                         <td>' . $row['book_name'] . '</td>
                         <td>
-                            <button type="button" class="btn btn-warning">
+                            <button type="button" class="btn btn-warning btn-sm">
                                 <a class="text-decoration-none" href="update_book_name.php?id=' . $row['s_no'] . '">Edit</a>
                             </button>
                         </td>

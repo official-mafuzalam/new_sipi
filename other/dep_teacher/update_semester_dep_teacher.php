@@ -142,7 +142,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             </div>
                         </form>
                         <hr>
-                    <table class="table table-striped table-hover" id="table">
+                    <table class="table table-striped table-hover table-bordered" id="table">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -174,7 +174,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                                 <td>' . $row['mobile_number'] . '</td>
                                 <td>' . $row['email'] . '</td>
                                 <td>
-                                    <button type="button" class="btn btn-warning">
+                                    <button type="button" class="btn btn-warning btn-sm">
                                         <a class="text-decoration-none" href="update_student_details.php?id=' . $row['id'] . '">Edit</a>
                                     </button>
                                 </td>

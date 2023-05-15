@@ -409,7 +409,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                             <div class="card text-center bg-info bg-opacity-75">
                                 <a class="text-decoration-none" href="../other/administration/attendance_history.php">
                                     <div class="card-body text-black">
-                                        <i class="fs-4 bi-pencil-square"></i>
+                                        <i class="fs-4 bi-table"></i>
                                         <h5 class="card-title">Attendance History</h5>
                                     </div>
                                 </a>
@@ -571,7 +571,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
                         </div>
                         <div class="col-md-3">
                             <div class="card text-center bg-info bg-opacity-75">
-                                <a class="text-decoration-none" href="../other/administration/daily_deposit_query.php">
+                                <a class="text-decoration-none" href="../other/administration/daily_deposit_query_own.php">
                                     <div class="card-body text-black">
                                         <i class="fs-4 bi-currency-dollar"></i>
                                         <h5 class="card-title">My Deposit query</h5>

@@ -122,37 +122,35 @@ $session_technology = $_SESSION['technology'];
 
     <div class="container">
 
-        <table class="table table-striped table-hover" id="table">
+        <?php
 
-            <?php
+        if (isset($_POST['submit_result'])) {
+            $search_technology = $_POST['technology'];
+            $search_semester = $_POST['semester'];
+            $search_book_name = $_POST['book_name'];
+            $sql = "SELECT * FROM `marks_db` WHERE semester='$search_semester' && technology ='$search_technology' && subject ='$search_book_name' ORDER BY id ASC";
+            $result = mysqli_query($con, $sql);
 
-            if (isset($_POST['submit_result'])) {
-                $search_technology = $_POST['technology'];
-                $search_semester = $_POST['semester'];
-                $search_book_name = $_POST['book_name'];
-                $sql = "SELECT * FROM `marks_db` WHERE semester='$search_semester' && technology ='$search_technology' && subject ='$search_book_name' ORDER BY id ASC";
-                $result = mysqli_query($con, $sql);
+            if (mysqli_num_rows($result) > 0) {
+                echo '
+                <table class="table table-striped table-hover table-bordered" id="table">
+                    <thead>
+                        <tr>
+                            <th scope="col">No</th>
+                            <th scope="col">User Id</th>
+                            <th scope="col">Roll No</th>
+                            <th scope="col">Student Name</th>
+                            <th scope="col">Technology</th>
+                            <th scope="col">Semester</th>
+                            <th scope="col">Subject</th>
+                            <th scope="col">Marks</th>
+                            <th scope="col">Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>';
 
-                if (mysqli_num_rows($result) > 0) {
+                while ($row = mysqli_fetch_assoc($result)) {
                     echo '
-                    <table class="table table-striped table-hover" id="table">
-                        <thead>
-                            <tr>
-                                <th scope="col">No</th>
-                                <th scope="col">User Id</th>
-                                <th scope="col">Roll No</th>
-                                <th scope="col">Student Name</th>
-                                <th scope="col">Technology</th>
-                                <th scope="col">Semester</th>
-                                <th scope="col">Subject</th>
-                                <th scope="col">Marks</th>
-                                <th scope="col">Action</th>
-                            </tr>
-                        </thead>
-                        <tbody>';
-
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
                         <tr>
                             <td>' . $row['id'] . '</td>
                             <td>' . $row['user_id'] . '</td>
@@ -163,20 +161,17 @@ $session_technology = $_SESSION['technology'];
                             <td>' . $row['subject'] . '</td>
                             <td>' . $row['marks'] . '</td>
                             <td>
-                                <button type="button" class="btn btn-warning">
+                                <button type="button" class="btn btn-warning btn-sm">
                                     <a class="text-decoration-none" href="update_result.php?id=' . $row['id'] . '">Edit</a>
                                 </button>
                             </td>
                         </tr>';
-                    }
-                    echo '</tbody></table>';
-                } else {
-                    echo 'Data not found in the database';
                 }
-            } ?>
-
-        </table>
-
+                echo '</tbody></table>';
+            } else {
+                echo 'Data not found in the database';
+            }
+        } ?>
     </div>
 
 

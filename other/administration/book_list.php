@@ -86,29 +86,21 @@ $session_technology = $_SESSION['technology'];
             </div>
         </form>
     </div>
-    <!-- <div class="container text-center">
-        <form class="row g-3 d-flex" role="search" method="POST">
-            
-        </form>
-        <input type="text" value="This input is not editable" readonly>
-
-    </div> -->
+    <br>
 
     <div class="container">
 
-        <table class="table table-striped table-hover" id="table">
+        <?php
+        // Retrieve the book names from the database based on the search query
+        if (isset($_POST['submit_book'])) {
+            $search_technology = $_POST['technology'];
+            $search_semester = $_POST['semester'];
+            $sql = "SELECT * FROM `subject_by_semester` WHERE technology ='$search_technology' && semester='$search_semester' ORDER BY s_no ASC";
+            $result = mysqli_query($con, $sql);
 
-            <?php
-            // Retrieve the book names from the database based on the search query
-            if (isset($_POST['submit_book'])) {
-                $search_technology = $_POST['technology'];
-                $search_semester = $_POST['semester'];
-                $sql = "SELECT * FROM `subject_by_semester` WHERE technology ='$search_technology' && semester='$search_semester' ORDER BY s_no ASC";
-                $result = mysqli_query($con, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo '
-                    <table class="table table-striped table-hover" id="table">
+            if (mysqli_num_rows($result) > 0) {
+                echo '
+                    <table class="table table-striped table-hover table-bordered" id="table">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -119,31 +111,27 @@ $session_technology = $_SESSION['technology'];
                             </tr>
                         </thead>
                         <tbody>';
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
                         <tr>
                             <td>' . $row['s_no'] . '</td>
                             <td>' . $row['technology'] . '</td>
                             <td>' . $row['semester'] . '</td>
                             <td>' . $row['book_name'] . '</td>
                             <td>
-                                <button type="button" class="btn btn-warning">
+                                <button type="button" class="btn btn-warning btn-sm">
                                     <a class="text-decoration-none" href="update_book_name.php?id=' . $row['s_no'] . '">Edit</a>
                                 </button>
                             </td>
                         </tr>';
-                    }
-                    echo '</tbody></table>';
-                } else {
-                    echo 'Data not found in the database';
                 }
+                echo '</tbody></table>';
+            } else {
+                echo 'Data not found in the database';
             }
+        }
 
-            ?>
-
-
-        </table>
-
+        ?>
     </div>
 
 

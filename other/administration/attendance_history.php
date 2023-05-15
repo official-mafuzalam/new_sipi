@@ -31,6 +31,24 @@ $session_technology = $_SESSION['technology'];
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.3/font/bootstrap-icons.css">
     <title>Attendance History</title>
 
+
+    <style>
+        @media print {
+            #no-print {
+                display: none;
+            }
+
+            #print-btn {
+                display: none;
+            }
+
+            .container {
+                max-width: none;
+                width: auto;
+            }
+        }
+    </style>
+
 </head>
 
 <body>
@@ -44,10 +62,29 @@ $session_technology = $_SESSION['technology'];
             <h2 class="fw-bold">Shyamoli Ideal Polytechnic Institute</h2>
         </a>
         <p class="fs-4">Attendance History</p>
-        <hr>
     </div>
-
     <div class="container text-center">
+        <div class="row justify-content-center align-items-center g-2">
+            <div class="col fw-bold">
+                <?php if (isset($_POST['submit_attendance'])) {
+                    echo $search_technology = $_POST['technology'];
+                } ?>
+            </div>
+            <div class="col fw-bold">
+                <?php if (isset($_POST['submit_attendance'])) {
+                    echo $search_technology = $_POST['semester'];
+                } ?>
+            </div>
+            <div class="col fw-bold">
+                <?php if (isset($_POST['submit_attendance'])) {
+                    echo $search_technology = $_POST['date'];
+                } ?>
+            </div>
+        </div>
+    </div>
+    <hr>
+
+    <div class="container text-center" id="no-print">
         <form class="row g-3 d-flex" role="search" method="POST">
             <div class="col-md-3">
                 <div class="input-group">
@@ -82,65 +119,87 @@ $session_technology = $_SESSION['technology'];
                 </div>
             </div>
             <div class="col-md-3">
-                <input name="date" type="date" class="form-control" value="<?php echo date('Y-m-d'); ?>" required />
+                <input name="date" type="text" class="form-control" value="05/15/2023" placeholder="MM/DD/YYYY"
+                    required />
             </div>
             <div class="col-md-3">
-                <button name="submit_attendance" type="submit" class="btn btn-outline-success mb-3">Search</button>
+                <button name="submit_attendance" type="submit" class="btn btn-success mb-3">Search</button>
             </div>
         </form>
     </div>
 
     <div class="container">
 
-        <table class="table table-striped table-hover" id="table">
+        <?php
+        // Retrieve the book names from the database based on the search query
+        if (isset($_POST['submit_attendance'])) {
 
-            <?php
-            // Retrieve the book names from the database based on the search query
-            if (isset($_POST['submit_attendance'])) {
-                $search_technology = $_POST['technology'];
-                $search_semester = $_POST['semester'];
-                $search_date = $_POST['date'];
-                $sql = "SELECT * FROM `stu_atten` WHERE technology ='$search_technology' && semester='$search_semester' && att_date = '$search_date' ORDER BY id ASC";
-                $result = mysqli_query($con, $sql);
+            $search_technology = $_POST['technology'];
+            $search_semester = $_POST['semester'];
+            $search_date = $_POST['date'];
 
-                if (mysqli_num_rows($result) > 0) {
-                    echo '
-                    <table class="table table-striped table-hover" id="table">
+            $sql = "SELECT * FROM `stu_atten` WHERE technology ='$search_technology' && semester='$search_semester' && att_date = '$search_date' ORDER BY id ASC";
+            $result = mysqli_query($con, $sql);
+
+            if (mysqli_num_rows($result) > 0) {
+                echo '
+                    <table class="table table-striped table-hover table-bordered" id="table">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
                                 <th scope="col">Name</th>
+                                <th scope="col">Technology</th>
                                 <th scope="col">Semester</th>
                                 <th scope="col">Status</th>
-                                <th scope="col">Comment</th>
+                                <th scope="col" id="no-print">Action</th>
                             </tr>
                         </thead>
                     <tbody>';
 
-                    $counter = 1;
+                $counter = 1;
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '<tr>';
-                        echo '<td>' . $counter . '</td>'; // Display the serial number
-                        echo '<td>' . $row['stu_name'] . '</td>';
-                        echo '<td>' . $row['semester'] . '</td>';
-                        echo '<td>' . $row['atten_status'] . '</td>';
-                        echo '<td>' . " " . '</td>';
-                        echo '</tr>';
-                        $counter++; // Increment the counter variable for the next row
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '<tr>';
+                    echo '<td>' . $counter . '</td>'; // Display the serial number
+                    echo '<td>' . $row['stu_name'] . '</td>';
+                    echo '<td>' . $row['technology'] . '</td>';
+                    echo '<td>' . $row['semester'] . '</td>';
+                    if ($row['atten_status'] == 1) {
+                        echo '<td>
+                                    <input type="radio" class="btn-check" id="success-outlined' . $row['user_id'] . '" autocomplete="on" checked>
+                                    <label class="btn btn-outline-success btn-sm" for="success-outlined' . $row['user_id'] . '">Present</label>
+                                </td>';
+                    } else {
+                        echo '<td>
+                                    <input type="radio" class="btn-check" id="danger-outlined ' . $row['user_id'] . '" autocomplete="on" checked>
+                                    <label class="btn btn-outline-danger btn-sm" for="danger-outlined ' . $row['user_id'] . '">Absent</label>
+                                </td>';
                     }
-                    echo '</tbody></table>';
-                } else {
-                    echo 'Data not found in the database';
+                    echo '<td id="no-print">
+                                <button type="button" class="btn btn-warning btn-sm">
+                                    <a class="text-decoration-none" href="update_student_details.php?id=' . $row['id'] . '">Edit</a>
+                                </button>
+                            </td>';
+                    echo '</tr>';
+                    $counter++; // Increment the counter variable for the next row
                 }
+                echo '</tbody></table>';
+                echo '<button id="print-btn" class="btn btn-primary btn-sm">Print</button>';
+            } else {
+                echo 'Data not found in the database';
             }
+        }
 
-            ?>
-
-
-        </table>
+        ?>
 
     </div>
+
+
+    <script>
+        document.getElementById("print-btn").addEventListener("click", function () {
+            window.print();
+        });
+    </script>
 
 
 

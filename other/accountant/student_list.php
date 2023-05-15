@@ -48,87 +48,57 @@ $session_technology = $_SESSION['technology'];
 
     <div class="container">
 
-        <table class="table table-striped table-hover" id="table">
+        <?php
 
-            <?php
+        $sql = "SELECT * FROM student_list ORDER BY id ASC";
 
-            $sql = "SELECT * FROM student_list ORDER BY id ASC";
+        $result = mysqli_query($con, $sql);
 
-            $result = mysqli_query($con, $sql);
-
-            if (mysqli_num_rows($result) > 0) {
-                echo '
-                <thead>
-                    <tr>
-                        <th scope="col">No</th>
-                        <th scope="col">User Id</th>
-                        <th scope="col">Roll No</th>
-                        <th scope="col">Collage Id</th>
-                        <th scope="col">Student Name</th>
-                        <th scope="col">Technology</th>
-                        <th scope="col">Year</th>
-                        <th scope="col">C. Semester</th>
-                        <th scope="col">Mobile</th>
-                        <th scope="col">Email</th>
-                        <th scope="col">Action</th>
-                    </tr>
-                </thead>
-                ';
-                while ($row = mysqli_fetch_assoc($result)) {
-
-                    echo '
-                    <tbody>
-
+        if (mysqli_num_rows($result) > 0) {
+            echo '
+                <table class="table table-striped table-hover table-bordered" id="table">
+                    <thead>
                         <tr>
-
-                            <td>
-                                ' . $row['id'] . '
-                            </td>
-                            <td>
-                                ' . $row['user_id'] . '
-                            </td>
-                            <td>
-                                ' . $row['roll_no'] . '
-                            </td>
-                            <td>
-                                ' . $row['clg_id'] . '
-                            </td>
-                            <td>
-                                ' . $row['user_name'] . '
-                            </td>
-                            <td>
-                                ' . $row['technology'] . '
-                            </td>
-                            <td>
-                                ' . $row['admision_Year'] . '
-                            </td>
-                            <td>
-                                ' . $row['current_semester'] . '
-                            </td>
-                            <td>
-                                ' . $row['mobile_number'] . '
-                            </td>
-                            <td>
-                                ' . $row['email'] . '
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-warning">
-                                    <a class="text-decoration-none" href="update_student_details.php?id=' . $row['id'] . '">Edit</a>
-                                </button>
-                            </td>
-
+                            <th scope="col">No</th>
+                            <th scope="col">User Id</th>
+                            <th scope="col">Roll No</th>
+                            <th scope="col">Collage Id</th>
+                            <th scope="col">Student Name</th>
+                            <th scope="col">Technology</th>
+                            <th scope="col">Year</th>
+                            <th scope="col">C. Semester</th>
+                            <th scope="col">Mobile</th>
+                            <th scope="col">Email</th>
+                            <th scope="col">Action</th>
                         </tr>
-
-                    </tbody>';
-                }
-                ;
-            } else {
-                echo 'Do not found in database';
+                    </thead>
+                <tbody>';
+            while ($row = mysqli_fetch_assoc($result)) {
+                echo '
+                    <tr>
+                        <td>' . $row['id'] . '</td>
+                        <td>' . $row['user_id'] . '</td>
+                        <td>' . $row['roll_no'] . '</td>
+                        <td>' . $row['clg_id'] . '</td>
+                        <td>' . $row['user_name'] . '</td>
+                        <td>' . $row['technology'] . '</td>
+                        <td>' . $row['admision_Year'] . '</td>
+                        <td>' . $row['current_semester'] . '</td>
+                        <td>' . $row['mobile_number'] . '</td>
+                        <td>' . $row['email'] . '</td>
+                        <td>
+                            <button type="button" class="btn btn-warning btn-sm">
+                                <a class="text-decoration-none" href="update_student_details.php?id=' . $row['id'] . '">Edit</a>
+                            </button>
+                        </td>
+                    </tr>';
             }
+            echo '</tbody></table>';
+        } else {
+            echo 'Do not found in database';
+        }
 
-            ?>
-
-        </table>
+        ?>
 
     </div>
 

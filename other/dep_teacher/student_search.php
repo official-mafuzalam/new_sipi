@@ -76,22 +76,21 @@ $session_technology = $_SESSION['technology'];
             </div>
         </form>
     </div>
+    <br>
 
     <div class="container">
 
-        <table class="table table-striped table-hover">
+        <?php
 
-            <?php
+        if (isset($_POST['submit_search'])) {
+            $search_technology = $_POST['technology'];
+            $search_semester = $_POST['semester'];
+            $sql = "SELECT * FROM `student_list` WHERE current_semester='$search_semester' && technology ='$search_technology' ORDER BY id ASC";
+            $result = mysqli_query($con, $sql);
 
-            if (isset($_POST['submit_search'])) {
-                $search_technology = $_POST['technology'];
-                $search_semester = $_POST['semester'];
-                $sql = "SELECT * FROM `student_list` WHERE current_semester='$search_semester' && technology ='$search_technology' ORDER BY id ASC";
-                $result = mysqli_query($con, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo '
-                    <table class="table table-striped table-hover" id="table">
+            if (mysqli_num_rows($result) > 0) {
+                echo '
+                    <table class="table table-striped table-hover table-bordered" id="table">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -109,36 +108,33 @@ $session_technology = $_SESSION['technology'];
                         </thead>
                         <tbody>';
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
-                            <tr>
-                                <td>' . $row['id'] . '</td>
-                                <td>' . $row['user_id'] . '</td>
-                                <td>' . $row['roll_no'] . '</td>
-                                <td>' . $row['clg_id'] . '</td>
-                                <td>' . $row['user_name'] . '</td>
-                                <td>' . $row['technology'] . '</td>
-                                <td>' . $row['admision_Year'] . '</td>
-                                <td>' . $row['current_semester'] . '</td>
-                                <td>' . $row['mobile_number'] . '</td>
-                                <td>' . $row['email'] . '</td>
-                                <td>
-                                    <button type="button" class="btn btn-warning">
-                                        <a class="text-decoration-none" href="update_student_details.php?user_id=' . $row['user_id'] . '">Edit</a>
-                                    </button>
-                                </td>
-                            </tr>';
-                    }
-                    echo '</tbody></table>';
-                } else {
-                    echo 'Data not found in the database';
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
+                        <tr>
+                            <td>' . $row['id'] . '</td>
+                            <td>' . $row['user_id'] . '</td>
+                            <td>' . $row['roll_no'] . '</td>
+                            <td>' . $row['clg_id'] . '</td>
+                            <td>' . $row['user_name'] . '</td>
+                            <td>' . $row['technology'] . '</td>
+                            <td>' . $row['admision_Year'] . '</td>
+                            <td>' . $row['current_semester'] . '</td>
+                            <td>' . $row['mobile_number'] . '</td>
+                            <td>' . $row['email'] . '</td>
+                            <td>
+                                <button type="button" class="btn btn-warning btn-sm">
+                                    <a class="text-decoration-none" href="update_student_details.php?user_id=' . $row['user_id'] . '">Edit</a>
+                                </button>
+                            </td>
+                        </tr>';
                 }
+                echo '</tbody></table>';
+            } else {
+                echo 'Data not found in the database';
             }
+        }
 
-            ?>
-
-
-        </table>
+        ?>
 
     </div>
 

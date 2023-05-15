@@ -61,21 +61,19 @@ $session_user_name = $_SESSION['username'];
 
     <div class="container">
 
-        <table class="table table-striped table-hover" id="table">
+        <?php
 
-            <?php
+        if (isset($_POST['submit_search'])) {
 
-            if (isset($_POST['submit_search'])) {
+            $search_user_id = $_POST['user_id'];
 
-                $search_user_id = $_POST['user_id'];
+            $sql = "SELECT * FROM `fees_deposit` WHERE user_id='$search_user_id' ORDER BY s_no DESC";
+            $result = mysqli_query($con, $sql);
 
-                $sql = "SELECT * FROM `fees_deposit` WHERE user_id='$search_user_id' ORDER BY s_no DESC";
-                $result = mysqli_query($con, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo '<hr>
+            if (mysqli_num_rows($result) > 0) {
+                echo '
                     <p class="fs-4 fw-bold text-center">All Transaction</p>
-                    <table class="table table-striped table-hover" id="table">
+                    <table class="table table-striped table-hover table-bordered" id="table">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -92,31 +90,28 @@ $session_user_name = $_SESSION['username'];
                         </thead>
                         <tbody>';
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
-                            <tr>
-                                <td>' . $row['s_no'] . '</td>
-                                <td>' . $row['user_id'] . '</td>
-                                <td>' . $row['roll_no'] . '</td>
-                                <td>' . $row['user_name'] . '</td>
-                                <td>' . $row['current_semester'] . '</td>
-                                <td>' . $row['deposit_category'] . '</td>
-                                <td>' . $row['deposit_amount'] . '</td>
-                                <td>' . $row['comment'] . '</td>
-                                <td>' . $row['deposit_challan_no'] . '</td>
-                                <td>' . $row['date'] . '</td>
-                            </tr>';
-                    }
-                    echo '</tbody></table>';
-                } else {
-                    echo 'No Transaction found in the database';
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
+                        <tr>
+                            <td>' . $row['s_no'] . '</td>
+                            <td>' . $row['user_id'] . '</td>
+                            <td>' . $row['roll_no'] . '</td>
+                            <td>' . $row['user_name'] . '</td>
+                            <td>' . $row['current_semester'] . '</td>
+                            <td>' . $row['deposit_category'] . '</td>
+                            <td>' . $row['deposit_amount'] . '</td>
+                            <td>' . $row['comment'] . '</td>
+                            <td>' . $row['deposit_challan_no'] . '</td>
+                            <td>' . $row['date'] . '</td>
+                        </tr>';
                 }
+                echo '</tbody></table>';
+            } else {
+                echo 'No Transaction found in the database';
             }
+        }
 
-            ?>
-
-        </table>
-
+        ?>
     </div>
 
 

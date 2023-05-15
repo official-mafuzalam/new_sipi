@@ -59,21 +59,18 @@ $session_user_name = $_SESSION['username'];
     </div>
 
     <div class="container">
+        <?php
 
-        <table class="table table-striped table-hover">
+        if (isset($_POST['submit_search'])) {
 
-            <?php
+            $search_user_id = $_POST['user_id'];
 
-            if (isset($_POST['submit_search'])) {
+            $sql = "SELECT * FROM `student_list` WHERE user_id='$search_user_id' ORDER BY id ASC";
+            $result = mysqli_query($con, $sql);
 
-                $search_user_id = $_POST['user_id'];
-
-                $sql = "SELECT * FROM `student_list` WHERE user_id='$search_user_id' ORDER BY id ASC";
-                $result = mysqli_query($con, $sql);
-
-                if (mysqli_num_rows($result) > 0) {
-                    echo '
-                    <table class="table table-striped table-hover" id="table">
+            if (mysqli_num_rows($result) > 0) {
+                echo '
+                    <table class="table table-striped table-hover table-bordered" id="table">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -85,14 +82,13 @@ $session_user_name = $_SESSION['username'];
                                 <th scope="col">Year</th>
                                 <th scope="col">C. Semester</th>
                                 <th scope="col">Mobile</th>
-                                <th scope="col">Email</th>
                                 <th scope="col">Action</th>
                             </tr>
                         </thead>
                         <tbody>';
 
-                    while ($row = mysqli_fetch_assoc($result)) {
-                        echo '
+                while ($row = mysqli_fetch_assoc($result)) {
+                    echo '
                         <tr>
                             <td>' . $row['id'] . '</td>
                             <td>' . $row['user_id'] . '</td>
@@ -103,22 +99,18 @@ $session_user_name = $_SESSION['username'];
                             <td>' . $row['admision_Year'] . '</td>
                             <td>' . $row['current_semester'] . '</td>
                             <td>' . $row['mobile_number'] . '</td>
-                            <td>' . $row['email'] . '</td>
                             <td>
-                                <button type="button" class="btn btn-warning">
+                                <button type="button" class="btn btn-warning btn-sm">
                                     <a class="text-decoration-none" href="fees_deposit_form.php?user_id=' . $row['user_id'] . '">Deposit</a>
                                 </button>
                             </td>
                         </tr>';
-                    }
-                    echo '</tbody></table>';
-                } else {
-                    echo 'Student not found in the database';
                 }
-            } ?>
-
-        </table>
-
+                echo '</tbody></table>';
+            } else {
+                echo 'Student not found in the database';
+            }
+        } ?>
         <br>
     </div>
 
@@ -126,7 +118,6 @@ $session_user_name = $_SESSION['username'];
         <hr>
         <p class="fs-4 fw-bold text-center">All Transaction</p>
 
-        <table class="table table-striped table-hover" id="table">
 
             <?php
 
@@ -139,7 +130,7 @@ $session_user_name = $_SESSION['username'];
 
                 if (mysqli_num_rows($result) > 0) {
                     echo '
-                    <table class="table table-striped table-hover" id="table">
+                    <table class="table table-striped table-hover table-bordered" id="table">
                         <thead>
                             <tr>
                                 <th scope="col">No</th>
@@ -182,9 +173,6 @@ $session_user_name = $_SESSION['username'];
             }
 
             ?>
-
-        </table>
-
     </div>
 
 
